@@ -1,0 +1,69 @@
+---
+import bannerVideo from "../assets/videos/banner-video.mp4";
+import logo from "../assets/images/logo.webp";
+---
+
+<div class="video-background">
+  <video autoplay loop muted>
+    <source src={bannerVideo} type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
+</div>
+<div class="banner-info">
+  <img src={logo} alt="Manhattan Manor Logo" />
+  <h4>New York's Most Central Venue</h4>
+  <div class="bounce">
+    <i class="bi bi-chevron-down"></i>
+  </div>
+</div>
+
+<style>
+  .video-background {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    height: 100vh;
+  }
+
+  .video-background video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw !important;
+    height: 100vh;
+    object-fit: cover;
+    z-index: -1;
+  }
+
+  .banner-info {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #fff;
+  }
+
+  .banner-info img {
+    margin-bottom: 20px;
+  }
+
+  .bounce {
+    font-size: 2rem;
+    margin-top: 20px;
+    animation: bounce 1.5s infinite;
+    cursor: pointer;
+  }
+
+  @keyframes bounce {
+    0% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(10px);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+</style>

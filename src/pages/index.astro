@@ -1,0 +1,13 @@
+---
+import { changeLanguage } from "i18next";
+import VideoBanner from "../components/VideoBanner.astro";
+import WhoWeAre from "../components/WhoWeAre.astro";
+import Layout from "../layouts/Layout.astro";
+
+changeLanguage("en");
+---
+
+<Layout>
+  <VideoBanner />
+  <WhoWeAre />
+</Layout>

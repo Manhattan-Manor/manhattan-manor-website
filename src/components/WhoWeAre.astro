@@ -1,0 +1,57 @@
+---
+import outsidePicture from "../assets/images/mm-outside.webp";
+---
+
+<section class="container">
+  <div class="row">
+    <div class="col-12 col-md-6 pic-container">
+      <img src={outsidePicture} alt="Manhattan Manor Outside" />
+    </div>
+    <div class="col-12 col-md-6 text">
+      <h2>Who We Are</h2>
+      <p>
+        Manhattan Manor is home to two unique event venues in one prime midtown
+        Manhattan location on 52nd street and 7th avenue above the iconic Rosie
+        O'Grady's Steak and Seafood restaurant. Seven thousand square feet of
+        luxurious space with gorgeous French Doors, skylights, exposed brick,
+        mahogany floors, and spectacular views from Central Park to Times
+        Square. Our team provides turnkey intimate services for corporate,
+        social and not-for-profit events. An independent, dedicated special
+        event space for 20 years with one of the newest, most modern, divine
+        spaces in New York.
+      </p>
+    </div>
+  </div>
+</section>
+
+<style>
+  section {
+    margin-top: 70px;
+  }
+
+  .pic-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .text {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    max-width: 600px;
+  }
+
+  .text h2 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+  }
+
+  .text p {
+    color: #a0a0a0;
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+</style>

@@ -1,0 +1,106 @@
+---
+import logo from "../assets/images/logo.webp";
+---
+
+<nav class="navbar">
+  <div class="container">
+    <div class="logo-div">
+      <button class="sound-btn">
+        <i class="bi bi-volume-up-fill"></i> SOUND
+      </button>
+      <a class="navbar-brand" href="#">
+        <img src={logo} alt="Manhattan Manor Logo" />
+      </a>
+    </div>
+    <ul class="menu">
+      <li>
+        <a href="#">LIVE</a>
+      </li>
+      <li>
+        <a href="#">NEW YEAR'S EVE</a>
+      </li>
+      <li>ESPAÑOL</li>
+      <li>
+        <button class="drawer-toggler">
+          <i class="bi bi-list"></i>
+        </button>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<style>
+  nav {
+    position: fixed !important;
+    width: 100%;
+  }
+
+  img {
+    width: 30px;
+    height: 48px;
+  }
+
+  .menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .menu li {
+    text-transform: uppercase;
+    margin-left: 20px;
+    font-size: 14px;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  .menu li:first-child a {
+    color: red;
+  }
+
+  .menu li:nth-child(2) a {
+    color: var(--primary-color);
+  }
+
+  .drawer-toggler {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: white;
+    font-size: 20px;
+    font-weight: 700;
+  }
+
+  .sound-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: white;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+  }
+
+  .sound-btn i {
+    font-size: 20px;
+    margin-right: 5px;
+  }
+
+  .logo-div {
+    display: flex;
+    align-items: center;
+  }
+
+  .navbar-brand {
+    margin-left: 20px;
+  }
+
+  .container {
+    max-width: 1100px
+  }
+</style>
