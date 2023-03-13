@@ -1,0 +1,36 @@
+---
+import skylightMain from "../assets/images/venues/skylight/main.webp";
+import Venue from "./Venue";
+---
+
+<section class="container">
+  <h2>Venues</h2>
+  <p>
+    Two unique spaces that are easy, versatile, and lend themselves to all types
+    of events. Whether you are hosting an all day conference, elegant wedding,
+    photo shoot, or special family celebration, Manhattan Manor is the place.
+  </p>
+
+  <div class="row venues">
+    <div class="col-12 col-md-6 d-flex justify-content-center">
+      <Venue name="Skylight Room" mainImage={skylightMain} client:visible />
+    </div>
+    <div class="col-12 col-md-6"></div>
+  </div>
+</section>
+
+<style lang="scss">
+  .container {
+    margin-top: 60px;
+    text-align: center;
+  }
+
+  p {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .venues {
+    margin-top: 60px;
+  }
+</style>

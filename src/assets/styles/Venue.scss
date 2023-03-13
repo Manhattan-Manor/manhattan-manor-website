@@ -1,0 +1,55 @@
+@import "colors";
+
+.venue {
+  text-align: left;
+
+  div:first-child {
+    position: relative;
+    top: 0;
+    left: 0;
+    cursor: pointer;
+
+    img {
+      position: relative;
+      top: 0;
+      left: 0;
+      max-width: 540px;
+    }
+
+    div {
+      position: absolute;
+      bottom: 12px;
+      left: 12px;
+      font-family: Oswald;
+
+      h5 {
+        font-size: 2rem;
+      }
+    }
+  }
+
+  .buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+    gap: 12px;
+
+    button {
+      background-color: black;
+      border: 1px solid $primary-color;
+      color: white;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: 700;
+      padding: 0.5rem 1rem;
+      text-align: center;
+      text-transform: uppercase;
+      transition: all 0.2s ease-in-out;
+      width: 100%;
+
+      &:hover {
+        background-color: $primary-color;
+      }
+    }
+  }
+}

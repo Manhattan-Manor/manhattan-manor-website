@@ -1,7 +1,10 @@
 ---
 import i18next from "i18next";
 import Navbar from "../components/Navbar.astro";
+import favicon from "../assets/images/favicon.png";
 import "bootstrap-icons/font/bootstrap-icons.css";
+import "../assets/styles/_global.scss";
+import "../assets/styles/_colors.scss";
 ---
 
 <!DOCTYPE html>
@@ -16,6 +19,7 @@ import "bootstrap-icons/font/bootstrap-icons.css";
       integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
       crossorigin="anonymous"
     />
+    <link rel="shortcut icon" href={favicon} type="image/x-icon" />
     <title>Manhattan Manor</title>
   </head>
   <body>
@@ -28,28 +32,3 @@ import "bootstrap-icons/font/bootstrap-icons.css";
     ></script>
   </body>
 </html>
-
-<style is:global>
-  @font-face {
-    font-family: "Roboto";
-    src: url("/fonts/Roboto-Regular.ttf");
-  }
-
-  :root {
-    --primary-color: #d9b812;
-  }
-
-  *,
-  ::after,
-  ::before {
-    box-sizing: border-box;
-  }
-
-  body {
-    margin: 0;
-    padding: 0;
-    font-family: "Roboto";
-    background-color: black;
-    color: white;
-  }
-</style>
