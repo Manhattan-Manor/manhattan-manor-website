@@ -1,0 +1,25 @@
+---
+const images: string[] = (
+  await Astro.glob("../assets/images/gallery/*.{jpg,png}")
+).map((i) => i.default);
+---
+
+<section class="container mt-5">
+  <h2 class="text-center mb-4">Gallery</h2>
+
+  <div class="row">
+    {
+      images.map((image, index) => (
+        <div
+          class={`col-12 col-sm-6 col-md-4 col-lg-3 mb-4 ${
+            index > 11 ? "d-none" : ""
+          }`}
+        >
+          <a href={image} data-lightbox="gallery">
+            <img class="w-100" src={image} alt={`gallery_${index}`} />
+          </a>
+        </div>
+      ))
+    }
+  </div>
+</section>
