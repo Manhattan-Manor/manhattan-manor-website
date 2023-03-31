@@ -1,0 +1,18 @@
+---
+import Carousel from "./Carousel.astro";
+import { mediaPartners } from "../data/mediaPartners";
+---
+
+<section class="container mt-5">
+  <h2 class="text-center mb-3">Media Partners</h2>
+
+  <div class="row">
+    <div class="col-12">
+      <Carousel
+        id="media-partners-carousel"
+        items={mediaPartners}
+        title="Media Partners Carousel"
+      />
+    </div>
+  </div>
+</section>

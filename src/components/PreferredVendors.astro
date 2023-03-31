@@ -1,0 +1,18 @@
+---
+import Carousel from "./Carousel.astro";
+import { preferredVendors } from "../data/preferredVendors";
+---
+
+<section class="container mt-5">
+  <h2 class="text-center mb-3">Preferred Vendors</h2>
+
+  <div class="row">
+    <div class="col-12">
+      <Carousel
+        id="preferred-vendors-carousel"
+        items={preferredVendors}
+        title="Preferred Vendors Carousel"
+      />
+    </div>
+  </div>
+</section>

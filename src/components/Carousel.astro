@@ -1,5 +1,5 @@
 ---
-import CarouselItem from '../classes/CarouselItem';
+import CarouselItem from "../classes/CarouselItem";
 
 interface Props {
   items: CarouselItem[];
@@ -25,7 +25,7 @@ const { items, id, title } = Astro.props;
             if (item.link) {
               return (
                 <li class="splide__slide">
-                  <a href={item.link}>
+                  <a href={item.link} rel="noopener noreferrer" target="_blank">
                     <img src={item.image} alt={item.alt} />
                   </a>
                 </li>

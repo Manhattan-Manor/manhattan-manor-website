@@ -1,0 +1,18 @@
+---
+import Carousel from "./Carousel.astro";
+import { inTheNews } from "../data/inTheNews";
+---
+
+<section class="container mt-5">
+  <h2 class="text-center mb-3">In the news</h2>
+
+  <div class="row">
+    <div class="col-12">
+      <Carousel
+        id="in-the-news-carousel"
+        items={inTheNews}
+        title="In The News Carousel"
+      />
+    </div>
+  </div>
+</section>
