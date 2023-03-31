@@ -1,0 +1,18 @@
+---
+import Carousel from "./Carousel.astro";
+import { clients } from "../data/clients";
+---
+
+<section class="container mt-4">
+  <h2 class="text-center mb-3">Clients</h2>
+
+  <div class="row">
+    <div class="col-12">
+      <Carousel
+        id="clients-carousel"
+        items={clients}
+        title="Clients carousel"
+      />
+    </div>
+  </div>
+</section>

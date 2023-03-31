@@ -1,0 +1,106 @@
+---
+import CarouselItem from '../classes/CarouselItem';
+
+interface Props {
+  items: CarouselItem[];
+  id: string;
+  title?: string;
+}
+
+const { items, id, title } = Astro.props;
+---
+
+<!-- Use splide to create a generic carousel showing 6 items simultaneously -->
+<astro-carousel data-id={id}>
+  <div
+    role="group"
+    aria-label={title || "Carousel"}
+    id={`carousel-${id}`}
+    class="splide"
+  >
+    <div class="splide__track">
+      <ul class="splide__list">
+        {
+          items.map((item) => {
+            if (item.link) {
+              return (
+                <li class="splide__slide">
+                  <a href={item.link}>
+                    <img src={item.image} alt={item.alt} />
+                  </a>
+                </li>
+              );
+            } else {
+              return (
+                <li class="splide__slide">
+                  <img src={item.image} alt={item.alt} />
+                </li>
+              );
+            }
+          })
+        }
+      </ul>
+    </div>
+  </div>
+</astro-carousel>
+
+<style lang="scss">
+  .splide {
+    &__slide {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+
+      img {
+        width: 150px;
+        height: 150px;
+        object-fit: cover;
+      }
+    }
+  }
+</style>
+
+<script>
+  import Splide from "@splidejs/splide";
+  import { AutoScroll } from "@splidejs/splide-extension-auto-scroll";
+
+  class Carousel extends HTMLElement {
+    constructor() {
+      super();
+      const id = this.dataset.id;
+      new Splide("#carousel-" + id, {
+        perPage: 6,
+        gap: "1rem",
+        // rewind: true,
+        type: "loop",
+        drag: "free",
+        focus: "center",
+        arrows: false,
+        pagination: false,
+        autoScroll: {
+          speed: 1,
+        },
+        breakpoints: {
+          576: {
+            perPage: 2,
+          },
+          768: {
+            perPage: 3,
+          },
+          992: {
+            perPage: 4,
+          },
+          1200: {
+            perPage: 5,
+          },
+          1400: {
+            perPage: 6,
+          },
+        },
+      }).mount({ AutoScroll });
+    }
+  }
+
+  customElements.define("astro-carousel", Carousel);
+</script>

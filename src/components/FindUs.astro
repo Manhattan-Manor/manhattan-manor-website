@@ -1,0 +1,54 @@
+<section class="container mt-4">
+  <h2 class="text-center">Find Us</h2>
+
+  <p class="text-center">
+    201 West 52nd Street at 7th Ave | New York, NY - 10019
+    <br />
+    <br />
+    <strong>Parking</strong>
+    <br />
+    City Parking - 1678 Broadway between 52nd and 53rd
+    <br />
+    New York, NY 10019 | 212-960-8301
+  </p>
+
+  <div class="map-container">
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3021.9731544181027!2d-73.98479384919099!3d40.76261517922499!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c258f87ddf7eab%3A0x83ec575b5ef68816!2s201%20W%2052nd%20St%2C%20New%20York%2C%20NY%2010019%2C%20USA!5e0!3m2!1sen!2smx!4v1680276719908!5m2!1sen!2smx"
+      allowfullscreen
+      width="100%"
+      height="450"
+      loading="lazy"
+      class="map"
+      referrerpolicy="no-referrer-when-downgrade"></iframe>
+    <a href="#" class="btn btn-primary directions-button">DOWNLOAD DIRECTIONS</a
+    >
+  </div>
+  <div class="mt-4 text-center">
+    <a href="https://wa.me/+16466274329" class="whatsapp">
+      <i class="bi bi-whatsapp"></i> CHAT NOW
+    </a>
+  </div>
+</section>
+
+<style lang="scss">
+  // Show direction button over map
+  .map-container {
+    position: relative;
+  }
+
+  .directions-button {
+    position: absolute;
+    left: 50%;
+    bottom: 20px;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+  }
+
+  // Whatsapp link
+  .whatsapp {
+    margin-top: 20px;
+    color: #25d366;
+    text-decoration: none;
+  }
+</style>
