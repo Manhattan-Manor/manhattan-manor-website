@@ -1,0 +1,87 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  image: string;
+}
+
+const { title, description, image } = Astro.props;
+---
+
+<!-- An image that, on hover, shows a description with white text and black background, and a small text in front of the image to show what is the description about before hovering -->
+<div class="service-container">
+  <img src={image} alt={title} class="image" />
+  <h5 class="title">{title} <i class="bi bi-chevron-right"></i></h5>
+  <div class="overlay">
+    <div class="text" set:html={description} />
+  </div>
+</div>
+
+<style>
+  /* The container */
+  .service-container {
+    position: relative;
+    width: 100%;
+  }
+
+  /* The image */
+  .image {
+    display: block;
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+
+  .title {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    color: white;
+    font-size: 20px;
+    text-align: center;
+    text-shadow: 2px 2px 4px #000000;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+
+  /* The overlay effect (full height and width) - lays on top of the container and over the image */
+  .overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    overflow: hidden;
+    width: 100%;
+    height: 0;
+    transition: 0.5s ease;
+  }
+
+  /* When you mouse over the container, fade in the overlay title */
+  .service-container:hover .overlay {
+    height: 100%;
+  }
+
+  /* The text - also needs to be positioned in the middle of the container/overlay */
+  .text {
+    color: white;
+    font-size: 12px;
+    position: absolute;
+    padding: 20px;
+    top: 50px;
+  }
+
+  /* The container */
+  .service-container {
+    position: relative;
+    width: 100%;
+  }
+
+  /* The image */
+  .image {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+</style>

@@ -1,0 +1,56 @@
+---
+import CarolineCartyImg from "../assets/images/team/Caroline_Carty.webp";
+import AmandaPilarSmithImg from "../assets/images/team/Amanda_Smith.webp";
+import MaryBurkeImg from "../assets/images/team/Mary_Burke.webp";
+import TeamItem from "./TeamItem.astro";
+
+const team = [
+  {
+    name: "Caroline Carty",
+    position: "Designer and Owner of Manhattan Manor",
+    description: `
+    A graduate of New York School of Interior Design, Caroline is well known for her innate sense of style and passion for design. 
+    Her interiors draw inspiration from her European and New York background. The use of sophisticated textures, clean lines, 
+    natural tones, subtle fusion of color and minimalistic, yet elegant and timeless design, define her style and aesthetic.
+    <br/><br/>
+    The Skylight Room is one of Caroline's many projects that she's very proud to showcase. The use of geometric shapes throughout 
+    the space leading from the staircase to the exposed beams and wall paneling juxtapose the old and new. Working alongside the 
+    renowned contracting team Duggan & Son they created a beautiful, refined and timeless space. The relentless attention to detail 
+    is seen throughout the space especially in the restoration of the majestic pièce de résistance Belgian fireplace which stands 
+    tall among the many featured chandeliers.
+    `,
+    image: CarolineCartyImg,
+  },
+  {
+    name: "Amanda Pilar Smith",
+    position: "Director of Event Sales",
+    description: `
+    Amanda has more than 15 years working in the event industry. Before joining the Manhattan Manor as Director of Events, Amanda 
+    oversaw the full operation of a boutique catering business, Amanda Smith Caterers.  She has catered events for renowned 
+    companies like Town & Country, TOD'S, Carl Hansen; numerous not-for-profit organizations including Room to Read, the Alzheimer's 
+    Association, and the Central Park Conservancy; as well as private families.
+    <br/><br/>
+    A graduate of Cornell University's hotel school, Amanda works closely with her clients to make their events exactly how they 
+    want them and is known for her calm demeanor and efficiency.  With the solid group of chefs, servers, and event managers at the 
+    Manhattan Manor, Amanda will make sure that your event is seamless and memorable.
+    `,
+    image: AmandaPilarSmithImg,
+  },
+  {
+    name: "Mary Burke",
+    position: "Events Manager",
+    description: `
+    Mary is the catering manager and favorite person at the Manhattan Manor. After 18 years working here, she has become synonymous 
+    with the club and guests know that they are in good hands.  She runs a tight ship and is always willing to do the utmost for her 
+    clients and their guests. 
+    `,
+    image: MaryBurkeImg,
+  },
+];
+---
+
+<section class="container mt-5">
+  <h2 class="text-center fw-bold mb-4">Our Team</h2>
+
+  {team.map((item) => <TeamItem {...item} />)}
+</section>
