@@ -1,0 +1,205 @@
+---
+import logo from "../assets/images/logo-fullsize.png";
+import usaFlag from "../assets/images/flags/usa.png";
+import spaFlag from "../assets/images/flags/spa.png";
+import rosieLogo from "../assets/images/logo-rosie.png";
+import mmSpecs from "../assets/documents/mm-specs.pdf";
+import facebookIcon from "../assets/images/social/facebook.png";
+import instagramIcon from "../assets/images/social/instagram.png";
+import youtubeIcon from "../assets/images/social/youtube.png";
+import theknotIcon from "../assets/images/social/theknot.png";
+import zolaIcon from "../assets/images/social/zola.png";
+import linkedinIcon from "../assets/images/social/linkedin.webp";
+
+const currentYear = new Date().getFullYear();
+const nextYear = currentYear + 1;
+---
+
+<footer class="bg-light">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-md-4">
+        <a href="mailto:info@manhattanmanor.com" class="social-link">
+          <i class="bi bi-envelope-fill"></i>
+          <span> info@manhattanmanor.com</span>
+        </a>
+      </div>
+      <div class="col-12 col-md-4">
+        <a href="tel:212-489-9595" class="social-link">
+          <i class="bi bi-phone"></i>
+          <span> 212-489-9595</span>
+        </a>
+      </div>
+      <div class="col-12 col-md-4">
+        <a href="#" class="social-link">
+          <i class="bi bi-pin-map-fill"></i>
+          <span> 201 West 52nd Street, New York, NY, 10019</span>
+        </a>
+      </div>
+      <div class="col-12 mt-4 text-center">
+        <a href="#">Request a live interaction with us</a>
+        <br /><br />
+        For Booking and Press Inquires please contact
+        <br /><br />
+        <a href="mailto:amanda@manhattanmanor.com"> Amanda Smith</a><br />
+        <a href="mailto:amanda@manhattanmanor.com" class="text-dark">
+          amanda@manhattanmanor.com</a
+        ><br />
+        <a href="tel:646-627-4329" class="text-dark"> 646-627-4329</a>
+
+        <img src={logo} alt="Manhattan Manor Logo" class="logo" />
+
+        <div class="mt-4">
+          <a href="#">
+            <img src={usaFlag} alt="English" />
+          </a>
+          <a href="#">
+            <img src={spaFlag} alt="Spanish" />
+          </a>
+        </div>
+
+        <div class="mt-4">
+          <a href="https://rosieogradys.com/" rel="noopener noreferrer">
+            Visit Our Sister Restaurant
+
+            <img
+              src={rosieLogo}
+              alt="Rosie O'Grady's"
+              class="d-block mt-3 mx-auto"
+            />
+          </a>
+        </div>
+
+        <a
+          href="https://www.eventbrite.com/e/new-years-eve-party-and-ball-drop-live-in-times-square-at-rosie-ogradys-tickets-296357482207"
+          class="mt-4 d-block text-center text-dark"
+        >
+          Celebrate at Rosie O'Gradys <br />
+          New Year's Eve Party <br />
+          Street Live View of the Ball Drop <br />
+          Times Square <br />
+          New York City <br />
+          {currentYear}-{nextYear}
+        </a>
+      </div>
+    </div>
+    <div class="row mt-4">
+      <div class="col-12 col-md-4">
+        <a href={mmSpecs}>SKYLIGHT ROOM SPECS</a>
+      </div>
+      <div class="col-12 col-md-4">
+        <a href="/terms">TERMS OF USE - PRIVACY POLICY</a>
+      </div>
+      <div class="col-12 col-md-4">
+        <a href={mmSpecs}>MANHATTAN CLUB SPECS</a>
+      </div>
+
+      <div class="col-12 mt-4">
+        <a href="https://wa.me/+16466274329" class="whatsapp">
+          <i class="bi bi-whatsapp"></i> CHAT NOW
+        </a>
+      </div>
+      <div class="col-12 mt-2">
+        <a href="/accesibility">ACCESIBILITY</a>
+      </div>
+      <div class="col-12 mt-4 social-icons">
+        <a href="https://www.facebook.com/manhattanmanor" target="_blank">
+          <img src={facebookIcon} alt="Facebook" />
+        </a>
+        <a href="https://www.instagram.com/manhattanmanor/" target="_blank">
+          <img src={instagramIcon} alt="Instagram" />
+        </a>
+        <a href="https://www.youtube.com/@manhattanmanor" target="_blank">
+          <img src={youtubeIcon} alt="Youtube" />
+        </a>
+      </div>
+      <div class="col-12 mt-3 social-icons">
+        <a
+          href="https://www.zola.com/wedding-vendors/wedding-venues/manhattan-manor?utm_source=vendor&utm_medium=various&utm_content=badge"
+          target="_blank"
+        >
+          <img src={zolaIcon} alt="Zola" />
+        </a>
+        <a
+          href="https://www.theknot.com/marketplace/manhattan-club-nyc-new-york-ny-2012844"
+          target="_blank"
+        >
+          <img src={theknotIcon} alt="TheKnot" />
+        </a>
+        <a
+          href="https://www.linkedin.com/company/manhattan-manor-nyc/"
+          target="_blank"
+        >
+          <img src={linkedinIcon} alt="LinkedIn" />
+        </a>
+      </div>
+      <div class="col-12 text-center mt-4">
+        Copyright © {currentYear} Manhattan Manor. All Rights Reserved.
+      </div>
+      <div class="col-12 d-flex justify-content-center">
+        <p
+          class="text-center mt-4 text-dark"
+          style="font-size: 10px; max-width: 800px;"
+        >
+          All product names, logos, and brands are the property of their
+          respective owners. All company, product and service names used in this
+          website are for identification purposes only. Use of these names,
+          logos, and brands does not imply endorsement.
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style lang="scss">
+  @import "../assets/styles/_colors.scss";
+
+  footer {
+    padding: 2rem 0;
+    color: black;
+    text-align: center;
+
+    .social-link {
+      display: block;
+      text-align: center;
+      text-decoration: none;
+      color: $gold;
+
+      i {
+        display: block;
+        font-size: 1.5rem;
+      }
+
+      span {
+        color: black;
+      }
+    }
+    a {
+      color: $gold;
+      text-decoration: none;
+    }
+
+    .logo {
+      width: 80px;
+      display: block;
+      margin: 0 auto;
+      margin-top: 2rem;
+    }
+
+    .whatsapp {
+      color: #25d366;
+    }
+
+    .social-icons {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 1rem;
+
+      img {
+        width: 40px;
+        margin: 0 0.5rem;
+      }
+    }
+  }
+</style>
