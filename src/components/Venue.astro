@@ -1,0 +1,247 @@
+---
+interface Props {
+  id: number;
+  name: string;
+  mainImage: string;
+  floorPlans: string;
+  description: string;
+  video: string;
+  gallery: string[];
+}
+
+const { id, name, mainImage, floorPlans, description, video, gallery } =
+  Astro.props;
+// Name without spaces, accents, etc.
+---
+
+<div class="venue mt-3 mt-md-0">
+  <div
+    id={`imgElement__${id}`}
+    class="venue__picture animate__animated animate__faster"
+  >
+    <img src={mainImage} alt={name} />
+    <div>
+      <h5>
+        {name}
+        <i class="bi bi-chevron-right"></i>
+      </h5>
+    </div>
+  </div>
+
+  <div
+    id={`descElement__${id}`}
+    class="venue__description animate__animated animate__faster d-none"
+  >
+    <div>
+      <h5>{name}</h5>
+    </div>
+    <p set:html={description} />
+  </div>
+
+  <div class="buttons">
+    <button id={`galleryButton__${id}`}>
+      <i class="bi bi-images"></i> Gallery
+    </button>
+    <!-- Open the bootstrap video modal -->
+    <button
+      type="button"
+      data-bs-toggle="modal"
+      data-bs-target={`#videoModal__${id}`}
+      class="btn"
+    >
+      <i class="bi bi-play-circle"></i> Video
+    </button>
+    <a target="_blank" href={floorPlans}>
+      <i class="bi bi-map"></i> Floor Plans
+    </a>
+  </div>
+
+  <!-- Bootstrap modal for show the embedded youtube video -->
+  <div
+    class="modal fade"
+    id={`videoModal__${id}`}
+    tabindex="-1"
+    aria-labelledby="videoModalLabel"
+    aria-hidden="true"
+    data-bs-theme="dark"
+  >
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="modal-body">
+          <iframe
+            width="100%"
+            height="500"
+            src={video}
+            title="YouTube video player"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div>
+  {
+    gallery.map((g, i) => {
+      return (
+        <a
+          id={`lightbox_${id}_${i}`}
+          class="d-none"
+          href={g}
+          data-lightbox={id}
+        >
+          Image #{i + 1} {g}
+        </a>
+      );
+    })
+  }
+</div>
+
+<style lang="scss">
+  @import "../assets/styles/colors";
+
+  .venue {
+    max-width: 100%;
+    &__picture {
+      text-align: left;
+
+      position: relative;
+      top: 0;
+      left: 0;
+      cursor: pointer;
+      max-width: 100%;
+
+      img {
+        position: relative;
+        top: 0;
+        left: 0;
+        width: 540px;
+        max-width: 100%;
+      }
+
+      div {
+        position: absolute;
+        bottom: 12px;
+        left: 12px;
+        font-family: Oswald;
+
+        h5 {
+          font-size: 2rem;
+        }
+      }
+    }
+
+    &__description {
+      text-align: left;
+      max-width: 100%;
+      cursor: pointer;
+
+      h5 {
+        font-size: 2rem;
+        font-weight: 400;
+        line-height: 1.5;
+        color: $primary-color;
+        text-align: center;
+      }
+    }
+
+    .buttons {
+      // Media query for large screens according to bootstrap breakpoints
+      @media (min-width: 992px) {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 1rem;
+        gap: 12px;
+      }
+
+      a,
+      button {
+        background-color: black;
+        border: 1px solid $primary-color;
+        border-radius: 0;
+        color: white;
+        cursor: pointer;
+        font-size: 1rem;
+        font-weight: 700;
+        padding: 0.5rem 1rem;
+        text-align: center;
+        text-transform: uppercase;
+        transition: all 0.2s ease-in-out;
+        width: 100%;
+        text-decoration: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 1rem;
+
+        // Media query for large screens according to bootstrap breakpoints
+        @media (min-width: 992px) {
+          margin-top: 0;
+        }
+
+        i {
+          margin-right: 0.5rem;
+        }
+
+        &:hover {
+          background-color: $primary-color;
+        }
+      }
+    }
+  }
+</style>
+
+<script define:vars={{ id }}>
+  // Use animate.css to animate the image and description
+  const imgElement = document.getElementById("imgElement__" + id);
+  const descElement = document.getElementById("descElement__" + id);
+
+  if (imgElement && descElement) {
+    // Animate the image when clicked and show the description
+    imgElement.addEventListener("click", () => {
+      const imgHeight = imgElement.offsetHeight;
+      const imgWidth = imgElement.offsetWidth;
+      imgElement.classList.add("animate__fadeOutLeft");
+      imgElement.addEventListener(
+        "animationend",
+        () => {
+          imgElement.classList.add("d-none");
+          // Set the height and width of the description div to equal the image div
+          descElement.style.minHeight = `${imgHeight}px`;
+          descElement.style.width = `${imgWidth}px`;
+          descElement.classList.remove("d-none");
+          descElement.classList.remove("animate__fadeOutRight");
+          descElement.classList.add("animate__fadeInRight");
+        },
+        { once: true }
+      );
+    });
+
+    // Animate the description when clicked and show the image
+    descElement.addEventListener("click", () => {
+      descElement.classList.add("animate__fadeOutRight");
+      descElement.addEventListener(
+        "animationend",
+        () => {
+          descElement.classList.add("d-none");
+          imgElement.classList.remove("d-none");
+          imgElement.classList.remove("animate__fadeOutLeft");
+          imgElement.classList.add("animate__fadeInLeft");
+        },
+        { once: true }
+      );
+    });
+  }
+
+  // Open the lightbox when the gallery button is clicked
+  const galleryButton = document.getElementById("galleryButton__" + id);
+  if (galleryButton) {
+    galleryButton.addEventListener("click", () => {
+      const lightbox = document.getElementById("lightbox_" + id + "_0");
+      if (lightbox) {
+        lightbox.click();
+      }
+    });
+  }
+</script>

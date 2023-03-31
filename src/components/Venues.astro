@@ -1,6 +1,61 @@
 ---
 import skylightMain from "../assets/images/venues/skylight/main.webp";
-import Venue from "./Venue";
+import manhattanClubMain from "../assets/images/venues/manhattan-club/main.webp";
+import skylightFloorplans from "../assets/documents/floorplan-skylight.pdf";
+import manhattanClubFloorplans from "../assets/documents/floorplan-manhattan-club.pdf";
+import Venue from "./Venue.astro";
+
+const skylightGallery = (await Astro.glob("../assets/images/venues/skylight/*.jpg")).map((image) => image.default);
+const manhattanClubGallery = (await Astro.glob("../assets/images/venues/manhattan-club/*.jpg")).map((image) => image.default);
+
+const venues = [
+  {
+    id: 1,
+    name: "Skylight Room",
+    mainImage: skylightMain,
+    floorPlans: skylightFloorplans,
+    video: "https://www.youtube.com/embed/zVe3RrmbNjw",
+    gallery: skylightGallery,
+    description: `
+    <h4>Venue Size</h4>
+    <ul>
+      <li>3,408 Square Feet</li>
+    </ul>
+    <h4>Capacity</h4>
+    <ul>
+      <li>275 Cocktail Reception</li>
+      <li>275 Seated Dinner</li>
+      <li>250 Seated Dinner with Dance Floor</li>
+      <li>125 Classroom Conference</li>
+      <li>225 Theatre Seating</li>
+      <li>120 U-Shape Conference</li>
+    </ul>
+    `,
+  },
+  {
+    id: 2,
+    name: "Manhattan Club",
+    mainImage: manhattanClubMain,
+    floorPlans: manhattanClubFloorplans,
+    video: "https://www.youtube.com/embed/zVe3RrmbNjw",
+    gallery: manhattanClubGallery,
+    description: `
+    <h4>Venue Size</h4>
+    <ul>
+      <li>3,520 Square Feet</li>
+    </ul>
+    <h4>Capacity</h4>
+    <ul>
+      <li>280 Cocktail Reception</li>
+      <li>250 Seated Dinner</li>
+      <li>200 Seated Dinner with Dance Floor</li>
+      <li>100 Classroom Conference</li>
+      <li>200 Theatre Seating</li>
+      <li>120 U-Shape Conference</li>
+    </ul>
+    `,
+  },
+];
 ---
 
 <section class="container">
@@ -12,9 +67,13 @@ import Venue from "./Venue";
   </p>
 
   <div class="row venues">
-    <div class="col-12 col-md-6 d-flex justify-content-center">
-      <Venue name="Skylight Room" mainImage={skylightMain} client:visible />
-    </div>
+    {
+      venues.map((venue) => (
+        <div class="col-12 col-md-6 d-flex justify-content-center">
+          <Venue {...venue} />
+        </div>
+      ))
+    }
     <div class="col-12 col-md-6"></div>
   </div>
 </section>
@@ -22,6 +81,7 @@ import Venue from "./Venue";
 <style lang="scss">
   .container {
     margin-top: 60px;
+    margin-bottom: 60px;
     text-align: center;
   }
 
