@@ -6,5 +6,10 @@ import criticalCss from "astro-critical-css";
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [astroI18next(), react(), criticalCss()]
+  integrations: [astroI18next(), react(), criticalCss()],
+  vite: {
+    ssr: {
+      noExternal: ["@splidejs/react-splide"],
+    }
+  }
 });

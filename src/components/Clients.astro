@@ -1,5 +1,5 @@
 ---
-import Carousel from "./Carousel.astro";
+import Carousel from "./Carousel";
 import { clients } from "../data/clients";
 ---
 
@@ -8,11 +8,7 @@ import { clients } from "../data/clients";
 
   <div class="row">
     <div class="col-12">
-      <Carousel
-        id="clients-carousel"
-        items={clients}
-        title="Clients carousel"
-      />
+      <Carousel client:visible items={clients} />
     </div>
   </div>
 </section>

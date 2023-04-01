@@ -1,0 +1,14 @@
+.splide {
+  &__slide {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+
+    img {
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+    }
+  }
+}
