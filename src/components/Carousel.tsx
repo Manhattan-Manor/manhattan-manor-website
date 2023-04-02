@@ -6,6 +6,7 @@ import "../assets/styles/Carousel.scss";
 
 interface ICarouselProps {
   items: CarouselItem[];
+  title?: string;
 }
 
 const options: Options = {
@@ -38,10 +39,10 @@ const options: Options = {
   },
 };
 
-const Carousel: FC<ICarouselProps> = ({ items }) => {
+const Carousel: FC<ICarouselProps> = ({ items, title }) => {
   return (
     <Splide
-      aria-label="My Favorite Images"
+      aria-label={title || "Carousel"}
       options={options}
       extensions={{ AutoScroll }}
     >

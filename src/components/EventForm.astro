@@ -1,0 +1,168 @@
+---
+import Checkbox from "./Checkbox.astro";
+---
+
+<button
+  class="d-block btn btn-secondary w-100 mx-auto"
+  data-bs-toggle="modal"
+  data-bs-target="#event-modal"
+  type="button"
+>
+  Tell Us More about your event
+</button>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="event-modal"
+  tabindex="-1"
+  aria-labelledby="tellUsMoreAboutYourEventModal"
+  aria-hidden="true"
+  data-bs-theme="dark"
+>
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <form>
+        <div class="modal-header">
+          <h1 class="modal-title fs-5">Request a quote</h1>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-12 col-sm-6 mb-3">
+              <label for="first-name" class="form-label">First name</label>
+              <input
+                type="text"
+                class="form-control"
+                name="first-name"
+                placeholder="First Name"
+                data-bs-theme="light"
+              />
+            </div>
+            <div class="col-12 col-sm-6 mb-3">
+              <label for="last-name" class="form-label">Last name</label>
+              <input
+                type="text"
+                class="form-control"
+                name="last-name"
+                placeholder="Last name"
+                data-bs-theme="light"
+              />
+            </div>
+            <div class="col-12 col-sm-6 mb-3">
+              <label for="email" class="form-label">Email</label>
+              <input
+                type="email"
+                class="form-control"
+                name="email"
+                placeholder="Email"
+                data-bs-theme="light"
+              />
+            </div>
+            <div class="col-12 col-sm-6 mb-3">
+              <label for="phone" class="form-label">Phone</label>
+              <input
+                type="tel"
+                class="form-control"
+                name="phone"
+                placeholder="Phone"
+                data-bs-theme="light"
+              />
+            </div>
+            <div class="col-12 col-sm-6 mb-3">
+              <label for="date" class="form-label">Date of proposed event</label
+              >
+              <input
+                type="date"
+                class="form-control"
+                name="date"
+                placeholder="Date of proposed event"
+                data-bs-theme="light"
+              />
+            </div>
+            <div class="col-12 col-sm-6 mb-3">
+              <label for="date" class="form-label">Time of proposed event</label
+              >
+              <input
+                type="time"
+                class="form-control"
+                data-bs-theme="light"
+                placeholder="Time of proposed event"
+              />
+            </div>
+            <div class="col-12">
+              <label for="company" class="form-label">Company</label>
+              <input
+                type="text"
+                class="form-control mb-3"
+                name="company"
+                placeholder="Company"
+                data-bs-theme="light"
+              />
+              <label for="guests-number" class="form-label"
+                >Number of guests</label
+              >
+              <input
+                type="number"
+                class="form-control mb-3"
+                name="guests-number"
+                placeholder="Number of guests"
+                data-bs-theme="light"
+              />
+              <label for="event-type" class="form-label">Type of event</label>
+              <input
+                type="text"
+                class="form-control mb-3"
+                name="event-type"
+                placeholder="Type of event"
+                data-bs-theme="light"
+              />
+              <label for="details" class="form-label">Details</label>
+              <textarea
+                class="form-control mb-3"
+                name="details"
+                rows="3"
+                placeholder="Please tell us about your event and special arrangements"
+                data-bs-theme="light"></textarea>
+              <Checkbox
+                label="Subscribe me to your newsletter"
+                name="newsletter"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal">Close</button
+          >
+          <button type="button" class="btn btn-primary">Send request</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<style lang="scss">
+  @import "../assets/styles/_colors.scss";
+
+  button {
+    max-width: 720px;
+    padding: 0.75rem 2rem !important;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+  }
+
+  .modal-content {
+    background-color: #000;
+    color: #fff;
+    border: 3px solid $primary;
+    border-radius: 0;
+    box-shadow: 0 0 0 0;
+  }
+</style>

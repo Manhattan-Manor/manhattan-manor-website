@@ -1,0 +1,25 @@
+@import "colors";
+
+.news-item {
+  width: 100%;
+  cursor: pointer;
+
+  div {
+    min-height: 150px;
+
+    h5 {
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+  }
+
+  hr {
+    border: 1px solid $primary;
+    opacity: 1;
+  }
+
+  &__date {
+    color: #a0a0a0;
+    text-align: right;
+  }
+}

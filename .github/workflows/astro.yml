@@ -29,8 +29,19 @@ env:
   # BUILD_PATH: subfolder
 
 jobs:
+  create-env:
+    name: Create env file
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create file
+        run: touch .env
+      - name: Add secrets
+        env:
+          INSTAGRAM_ACCESS_TOKEN: ${{ secrets.INSTAGRAM_ACCESS_TOKEN }}
+        run: echo "PUBLIC_INSTAGRAM_ACCESS_TOKEN=\"$INSTAGRAM_ACCESS_TOKEN\""
   build:
     name: Build
+    needs: create-env
     runs-on: ubuntu-latest
     steps:
       - name: Checkout

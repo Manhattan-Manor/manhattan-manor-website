@@ -17,6 +17,10 @@ import InTheNews from "../components/InTheNews.astro";
 import BallDrop from "../components/BallDrop.astro";
 import Countdown from "../components/Countdown.astro";
 import NewYearsEve from "../components/NewYearsEve.astro";
+import Testimonials from "../components/Testimonials.astro";
+import News from "../components/News";
+import ContactUs from "../components/ContactUs.astro";
+import InstagramFeed from "../components/InstagramFeed.astro";
 
 changeLanguage("en");
 ---
@@ -27,8 +31,11 @@ changeLanguage("en");
   <Venues />
   <Services />
   <OurTeam />
+  <News client:visible />
   <UpcomingEvents />
+  <InstagramFeed />
   <Gallery />
+  <Testimonials />
   <FindUs />
   <Clients />
   <PreferredVendors />
@@ -37,5 +44,6 @@ changeLanguage("en");
   <BallDrop />
   <Countdown />
   <NewYearsEve />
+  <ContactUs />
   <Footer />
 </Layout>

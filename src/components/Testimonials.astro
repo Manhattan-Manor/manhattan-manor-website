@@ -1,0 +1,39 @@
+---
+import { testimonials } from "../data/testimonials";
+---
+
+<section class="container mt-4">
+  <h2 class="text-center mb-3">Testimonials</h2>
+
+  <div class="row">
+    {
+      testimonials.map((t) => (
+        <div class="col-12 col-sm-6 col-md-4">
+          <p class="testimonial">
+            {t.testimonial}
+            <span>{t.name}</span>
+            {t.position && <span>{t.position}</span>}
+          </p>
+        </div>
+      ))
+    }
+  </div>
+</section>
+
+<style lang="scss">
+  .testimonial {
+    color: white;
+    font-size: 14px;
+
+    span {
+      color: #a0a0a0;
+      font-style: italic;
+      display: block;
+
+      &:first-child {
+        font-weight: bold;
+        margin-top: 1rem;
+      }
+    }
+  }
+</style>
