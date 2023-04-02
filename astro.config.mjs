@@ -10,6 +10,7 @@ export default defineConfig({
   vite: {
     ssr: {
       noExternal: ["@splidejs/react-splide"],
-    }
-  }
+    },
+  },
+  site: "https://manhattanmanor.com/",
 });
