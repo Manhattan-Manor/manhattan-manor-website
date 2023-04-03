@@ -6,7 +6,8 @@ import logo from "../assets/images/logo.webp";
   <div class="container">
     <div class="logo-div">
       <button class="sound-btn">
-        <i class="bi bi-volume-up-fill"></i> SOUND
+        <i class="bi bi-volume-up-fill"></i>
+        <span>SOUND</span>
       </button>
       <a class="navbar-brand" href="#">
         <img src={logo} alt="Manhattan Manor Logo" />
@@ -17,11 +18,17 @@ import logo from "../assets/images/logo.webp";
         <a href="#">LIVE</a>
       </li>
       <li>
-        <a href="#">NEW YEAR'S EVE</a>
+        <a
+          id="nye-link"
+          href="https://nye.manhattanmanor.com/"
+          rel="noopener noreferrer">NYE</a
+        >
       </li>
-      <li>ESPAÑOL</li>
       <li>
-        <button class="drawer-toggler">
+        <a id="spa-link" href="#">SPA</a>
+      </li>
+      <li>
+        <button class="drawer-toggler" id="sidenav-open-btn">
           <i class="bi bi-list"></i>
         </button>
       </li>
@@ -29,12 +36,32 @@ import logo from "../assets/images/logo.webp";
   </div>
 </nav>
 
+<nav id="sidenav" class="sidenav">
+  <button class="closebtn btn" id="sidenav-close-btn">&times;</button>
+  <a href="#balldrop-section">New Year's Eve</a>
+  <a href="#who-we-are-section">Who We Are</a>
+  <a href="#venues-section">Venues</a>
+  <a href="#services-section">Our Services</a>
+  <a href="#team-section">Our Team</a>
+  <a href="#news-section">News</a>
+  <a href="#upcoming-events-section">Upcoming Events</a>
+  <a href="#instagram-section">Instagram</a>
+  <a href="#gallery-section">Gallery</a>
+  <a href="#testimonials-section">Testimonials</a>
+  <a href="#find-us-section">Find Us</a>
+  <a href="#clients-section">Clients</a>
+  <a href="#vendors-section">Vendors</a>
+</nav>
+
 <style lang="scss">
   @import "../assets/styles/_colors.scss";
 
-  nav {
+  .navbar {
     position: fixed !important;
     width: 100%;
+    background: transparent;
+    z-index: 10;
+    transition: top 0.3s;
 
     img {
       width: 30px;
@@ -58,8 +85,8 @@ import logo from "../assets/images/logo.webp";
           color: red;
         }
 
-        &:nth-child(2) a {
-          color: $primary;
+        &:nth-child(3) a {
+          color: white;
         }
       }
 
@@ -86,6 +113,14 @@ import logo from "../assets/images/logo.webp";
       display: flex;
       align-items: center;
 
+      span {
+        display: none;
+
+        @media (min-width: 768px) {
+          display: inline;
+        }
+      }
+
       i {
         font-size: 20px;
         margin-right: 5px;
@@ -105,4 +140,122 @@ import logo from "../assets/images/logo.webp";
       max-width: 1100px;
     }
   }
+
+  .sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 20;
+    top: 0;
+    right: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+
+    a {
+      padding: 8px 8px 8px 32px;
+      text-decoration: none;
+      font-size: 25px;
+      color: #818181;
+      display: block;
+      transition: 0.3s;
+      text-align: center;
+
+      &:hover {
+        color: #f1f1f1;
+      }
+    }
+
+    .closebtn {
+      position: absolute;
+      top: 0;
+      right: 25px;
+      font-size: 36px;
+      margin-left: 50px;
+    }
+  }
 </style>
+
+<script>
+  const navbar = document.querySelector(".navbar") as HTMLElement;
+  // Hide navbar on scroll down
+  let prevScrollpos = window.pageYOffset;
+  window.onscroll = function () {
+    let currentScrollPos = window.pageYOffset;
+    if (prevScrollpos > currentScrollPos) {
+      navbar.style.top = "0";
+    } else {
+      navbar.style.top = "-100px";
+    }
+    prevScrollpos = currentScrollPos;
+
+    // If we are at the top of the page, set the navbar to be transparent
+    if (window.pageYOffset === 0) {
+      navbar.style.backgroundColor = "transparent";
+    } else {
+      navbar.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
+    }
+  };
+
+  // Check window width on load and detect if we are on mobile, also check on resize
+  const isMobile = () => window.innerWidth <= 760;
+  const adaptWords = (spaLink: HTMLElement, nyeLink: HTMLElement) => {
+    if (isMobile()) {
+      // If we are on mobile, change ESPAÑOL to SPA and NEW YEAR'S EVE to NYE
+      if (spaLink) spaLink.innerHTML = "SPA";
+      if (nyeLink) nyeLink.innerHTML = "NYE";
+    } else {
+      // If we are on desktop, change SPA to ESPAÑOL and NYE to NEW YEAR'S EVE
+      if (spaLink) spaLink.innerHTML = "ESPAÑOL";
+      if (nyeLink) nyeLink.innerHTML = "NEW YEAR'S EVE";
+    }
+  };
+
+  const spaLink = document.querySelector("#spa-link") as HTMLElement;
+  const nyeLink = document.querySelector("#nye-link") as HTMLElement;
+  adaptWords(spaLink, nyeLink);
+
+  window.addEventListener("resize", () => {
+    adaptWords(spaLink, nyeLink);
+  });
+
+  // Open and close the sidenav
+  const openNav = () => {
+    const sidenv = document.getElementById("sidenav") as HTMLElement;
+    if (sidenv) sidenv.style.width = "100%";
+    console.log("open");
+  };
+
+  const closeNav = () => {
+    const sidenv = document.getElementById("sidenav") as HTMLElement;
+    if (sidenv) sidenv.style.width = "0";
+  };
+
+  const sidenavOpenButton = document.getElementById(
+    "sidenav-open-btn"
+  ) as HTMLElement;
+  if (sidenavOpenButton) {
+    sidenavOpenButton.addEventListener("click", openNav);
+  }
+
+  const sidenavCloseButton = document.getElementById(
+    "sidenav-close-btn"
+  ) as HTMLElement;
+  if (sidenavCloseButton) {
+    sidenavCloseButton.addEventListener("click", closeNav);
+  }
+
+  // If navbar is open and user press esc, close the navbar
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      closeNav();
+    }
+  });
+
+  // Close navbar when user selects a link
+  const navLinks = document.querySelectorAll("#sidenav a");
+  navLinks.forEach((link) => {
+    link.addEventListener("click", closeNav);
+  });
+</script>

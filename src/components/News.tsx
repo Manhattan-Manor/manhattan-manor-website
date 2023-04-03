@@ -22,7 +22,7 @@ const carouselOptions = {
 
 const News: FC = () => {
   return (
-    <section className="container mt-4">
+    <section className="container mt-4" id="news-section">
       <h2 className="text-center">News</h2>
 
       <Splide aria-label="News Carousel" options={carouselOptions}>
