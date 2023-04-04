@@ -1,11 +1,12 @@
 ---
 import Checkbox from "./Checkbox.astro";
 import EventForm from "./EventForm.astro";
+import { t } from "i18next";
 ---
 
 <section class="mt-4 p-4">
   <div class="container">
-    <h2 class="text-center">Contact Us</h2>
+    <h2 class="text-center">{t("contact-us")}</h2>
 
     <div class="mb-3">
       <form class="mt-3">
@@ -13,37 +14,37 @@ import EventForm from "./EventForm.astro";
           type="text"
           name="name"
           class="form-control mx-auto"
-          placeholder="Name"
+          placeholder={t("contact-us.form.name")}
         />
         <!-- Add email, phone, a checkbox with "Request a live interaction" label, a checkbox with "Subscribe me to your newsletter" label -->
         <input
           type="email"
           name="email"
           class="form-control mx-auto"
-          placeholder="Email"
+          placeholder={t("contact-us.form.email")}
         />
         <input
           type="tel"
           name="phone"
           class="form-control mx-auto"
-          placeholder="Phone"
+          placeholder={t("contact-us.form.phone")}
         />
         <div class="checkbox">
           <Checkbox
             name="live-interaction"
-            label="Request a live interaction with us"
+            label={t("common.live-interaction") || ""}
             id="live-interaction"
           />
         </div>
         <div class="checkbox">
           <Checkbox
             name="newsletter"
-            label="Subscribe Me to your newsletter"
+            label={t("contact-us.form.newsletter") || ""}
             id="newsletter"
           />
         </div>
 
-        <button class="d-block btn btn-primary w-100 mx-auto">Submit</button>
+        <button class="d-block btn btn-primary w-100 mx-auto">{t("common.submit")}</button>
       </form>
       <EventForm />
     </div>

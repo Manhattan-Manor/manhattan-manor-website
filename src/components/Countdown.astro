@@ -1,15 +1,41 @@
 ---
+import i18next, { t } from "i18next";
+
 const currentYear = new Date().getFullYear();
+const currentLanguage = i18next.language;
+const nextDecember31Date = new Date(`Dec 31, ${currentYear} 00:00:00`);
+// Date format dddd, MMMM DD, YYYY
+const nextDecember31DateFormatted = nextDecember31Date.toLocaleDateString(
+  currentLanguage,
+  {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  }
+);
+// Result capitalized
+const nextDecember31DateFormattedCapitalized =
+  nextDecember31DateFormatted.charAt(0).toUpperCase() +
+  nextDecember31DateFormatted.slice(1);
 ---
 
-<section class="mt-4 text-center">
-  <h2>Countdown</h2>
-  <h3>Sunday, December 31, {currentYear}</h3>
+<countdown-component
+  data-days={t("common.days")}
+  data-hours={t("common.hours")}
+  data-minutes={t("common.minutes")}
+  data-seconds={t("common.seconds")}
+  data-happy-new-year={t("common.happy-new-year")}
+>
+  <section class="mt-4 text-center">
+    <h2>{t("countdown")}</h2>
+    <h3>{nextDecember31DateFormattedCapitalized}</h3>
 
-  <div class="col-12 d-flex justify-content-center" id="countdown">
-    Loading...
-  </div>
-</section>
+    <div class="col-12 d-flex justify-content-center" id="countdown">
+      {t("common.loading")}
+    </div>
+  </section>
+</countdown-component>
 
 <!-- Global styles because when the server is loading classes doesn't already exists -->
 <style is:global>
@@ -41,70 +67,85 @@ const currentYear = new Date().getFullYear();
 </style>
 
 <script>
-  // Set the date we're counting down to
-  var countDownDate = new Date("Dec 31, 2023 00:00:00").getTime();
+  class Countdown extends HTMLElement {
+    constructor() {
+      super();
 
-  // Update the count down every 1 second
-  var x = setInterval(function () {
-    // Get today's date and time
-    var now = new Date().getTime();
+      // Get localized strings
+      const daysString = this.dataset.days;
+      const hoursString = this.dataset.hours;
+      const minutesString = this.dataset.minutes;
+      const secondsString = this.dataset.seconds;
+      const happyNewYearString = this.dataset.happyNewYear;
 
-    // Find the distance between now and the count down date
-    var distance = countDownDate - now;
+      // Set the date we're counting down to
+      var countDownDate = new Date("Dec 31, 2023 00:00:00").getTime();
 
-    // Time calculations for days, hours, minutes and seconds
-    var days = Math.floor(distance / (1000 * 60 * 60 * 24))
-      .toString()
-      .padStart(3, "0");
-    var hours = Math.floor(
-      (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-    )
-      .toString()
-      .padStart(2, "0");
-    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))
-      .toString()
-      .padStart(2, "0");
-    var seconds = Math.floor((distance % (1000 * 60)) / 1000)
-      .toString()
-      .padStart(2, "0");
+      // Update the count down every 1 second
+      var x = setInterval(function () {
+        // Get today's date and time
+        var now = new Date().getTime();
 
-    // Display the result in the element with id="countdown"
-    const countdownElement = document.getElementById("countdown");
-    if (countdownElement)
-      countdownElement.innerHTML = `
-            <div class="countdown-elements">
-                <div>
-                    ${days}
-                    <span>DAYS</span>
-                </div>
-                <div class="countdown-elements__dot">
-                    :
-                </div>
-                <div>
-                    ${hours}
-                    <span>HOURS</span>
-                </div>
-                <div class="countdown-elements__dot">
-                    :
-                </div>
-                <div>
-                    ${minutes}
-                    <span>MINUTES</span>
-                </div>
-                <div class="countdown-elements__dot">
-                    :
-                </div>
-                <div>
-                    ${seconds}
-                    <span>SECONDS</span>
-                </div>
-            </div>
-          `;
+        // Find the distance between now and the count down date
+        var distance = countDownDate - now;
 
-    // If the count down is finished, write some text
-    if (distance < 0) {
-      clearInterval(x);
-      if (countdownElement) countdownElement.innerHTML = "IS ALREADY NEW YEAR!";
+        // Time calculations for days, hours, minutes and seconds
+        var days = Math.floor(distance / (1000 * 60 * 60 * 24))
+          .toString()
+          .padStart(3, "0");
+        var hours = Math.floor(
+          (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+        )
+          .toString()
+          .padStart(2, "0");
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))
+          .toString()
+          .padStart(2, "0");
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000)
+          .toString()
+          .padStart(2, "0");
+
+        // Display the result in the element with id="countdown"
+        const countdownElement = document.getElementById("countdown");
+        if (countdownElement)
+          countdownElement.innerHTML = `
+          <div class="countdown-elements">
+              <div>
+                  ${days}
+                  <span>${daysString}</span>
+              </div>
+              <div class="countdown-elements__dot">
+                  :
+              </div>
+              <div>
+                  ${hours}
+                  <span>${hoursString}</span>
+              </div>
+              <div class="countdown-elements__dot">
+                  :
+              </div>
+              <div>
+                  ${minutes}
+                  <span>${minutesString}</span>
+              </div>
+              <div class="countdown-elements__dot">
+                  :
+              </div>
+              <div>
+                  ${seconds}
+                  <span>${secondsString}</span>
+              </div>
+          </div>
+        `;
+
+        // If the count down is finished, write some text
+        if (distance < 0) {
+          clearInterval(x);
+          if (countdownElement) countdownElement.innerHTML = happyNewYearString || "";
+        }
+      }, 1000);
     }
-  }, 1000);
+  }
+
+  customElements.define("countdown-component", Countdown);
 </script>

@@ -1,9 +1,11 @@
 ---
+import { t } from "i18next"
+
 const currentYear = new Date().getFullYear();
 ---
 
 <section class="container mt-5">
-  <h2 class="text-center mb-3">New Year's Eve {currentYear}</h2>
+  <h2 class="text-center mb-3">{t("common.nye")} {currentYear}</h2>
 
   <iframe
     width="100%"

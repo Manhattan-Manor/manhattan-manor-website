@@ -1,11 +1,15 @@
+---
+import { t } from "i18next";
+---
+
 <section class="container mt-4" id="find-us-section">
-  <h2 class="text-center">Find Us</h2>
+  <h2 class="text-center">{t("find-us")}</h2>
 
   <p class="text-center">
     201 West 52nd Street at 7th Ave | New York, NY - 10019
     <br />
     <br />
-    <strong>Parking</strong>
+    <strong>{t("common.parking")}</strong>
     <br />
     City Parking - 1678 Broadway between 52nd and 53rd
     <br />
@@ -21,12 +25,14 @@
       loading="lazy"
       class="map"
       referrerpolicy="no-referrer-when-downgrade"></iframe>
-    <a href="#" class="btn btn-primary directions-button">DOWNLOAD DIRECTIONS</a
+    <a href="#" class="btn btn-primary directions-button"
+      >{t("find-us.download-directions")}</a
     >
   </div>
   <div class="mt-4 text-center">
     <a href="https://wa.me/+16466274329" class="whatsapp">
-      <i class="bi bi-whatsapp"></i> CHAT NOW
+      <i class="bi bi-whatsapp"></i>
+      {t("common.chat-now")}
     </a>
   </div>
 </section>
@@ -43,6 +49,7 @@
     bottom: 20px;
     transform: translate(-50%, -50%);
     z-index: 1;
+    text-transform: uppercase;
   }
 
   // Whatsapp link
@@ -50,5 +57,6 @@
     margin-top: 20px;
     color: #25d366;
     text-decoration: none;
+    text-transform: uppercase;
   }
 </style>

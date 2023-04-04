@@ -4,7 +4,7 @@ import react from "@astrojs/react";
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [astroI18next(), react()],
+  integrations: [react(), astroI18next()],
   vite: {
     ssr: {
       noExternal: ["@splidejs/react-splide"],

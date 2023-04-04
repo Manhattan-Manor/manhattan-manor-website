@@ -177,3 +177,8 @@ a.text-primary:hover,
 a.text-primary:focus {
   color: $primary_t2 !important;
 }
+
+select option {
+  background-color: black;
+  color: white;
+}

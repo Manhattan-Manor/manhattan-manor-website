@@ -2,6 +2,7 @@ import { Splide, SplideSlide } from "@splidejs/react-splide";
 import React, { FC } from "react";
 import { news } from "../data/news";
 import NewsItem from "./NewsItem";
+import { useTranslation } from "react-i18next";
 
 const carouselOptions = {
   perPage: 3,
@@ -21,9 +22,11 @@ const carouselOptions = {
 };
 
 const News: FC = () => {
+  const { t } = useTranslation("translation");
+
   return (
     <section className="container mt-4" id="news-section">
-      <h2 className="text-center">News</h2>
+      <h2 className="text-center">{t("common.news")}</h2>
 
       <Splide aria-label="News Carousel" options={carouselOptions}>
         {news.map((item, index) => (

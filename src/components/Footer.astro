@@ -10,6 +10,8 @@ import youtubeIcon from "../assets/images/social/youtube.png";
 import theknotIcon from "../assets/images/social/theknot.png";
 import zolaIcon from "../assets/images/social/zola.png";
 import linkedinIcon from "../assets/images/social/linkedin.webp";
+import { localizePath } from "astro-i18next";
+import { t } from "i18next";
 
 const currentYear = new Date().getFullYear();
 const nextYear = currentYear + 1;
@@ -37,9 +39,9 @@ const nextYear = currentYear + 1;
         </a>
       </div>
       <div class="col-12 mt-4 text-center">
-        <a href="#">Request a live interaction with us</a>
+        <a href="#">{t("common.live-interaction")}</a>
         <br /><br />
-        For Booking and Press Inquires please contact
+        {t("footer.booking")}
         <br /><br />
         <a href="mailto:amanda@manhattanmanor.com"> Amanda Smith</a><br />
         <a href="mailto:amanda@manhattanmanor.com" class="text-dark">
@@ -60,7 +62,7 @@ const nextYear = currentYear + 1;
 
         <div class="mt-4">
           <a href="https://rosieogradys.com/" rel="noopener noreferrer">
-            Visit Our Sister Restaurant
+            {t("footer.visit-our-sister-restaurant")}
 
             <img
               src={rosieLogo}
@@ -74,9 +76,11 @@ const nextYear = currentYear + 1;
           href="https://www.eventbrite.com/e/new-years-eve-party-and-ball-drop-live-in-times-square-at-rosie-ogradys-tickets-296357482207"
           class="mt-4 d-block text-center text-dark"
         >
-          Celebrate at Rosie O'Gradys <br />
-          New Year's Eve Party <br />
-          Street Live View of the Ball Drop <br />
+          {t("common.celebrate-at")} Rosie O'Gradys <br />
+          {t("common.nye.party")}
+          <br />
+          {t("ball-drop.title")}
+          <br />
           Times Square <br />
           New York City <br />
           {currentYear}-{nextYear}
@@ -85,22 +89,24 @@ const nextYear = currentYear + 1;
     </div>
     <div class="row mt-4">
       <div class="col-12 col-md-4">
-        <a href={mmSpecs}>SKYLIGHT ROOM SPECS</a>
+        <a href={mmSpecs}>SKYLIGHT ROOM - {(t("specs") || "").toUpperCase()}</a>
       </div>
       <div class="col-12 col-md-4">
-        <a href="/terms">TERMS OF USE - PRIVACY POLICY</a>
+        <a href={localizePath("/terms")}>{t("terms-of-use")} - {t("privacy-policy")}</a>
       </div>
       <div class="col-12 col-md-4">
-        <a href={mmSpecs}>MANHATTAN CLUB SPECS</a>
+        <a href={mmSpecs}>MANHATTAN CLUB - {(t("specs") || "").toUpperCase()}</a
+        >
       </div>
 
       <div class="col-12 mt-4">
         <a href="https://wa.me/+16466274329" class="whatsapp">
-          <i class="bi bi-whatsapp"></i> CHAT NOW
+          <i class="bi bi-whatsapp"></i>
+          {t("common.chat-now")}
         </a>
       </div>
       <div class="col-12 mt-2">
-        <a href="/accesibility">ACCESIBILITY</a>
+        <a href={localizePath("/accessibility")}>{t("accessibility")}</a>
       </div>
       <div class="col-12 mt-4 social-icons">
         <a href="https://www.facebook.com/manhattanmanor" target="_blank">
@@ -134,17 +140,16 @@ const nextYear = currentYear + 1;
         </a>
       </div>
       <div class="col-12 text-center mt-4">
-        Copyright © {currentYear} Manhattan Manor. All Rights Reserved.
+        {t("common.copyright")} © {currentYear} Manhattan Manor. {
+          t("common.all-rights-reserved")
+        }.
       </div>
       <div class="col-12 d-flex justify-content-center">
         <p
           class="text-center mt-4 text-dark"
           style="font-size: 10px; max-width: 800px;"
         >
-          All product names, logos, and brands are the property of their
-          respective owners. All company, product and service names used in this
-          website are for identification purposes only. Use of these names,
-          logos, and brands does not imply endorsement.
+          {t("footer.copyright-disclaimer")}
         </p>
       </div>
     </div>

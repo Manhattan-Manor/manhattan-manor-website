@@ -1,5 +1,6 @@
 ---
 import Checkbox from "./Checkbox.astro";
+import { t } from "i18next";
 ---
 
 <button
@@ -8,7 +9,7 @@ import Checkbox from "./Checkbox.astro";
   data-bs-target="#event-modal"
   type="button"
 >
-  Tell Us More about your event
+  {t("contact-us.form.tell-us-more")}
 </button>
 
 <!-- Modal -->
@@ -24,7 +25,7 @@ import Checkbox from "./Checkbox.astro";
     <div class="modal-content">
       <form>
         <div class="modal-header">
-          <h1 class="modal-title fs-5">Request a quote</h1>
+          <h1 class="modal-title fs-5">{t("contact-us.form.title")}</h1>
           <button
             type="button"
             class="btn-close"
@@ -34,102 +35,114 @@ import Checkbox from "./Checkbox.astro";
         <div class="modal-body">
           <div class="row">
             <div class="col-12 col-sm-6 mb-3">
-              <label for="first-name" class="form-label">First name</label>
+              <label for="first-name" class="form-label"
+                >{t("contact-us.form.first-name")}</label
+              >
               <input
                 type="text"
                 class="form-control"
                 name="first-name"
-                placeholder="First Name"
+                placeholder={t("contact-us.form.first-name")}
                 data-bs-theme="light"
               />
             </div>
             <div class="col-12 col-sm-6 mb-3">
-              <label for="last-name" class="form-label">Last name</label>
+              <label for="last-name" class="form-label"
+                >{t("contact-us.form.last-name")}</label
+              >
               <input
                 type="text"
                 class="form-control"
                 name="last-name"
-                placeholder="Last name"
+                placeholder={t("contact-us.form.last-name")}
                 data-bs-theme="light"
               />
             </div>
             <div class="col-12 col-sm-6 mb-3">
-              <label for="email" class="form-label">Email</label>
+              <label for="email" class="form-label"
+                >{t("contact-us.form.email")}</label
+              >
               <input
                 type="email"
                 class="form-control"
                 name="email"
-                placeholder="Email"
+                placeholder={t("contact-us.form.email")}
                 data-bs-theme="light"
               />
             </div>
             <div class="col-12 col-sm-6 mb-3">
-              <label for="phone" class="form-label">Phone</label>
+              <label for="phone" class="form-label"
+                >{t("contact-us.form.phone")}</label
+              >
               <input
                 type="tel"
                 class="form-control"
                 name="phone"
-                placeholder="Phone"
+                placeholder={t("contact-us.form.phone")}
                 data-bs-theme="light"
               />
             </div>
             <div class="col-12 col-sm-6 mb-3">
-              <label for="date" class="form-label">Date of proposed event</label
+              <label for="date" class="form-label"
+                >{t("contact-us.form.date-of-event")}</label
               >
               <input
                 type="date"
                 class="form-control"
                 name="date"
-                placeholder="Date of proposed event"
+                placeholder={t("contact-us.form.date-of-event")}
                 data-bs-theme="light"
               />
             </div>
             <div class="col-12 col-sm-6 mb-3">
-              <label for="date" class="form-label">Time of proposed event</label
+              <label for="date" class="form-label"
+                >{t("contact-us.form.time-of-event")}</label
               >
               <input
                 type="time"
                 class="form-control"
                 data-bs-theme="light"
-                placeholder="Time of proposed event"
+                placeholder={t("contact-us.form.time-of-event")}
               />
             </div>
             <div class="col-12">
-              <label for="company" class="form-label">Company</label>
+              <label for="company" class="form-label"
+                >{t("contact-us.form.company")}</label
+              >
               <input
                 type="text"
                 class="form-control mb-3"
                 name="company"
-                placeholder="Company"
+                placeholder={t("contact-us.form.company")}
                 data-bs-theme="light"
               />
               <label for="guests-number" class="form-label"
-                >Number of guests</label
+                >{t("contact-us.form.number-of-guests")}</label
               >
               <input
                 type="number"
                 class="form-control mb-3"
                 name="guests-number"
-                placeholder="Number of guests"
+                placeholder={t("contact-us.form.number-of-guests")}
                 data-bs-theme="light"
               />
-              <label for="event-type" class="form-label">Type of event</label>
+              <label for="event-type" class="form-label">{t("contact-us.form.event-type")}</label>
               <input
                 type="text"
                 class="form-control mb-3"
                 name="event-type"
-                placeholder="Type of event"
+                placeholder={t("contact-us.form.event-type")}
                 data-bs-theme="light"
               />
-              <label for="details" class="form-label">Details</label>
+              <label for="details" class="form-label">{t("contact-us.form.details")}</label>
               <textarea
                 class="form-control mb-3"
                 name="details"
                 rows="3"
-                placeholder="Please tell us about your event and special arrangements"
+                placeholder={t("contact-us.form.details.placeholder")}
                 data-bs-theme="light"></textarea>
               <Checkbox
-                label="Subscribe me to your newsletter"
+                label={t("contact-us.form.newsletter") || ""}
                 name="newsletter"
               />
             </div>
@@ -139,9 +152,9 @@ import Checkbox from "./Checkbox.astro";
           <button
             type="button"
             class="btn btn-secondary"
-            data-bs-dismiss="modal">Close</button
+            data-bs-dismiss="modal">{t("common.close")}</button
           >
-          <button type="button" class="btn btn-primary">Send request</button>
+          <button type="button" class="btn btn-primary">{t("common.submit")}</button>
         </div>
       </form>
     </div>

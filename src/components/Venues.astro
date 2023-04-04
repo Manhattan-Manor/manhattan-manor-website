@@ -4,9 +4,14 @@ import manhattanClubMain from "../assets/images/venues/manhattan-club/main.webp"
 import skylightFloorplans from "../assets/documents/floorplan-skylight.pdf";
 import manhattanClubFloorplans from "../assets/documents/floorplan-manhattan-club.pdf";
 import Venue from "./Venue.astro";
+import { t } from "i18next";
 
-const skylightGallery = (await Astro.glob("../assets/images/venues/skylight/*.jpg")).map((image) => image.default);
-const manhattanClubGallery = (await Astro.glob("../assets/images/venues/manhattan-club/*.jpg")).map((image) => image.default);
+const skylightGallery = (
+  await Astro.glob("../assets/images/venues/skylight/*.jpg")
+).map((image) => image.default);
+const manhattanClubGallery = (
+  await Astro.glob("../assets/images/venues/manhattan-club/*.jpg")
+).map((image) => image.default);
 
 const venues = [
   {
@@ -17,18 +22,18 @@ const venues = [
     video: "https://www.youtube.com/embed/zVe3RrmbNjw",
     gallery: skylightGallery,
     description: `
-    <h4>Venue Size</h4>
+    <h4>${t("venues.size")}</h4>
     <ul>
-      <li>3,408 Square Feet</li>
+      <li>3,408 ${t("venues.square-feet")}</li>
     </ul>
-    <h4>Capacity</h4>
+    <h4>${t("venues.capacity")}</h4>
     <ul>
-      <li>275 Cocktail Reception</li>
-      <li>275 Seated Dinner</li>
-      <li>250 Seated Dinner with Dance Floor</li>
-      <li>125 Classroom Conference</li>
-      <li>225 Theatre Seating</li>
-      <li>120 U-Shape Conference</li>
+      <li>275 ${t("venues.cocktail-reception")}</li>
+      <li>275 ${t("venues.seated-dinner")}</li>
+      <li>250 ${t("venues.seated-dinner-dance-floor")}</li>
+      <li>125 ${t("venues.classroom-conference")}</li>
+      <li>225 ${t("venues.theatre-seating")}</li>
+      <li>120 ${t("venues.u-shape-conference")}</li>
     </ul>
     `,
   },
@@ -40,18 +45,18 @@ const venues = [
     video: "https://www.youtube.com/embed/zVe3RrmbNjw",
     gallery: manhattanClubGallery,
     description: `
-    <h4>Venue Size</h4>
+    <h4>${t("venues.size")}</h4>
     <ul>
-      <li>3,520 Square Feet</li>
+      <li>3,520 ${t("venues.square-feet")}</li>
     </ul>
-    <h4>Capacity</h4>
+    <h4>${t("venues.capacity")}</h4>
     <ul>
-      <li>280 Cocktail Reception</li>
-      <li>250 Seated Dinner</li>
-      <li>200 Seated Dinner with Dance Floor</li>
-      <li>100 Classroom Conference</li>
-      <li>200 Theatre Seating</li>
-      <li>120 U-Shape Conference</li>
+      <li>280 ${t("venues.cocktail-reception")}</li>
+      <li>250 ${t("venues.seated-dinner")}</li>
+      <li>200 ${t("venues.seated-dinner-dance-floor")}</li>
+      <li>100 ${t("venues.classroom-conference")}</li>
+      <li>200 ${t("venues.theatre-seating")}</li>
+      <li>120 ${t("venues.u-shape-conference")}</li>
     </ul>
     `,
   },
@@ -59,11 +64,9 @@ const venues = [
 ---
 
 <section class="container" id="venues-section">
-  <h2>Venues</h2>
+  <h2>{t("venues")}</h2>
   <p>
-    Two unique spaces that are easy, versatile, and lend themselves to all types
-    of events. Whether you are hosting an all day conference, elegant wedding,
-    photo shoot, or special family celebration, Manhattan Manor is the place.
+    {t("venues.description")}
   </p>
 
   <div class="row venues">

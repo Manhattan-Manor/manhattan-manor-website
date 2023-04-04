@@ -4,6 +4,7 @@ import CelebrateImg from "../assets/images/upcoming-events/upcoming-events-4.jpg
 import AdvertisingWeekImg from "../assets/images/upcoming-events/upcoming-events-1.jpg";
 import NYEImg from "../assets/images/upcoming-events/upcoming-events-2.jpg";
 import Service from "./Service.astro";
+import { t } from "i18next";
 
 const events = [
   {
@@ -47,7 +48,7 @@ const events = [
 ---
 
 <section class="container-fluid mt-5" id="upcoming-events-section">
-  <h2 class="text-center fw-bold mb-4">Upcoming Events</h2>
+  <h2 class="text-center fw-bold mb-4">{t("upcoming-events")}</h2>
 
   <div class="row">
     {
@@ -62,7 +63,7 @@ const events = [
         class="text-light text-decoration-none"
         rel="noopener noreferrer"
         target="_blank"
-        href="https://linktr.ee/manhattanmanor">View all events</a
+        href="https://linktr.ee/manhattanmanor">{t("upcoming-events.view-all")}</a
       >
     </div>
   </div>

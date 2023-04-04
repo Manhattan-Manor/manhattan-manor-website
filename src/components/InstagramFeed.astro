@@ -1,5 +1,6 @@
 ---
 import instagramIcon from "../assets/images/social/instagram.png";
+import { Trans } from "astro-i18next/components";
 ---
 
 <section class="container mt-4" id="instagram-section">
@@ -7,11 +8,13 @@ import instagramIcon from "../assets/images/social/instagram.png";
     <img src={instagramIcon} alt="Instagram icon" class="d-block mx-auto" />
     <h2 class="text-center">Instagram</h2>
     <p class="text-center">
-      Connect with us <a href="http://instagram.com/manhattanmanor"
-        >@manhattanmanor</a
-      > and send us your pictures to <a href="mailto:info@manhattanmanor.com"
-        >info@manhattanmanor.com</a
-      >
+      <Trans i18nKey="instagram.caption">
+        Connect with us <a href="http://instagram.com/manhattanmanor"
+          >@manhattanmanor</a
+        > and send us your pictures to <a href="mailto:info@manhattanmanor.com"
+          >info@manhattanmanor.com</a
+        >
+      </Trans>
     </p>
   </div>
 

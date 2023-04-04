@@ -1,4 +1,6 @@
 ---
+import { t } from "i18next";
+
 interface Props {
   id: number;
   name: string;
@@ -40,7 +42,7 @@ const { id, name, mainImage, floorPlans, description, video, gallery } =
 
   <div class="buttons">
     <button id={`galleryButton__${id}`}>
-      <i class="bi bi-images"></i> Gallery
+      <i class="bi bi-images"></i> {t("common.gallery")}
     </button>
     <!-- Open the bootstrap video modal -->
     <button
@@ -49,10 +51,10 @@ const { id, name, mainImage, floorPlans, description, video, gallery } =
       data-bs-target={`#videoModal__${id}`}
       class="btn"
     >
-      <i class="bi bi-play-circle"></i> Video
+      <i class="bi bi-play-circle"></i> {t("common.video")}
     </button>
     <a target="_blank" href={floorPlans}>
-      <i class="bi bi-map"></i> Floor Plans
+      <i class="bi bi-map"></i> {t("common.floor-plans")}
     </a>
   </div>
 
@@ -91,7 +93,7 @@ const { id, name, mainImage, floorPlans, description, video, gallery } =
           href={g}
           data-lightbox={id}
         >
-          Image #{i + 1} {g}
+          {t("common.image")} #{i + 1} {g}
         </a>
       );
     })

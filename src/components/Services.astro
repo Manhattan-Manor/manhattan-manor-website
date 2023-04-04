@@ -12,85 +12,74 @@ import SpecialProductionsImg from "../assets/images/services/ev-production.webp"
 import GalasFundraisingsImg from "../assets/images/services/galas_fundraisers.webp";
 import Sweet16sImg from "../assets/images/services/sweet_16s.webp";
 import Service from "./Service.astro";
+import { t } from "i18next";
 
 const services = [
   {
-    title: "Corporate",
-    description:
-      "An ideal venue for early morning breakfasts, lunch meetings, corporate dinners, full day conferences, holiday parties, and galas - the Manhattan Manor is a full service catering facility located in the center of midtown with easy access to all public transportation.",
+    title: t("our-services.corporate"),
+    description: t("our-services.corporate.description"),
     image: CorporateImg,
   },
   {
-    title: "Wedding",
-    description:
-      "Two magnificent venues to celebrate your special day! Guests will bask in natural light during the ceremony streaming through the skylights, then enjoy cocktails in the elegant Manhattan Club, followed by a memorable reception in the brand new Skylight Room with its exposed brick and magnificent chandeliers. A full service catering facility with you as our only focus.",
+    title: t("our-services.wedding"),
+    description: t("our-services.wedding.description"),
     image: WeddingImg,
   },
   {
-    title: "Product Launches",
-    description:
-      "Product launch events are essential for any business. Our venues offer the perfect backdrop just steps from all major subways and trains. Our staff is there to assist in your achieving the specific purpose of creating awareness and publicity for your particular product/brand.",
+    title: t("our-services.product-launches"),
+    description: t("our-services.product-launches.description"),
     image: ProductLaunchesImg,
   },
   {
-    title: "Not for profit",
-    description:
-      "Two perfect venues to host special guests for important conferences or meetings as well as an elegant gala to celebrate your accomplishments. Full service catering to meet your needs.",
+    title: t("our-services.not-for-profit"),
+    description: t("our-services.not-for-profit.description"),
     image: NotForProfitImg,
   },
   {
-    title: "Fashion",
-    description:
-      "Whether you’re hosting a fashion show or need a unique event space to show your collection, the Manhattan Manor is available for all types of special events with full catering service.",
+    title: t("our-services.fashion"),
+    description: t("our-services.fashion.description"),
     image: FashionImg,
   },
   {
-    title: "Mitzvahs",
-    description:
-      "A fun flexible space, the Manhattan Manor offers ease, convenience and a true New York Experience. Steps from Times Square kids and adults alike will walk into the magical Skylight Room bedecked with all of the stellar activities and food to make it a fun, memorable day for all.",
+    title: t("our-services.mitzvah"),
+    description: t("our-services.mitzvah.description"),
     image: MitzvahsImg,
   },
   {
-    title: "Meetings and conferences",
-    description:
-      "An ideal venue for early morning breakfasts, lunch meetings, corporate dinners, full day conferences, holiday parties, and galas - the Manhattan Manor is a full service catering facility located in the center of midtown with easy access to all public transportation.",
+    title: t("our-services.meetings-conferences"),
+    description: t("our-services.meetings-conferences.description"),
     image: MeetingAndConferenceImg,
   },
   {
-    title: "Film and photo",
-    description:
-      "A clean open space with easy loading and unloading, city views, natural light or black out, full catering, and 24 hour access.",
+    title: t("our-services.film-and-photo"),
+    description: t("our-services.film-and-photo.description"),
     image: FilmAndPhotoImg,
   },
   {
-    title: "Broadcast",
-    description:
-      "A versatile space with easy loading and unloading, natural light or black out, full catering, and 24 hour Access.",
+    title: t("our-services.broadcast"),
+    description: t("our-services.broadcast.description"),
     image: BroadcastImg,
   },
   {
-    title: "Special productions",
-    description:
-      "A versatile open space in a central, convenient location with easy street access, natural light or black out, 24- hour access, and full catering.",
+    title: t("our-services.special-productions"),
+    description: t("our-services.special-productions.description"),
     image: SpecialProductionsImg,
   },
   {
-    title: "Galas and fundraisings",
-    description:
-      "Two magnificent venues to host your important events in the heart of Manhattan. Impressive views, central location, flexible use of both spaces, full catering and exceptional service to host elegant events.",
+    title: t("our-services.galas-and-fundraisings"),
+    description: t("our-services.galas-and-fundraisings.description"),
     image: GalasFundraisingsImg,
   },
   {
-    title: "Sweet 16s",
-    description:
-      "A fun flexible space, the Manhattan Manor offers ease, convenience and a true New York Experience. Steps from Times Square kids and adults alike will walk into the magical Skylight Room bedecked with all of the stellar activities and food to make it a fun, memorable day for all.",
+    title: t("our-services.sweet-16s"),
+    description: t("our-services.sweet-16s.description"),
     image: Sweet16sImg,
   },
 ];
 ---
 
 <section class="container-fluid mt-5" id="services-section">
-  <h2 class="text-center fw-bold mb-4">Our Services</h2>
+  <h2 class="text-center fw-bold mb-4">{t("our-services")}</h2>
 
   <div class="row">
     {

@@ -1,11 +1,13 @@
 ---
+import { t } from "i18next";
+
 const images: string[] = (
   await Astro.glob("../assets/images/gallery/*.{jpg,png}")
 ).map((i) => i.default);
 ---
 
 <section class="container mt-5" id="gallery-section">
-  <h2 class="text-center mb-4">Gallery</h2>
+  <h2 class="text-center mb-4">{t("gallery")}</h2>
 
   <div class="row">
     {
