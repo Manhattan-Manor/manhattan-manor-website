@@ -1,17 +1,18 @@
 ---
 import bannerVideo from "../assets/videos/banner-video.mp4";
 import logo from "../assets/images/logo.webp";
+import { t } from "i18next";
 ---
 
 <div class="video-background">
-  <video autoplay loop muted>
+  <video autoplay loop muted id="background-video">
     <source src={bannerVideo} type="video/mp4" />
     Your browser does not support the video tag.
   </video>
 </div>
 <div class="banner-info">
   <img src={logo} alt="Manhattan Manor Logo" />
-  <h4>New York's Most Central Venue</h4>
+  <h4>{t("slogan")}</h4>
   <div class="bounce">
     <i class="bi bi-chevron-down"></i>
   </div>

@@ -1,6 +1,7 @@
 ---
 import Navbar from "../components/Navbar.astro";
 import favicon from "../assets/images/favicon.png";
+import i18next from "i18next";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "../assets/styles/_global.scss";
 import "../assets/styles/_colors.scss";
@@ -9,7 +10,7 @@ import "@splidejs/splide/dist/css/splide.min.css";
 ---
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang={i18next.language}>
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />

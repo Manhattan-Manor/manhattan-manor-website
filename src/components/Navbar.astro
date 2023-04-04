@@ -5,7 +5,7 @@ import logo from "../assets/images/logo.webp";
 <nav class="navbar">
   <div class="container">
     <div class="logo-div">
-      <button class="sound-btn">
+      <button class="sound-btn" id="sound-btn">
         <i class="bi bi-volume-up-fill"></i>
         <span>SOUND</span>
       </button>
@@ -258,4 +258,29 @@ import logo from "../assets/images/logo.webp";
   navLinks.forEach((link) => {
     link.addEventListener("click", closeNav);
   });
+
+  // Sound button
+  const video = document.getElementById("background-video") as HTMLVideoElement;
+  const soundButton = document.getElementById("sound-btn") as HTMLButtonElement;
+  console.log(video, soundButton);
+
+  if (video && soundButton) {
+    soundButton.addEventListener("click", () => {
+      if (video.muted) {
+        video.muted = false;
+        soundButton.innerHTML = `<i class="bi bi-volume-up-fill"></i><span> MUTE</span>`;
+        // Add margin to the icon
+        const icon = soundButton.querySelector("i");
+        if (icon) icon.style.marginRight = "5px";
+        // Set volume to 0.5
+        video.volume = 0.5;
+      } else {
+        video.muted = true;
+        soundButton.innerHTML = `<i class="bi bi-volume-up-fill"></i><span> SOUND</span>`;
+        // Add margin to the icon
+        const icon = soundButton.querySelector("i");
+        if (icon) icon.style.marginRight = "5px";
+      }
+    });
+  }
 </script>
