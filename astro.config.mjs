@@ -10,5 +10,6 @@ export default defineConfig({
       noExternal: ["@splidejs/react-splide"],
     },
   },
-  site: "https://manhattanmanor.com/",
+  site: "https://manhattan-manor.github.io",
+  base: "/manhattan-manor-website",
 });

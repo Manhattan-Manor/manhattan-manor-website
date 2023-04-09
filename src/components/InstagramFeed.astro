@@ -1,6 +1,7 @@
 ---
 import instagramIcon from "../assets/images/social/instagram.png";
 import { Trans } from "astro-i18next/components";
+const basePath = import.meta.env.BASE_PATH;
 ---
 
 <section class="container mt-4" id="instagram-section">
@@ -21,7 +22,7 @@ import { Trans } from "astro-i18next/components";
   <div id="instafeed-container" class="row"></div>
 </section>
 
-<script is:inline src="/client-libraries/instafeed.min.js"></script>
+<script is:inline src="/manhattan-manor-website/client-libraries/instafeed.min.js"></script>
 <script>
   // @ts-ignore
   const userFeed = new Instafeed({
