@@ -30,6 +30,7 @@ import "@splidejs/splide/dist/css/splide.min.css";
       crossorigin="anonymous"
       referrerPolicy="no-referrer"
     />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
     <link rel="shortcut icon" href={favicon} type="image/x-icon" />
     <title>Manhattan Manor</title>
   </head>
@@ -37,6 +38,7 @@ import "@splidejs/splide/dist/css/splide.min.css";
     <Navbar />
     <slot />
     <script
+      is:inline
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
       crossorigin="anonymous"
@@ -45,11 +47,17 @@ import "@splidejs/splide/dist/css/splide.min.css";
       is:inline
       src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox-plus-jquery.min.js"
     ></script>
+    <script is:inline src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
       // @ts-ignore
       lightbox.option({
         resizeDuration: 200,
         wrapAround: true,
+      });
+
+      // @ts-ignore
+      AOS.init({
+        duration: 1000,
       });
     </script>
   </body>
