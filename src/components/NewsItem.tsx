@@ -1,5 +1,6 @@
 import React, { FC } from "react";
 import Item from "../classes/NewsItem";
+import { format } from "date-fns";
 import "../assets/styles/NewsItem.scss";
 
 interface INewsItemProps {
@@ -8,13 +9,7 @@ interface INewsItemProps {
 
 const NewsItem: FC<INewsItemProps> = ({ item }) => {
   const modalRef = React.useRef<HTMLDivElement>(null);
-  const dateString = new Date(item.date).toLocaleString("en-US", {
-    month: "short",
-    day: "numeric",
-    hour: "numeric",
-    minute: "numeric",
-    hour12: true,
-  });
+  const dateString = format(new Date(item.date), "MMM dd, hh:mm a");
 
   const openModal = () => {
     const modal = modalRef.current;
