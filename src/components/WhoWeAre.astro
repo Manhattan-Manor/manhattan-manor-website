@@ -1,4 +1,5 @@
 ---
+import { Image } from "@astrojs/image/components";
 import outsidePicture from "../assets/images/mm-outside.webp";
 import { t } from "i18next";
 ---
@@ -6,7 +7,13 @@ import { t } from "i18next";
 <section class="container" data-aos="fade-up" id="who-we-are-section">
   <div class="row">
     <div class="col-12 col-md-6 pic-container">
-      <img src={outsidePicture} alt="Manhattan Manor Outside" />
+      <Image
+        src={outsidePicture}
+        alt="Manhattan Manor Outside"
+        width={393}
+        height={320}
+        format="webp"
+      />
     </div>
     <div class="col-12 col-md-6 text">
       <h2>{t("who-we-are")}</h2>

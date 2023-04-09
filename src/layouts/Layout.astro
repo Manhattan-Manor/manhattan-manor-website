@@ -8,11 +8,41 @@ import "../assets/styles/_global.scss";
 import "../assets/styles/_colors.scss";
 import "animate.css";
 import "@splidejs/splide/dist/css/splide.min.css";
+import logo from "../assets/images/logo-fullsize.png";
+import { SEO } from "astro-seo";
 ---
 
 <!DOCTYPE html>
 <html lang={i18next.language}>
   <head>
+    <SEO
+      title="Manhattan Manor"
+      description="New York's premiere event space in Midtown & Times Square."
+      openGraph={{
+        basic: {
+          title:
+            "Manhattan Manor - New York's premiere event space in Midtown & Times Square.",
+          type: "website",
+          image: logo.src,
+        },
+      }}
+      extend={{
+        // extending the default link tags
+        link: [{ rel: "icon", href: "/favicon.png" }],
+        // extending the default meta tags
+        meta: [
+          {
+            name: "twitter:image",
+            content: logo.src,
+          },
+          { name: "twitter:title", content: "Manhattan Manor" },
+          {
+            name: "twitter:description",
+            content: "New York's Most Central Venue",
+          },
+        ],
+      }}
+    />
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -32,7 +62,6 @@ import "@splidejs/splide/dist/css/splide.min.css";
     />
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
     <link rel="shortcut icon" href={favicon} type="image/x-icon" />
-    <title>Manhattan Manor</title>
   </head>
   <body>
     <Navbar />

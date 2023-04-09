@@ -51,13 +51,15 @@ const Carousel: FC<ICarouselProps> = ({ items, title }) => {
           return (
             <SplideSlide key={index}>
               <a href={item.link} rel="noopener noreferrer" target="_blank">
-                <img src={item.image} alt={`Image ${index + 1}`} />
+                {/* @ts-ignore */}
+                <img src={item.image.src} alt={`Image ${index + 1}`} />
               </a>
             </SplideSlide>
           );
         return (
           <SplideSlide key={index}>
-            <img src={item.image} alt={`Image ${index + 1}`} />
+            {/* @ts-ignore */}
+            <img src={item.image.src} alt={`Image ${index + 1}`} />
           </SplideSlide>
         );
       })}

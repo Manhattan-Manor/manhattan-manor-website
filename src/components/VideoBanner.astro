@@ -2,6 +2,7 @@
 import bannerVideo from "../assets/videos/banner-video.mp4";
 import logo from "../assets/images/logo.webp";
 import { t } from "i18next";
+import { Image } from "@astrojs/image/components";
 ---
 
 <div class="video-background">
@@ -11,7 +12,7 @@ import { t } from "i18next";
   </video>
 </div>
 <div class="banner-info">
-  <img src={logo} alt="Manhattan Manor Logo" />
+  <Image src={logo} alt="Manhattan Manor Logo" width={114} height={180} format="webp" />
   <h4>{t("common.slogan")}</h4>
   <div class="bounce">
     <i class="bi bi-chevron-down"></i>

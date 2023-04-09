@@ -1,4 +1,6 @@
 ---
+import { Picture } from "@astrojs/image/components";
+
 interface Props {
   title: string;
   description: string;
@@ -11,7 +13,15 @@ const { title, description, image, textStyle } = Astro.props;
 
 <!-- An image that, on hover, shows a description with white text and black background, and a small text in front of the image to show what is the description about before hovering -->
 <div class="service-container">
-  <img src={image} alt={title} class="image" />
+  <Picture
+    src={image}
+    alt={title}
+    class="image"
+    sizes="(max-width: 576px) 189px, (max-width: 992px) 250px, 400px"
+    widths={[189, 250, 400]}
+    aspectRatio="1:1"
+    format="webp"
+  />
   <h5 class="title">{title} <i class="bi bi-chevron-right"></i></h5>
   <div class="overlay">
     <div class="text" set:html={description} style={textStyle} />

@@ -1,4 +1,5 @@
 ---
+import { Image } from "@astrojs/image/components";
 import instagramIcon from "../assets/images/social/instagram.png";
 import { Trans } from "astro-i18next/components";
 const basePath = import.meta.env.BASE_PATH;
@@ -6,7 +7,14 @@ const basePath = import.meta.env.BASE_PATH;
 
 <section class="container mt-4" id="instagram-section">
   <div class="mt-3" data-aos="fade-up">
-    <img src={instagramIcon} alt="Instagram icon" class="d-block mx-auto" />
+    <Image
+      src={instagramIcon}
+      alt="Instagram icon"
+      class="d-block mx-auto"
+      width={48}
+      height={48}
+      format="webp"
+    />
     <h2 class="text-center">Instagram</h2>
     <p class="text-center">
       <Trans i18nKey="instagram.caption">
@@ -22,7 +30,7 @@ const basePath = import.meta.env.BASE_PATH;
   <div id="instafeed-container" class="row"></div>
 </section>
 
-<script is:inline src="/manhattan-manor-website/client-libraries/instafeed.min.js"></script>
+<script is:inline src="/client-libraries/instafeed.min.js"></script>
 <script>
   // @ts-ignore
   const userFeed = new Instafeed({

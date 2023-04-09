@@ -1,4 +1,5 @@
 ---
+import { Picture } from "@astrojs/image/components";
 import { t } from "i18next";
 
 const images: string[] = (
@@ -21,8 +22,17 @@ const images: string[] = (
             data-aos="fade-up"
             data-aos-delay={animationDelay}
           >
-            <a href={image} data-lightbox="gallery">
-              <img class="w-100" src={image} alt={`gallery_${index}`} />
+            {/* @ts-ignore */}
+            <a href={image.src} data-lightbox="gallery">
+              <Picture
+                class="w-100"
+                src={image}
+                alt={`gallery_${index}`}
+                aspectRatio="1:1"
+                sizes="(max-width: 576px) 189px, (max-width: 992px) 250px, 400px"
+                widths={[189, 250, 400]}
+                format="webp"
+              />
             </a>
           </div>
         );

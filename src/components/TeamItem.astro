@@ -1,4 +1,6 @@
 ---
+import { Image } from "@astrojs/image/components";
+
 interface Props {
   name: string;
   position: string;
@@ -11,7 +13,14 @@ const { name, position, image, description } = Astro.props;
 
 <div class="row">
   <div class="col-12 col-md-3 col-lg-2">
-    <img class="d-block mx-md-auto mw-100" src={image} alt={name} />
+    <Image
+      class="d-block mx-md-auto mw-100 mb-3"
+      src={image}
+      alt={name}
+      width={162}
+      height={162}
+      format="webp"
+    />
   </div>
   <div class="col-12 col-md-9 col-lg-10">
     <h5 class="fw-bold">{name}</h5>

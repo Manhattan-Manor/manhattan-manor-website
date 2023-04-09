@@ -10,20 +10,26 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astro-community/astro-embed-youtube": "^0.2.2",
+    "@astrojs/image": "^0.16.5",
     "@astrojs/react": "^2.0.2",
     "@splidejs/react-splide": "^0.7.12",
     "@splidejs/splide-extension-auto-scroll": "^0.5.3",
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",
     "animate.css": "^4.1.1",
-    "astro": "^2.0.18",
+    "astro": "^2.2.1",
+    "astro-critters": "^1.1.31",
     "astro-i18next": "^1.0.0-beta.19",
+    "astro-seo": "^0.7.2",
     "bootstrap-icons": "^1.10.3",
     "date-fns": "^2.29.3",
     "instafeed": "^1.4.0",
+    "lite-youtube-embed": "^0.2.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-i18next": "^12.2.0"
+    "react-i18next": "^12.2.0",
+    "sharp": "^0.31.3"
   },
   "devDependencies": {
     "sass": "^1.58.3"
