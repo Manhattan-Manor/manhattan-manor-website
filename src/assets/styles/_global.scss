@@ -3,16 +3,19 @@
 @font-face {
   font-family: "Roboto";
   src: url("/fonts/Roboto-Regular.ttf");
+  font-display: swap;
 }
 
 @font-face {
   font-family: "Oswald";
   src: url("/fonts/Oswald.ttf");
+  font-display: swap;
 }
 
 @font-face {
   font-family: "Varela Round";
   src: url("/fonts/VarelaRound-Regular.ttf");
+  font-display: swap;
 }
 
 *,

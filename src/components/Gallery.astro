@@ -1,4 +1,5 @@
 ---
+import { Picture } from "@astrojs/image/components";
 import { t } from "i18next";
 
 const images: string[] = (
@@ -7,21 +8,35 @@ const images: string[] = (
 ---
 
 <section class="container mt-5" id="gallery-section">
-  <h2 class="text-center mb-4">{t("gallery")}</h2>
+  <h2 class="text-center mb-4" data-aos="fade-up">{t("gallery")}</h2>
 
   <div class="row">
     {
-      images.map((image, index) => (
-        <div
-          class={`col-12 col-sm-6 col-md-4 col-lg-3 mb-4 ${
-            index > 11 ? "d-none" : ""
-          }`}
-        >
-          <a href={image} data-lightbox="gallery">
-            <img class="w-100" src={image} alt={`gallery_${index}`} />
-          </a>
-        </div>
-      ))
+      images.map((image, index) => {
+        const animationDelay = index * 100;
+        return (
+          <div
+            class={`col-12 col-sm-6 col-md-4 col-lg-3 mb-4 ${
+              index > 11 ? "d-none" : ""
+            }`}
+            data-aos="fade-up"
+            data-aos-delay={animationDelay}
+          >
+            {/* @ts-ignore */}
+            <a href={image.src} data-lightbox="gallery">
+              <Picture
+                class="w-100"
+                src={image}
+                alt={`gallery_${index}`}
+                aspectRatio="1:1"
+                sizes="(max-width: 576px) 189px, (max-width: 992px) 250px, 400px"
+                widths={[189, 250, 400]}
+                format="webp"
+              />
+            </a>
+          </div>
+        );
+      })
     }
   </div>
 </section>

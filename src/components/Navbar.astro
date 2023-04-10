@@ -2,6 +2,7 @@
 import logo from "../assets/images/logo.webp";
 import { LanguageSelector } from "astro-i18next/components";
 import { t } from "i18next";
+import { Image } from "@astrojs/image/components";
 ---
 
 <navbar-component
@@ -13,12 +14,18 @@ import { t } from "i18next";
   <nav class="navbar">
     <div class="container">
       <div class="logo-div">
-        <button class="sound-btn" id="sound-btn">
+        <button class="sound-btn" id="sound-btn" aria-label="Sound">
           <i class="bi bi-volume-up-fill"></i>
           <span>{t("common.sound")}</span>
         </button>
         <a class="navbar-brand" href="#">
-          <img src={logo} alt="Manhattan Manor Logo" />
+          <Image
+            src={logo}
+            alt="Manhattan Manor Logo"
+            format="webp"
+            width={30}
+            height={48}
+          />
         </a>
       </div>
       <ul class="menu">
@@ -39,7 +46,7 @@ import { t } from "i18next";
           />
         </li>
         <li>
-          <button class="drawer-toggler" id="sidenav-open-btn">
+          <button class="drawer-toggler" id="sidenav-open-btn" aria-label="Open side menu">
             <i class="bi bi-list"></i>
           </button>
         </li>
@@ -49,7 +56,7 @@ import { t } from "i18next";
 </navbar-component>
 
 <nav id="sidenav" class="sidenav">
-  <button class="closebtn btn" id="sidenav-close-btn">&times;</button>
+  <button class="closebtn btn" id="sidenav-close-btn" aria-label="Close">&times;</button>
   <a href="#balldrop-section">{t("common.nye")}</a>
   <a href="#who-we-are-section">{t("who-we-are")}</a>
   <a href="#venues-section">{t("venues")}</a>
@@ -74,11 +81,6 @@ import { t } from "i18next";
     background: transparent;
     z-index: 10;
     transition: top 0.3s;
-
-    img {
-      width: 30px;
-      height: 48px;
-    }
 
     .menu {
       display: flex;

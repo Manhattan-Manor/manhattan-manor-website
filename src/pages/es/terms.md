@@ -1,6 +1,6 @@
 ---
 title: Terms of use
-layout: ../layouts/InfoPages.astro
+layout: ../../layouts/InfoPages.astro
 ---
 
 # Terms of use

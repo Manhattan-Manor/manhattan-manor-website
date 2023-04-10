@@ -1,5 +1,8 @@
 ---
+import { Picture } from "@astrojs/image/components";
 import { t } from "i18next";
+// @ts-ignore
+import { YouTube } from '@astro-community/astro-embed-youtube';
 
 interface Props {
   id: number;
@@ -21,7 +24,14 @@ const { id, name, mainImage, floorPlans, description, video, gallery } =
     id={`imgElement__${id}`}
     class="venue__picture animate__animated animate__faster"
   >
-    <img src={mainImage} alt={name} />
+    <Picture
+      src={mainImage}
+      alt={name}
+      sizes="(max-width: 768px) 360px, 540px"
+      widths={[360, 540]}
+      aspectRatio="16:12"
+      format="webp"
+    />
     <div>
       <h5>
         {name}
@@ -41,24 +51,28 @@ const { id, name, mainImage, floorPlans, description, video, gallery } =
   </div>
 
   <div class="buttons">
-    <button id={`galleryButton__${id}`}>
-      <i class="bi bi-images"></i> {t("common.gallery")}
+    <button id={`galleryButton__${id}`} aria-label="Venue gallery">
+      <i class="bi bi-images"></i>
+      {t("common.gallery")}
     </button>
     <!-- Open the bootstrap video modal -->
     <button
       type="button"
       data-bs-toggle="modal"
       data-bs-target={`#videoModal__${id}`}
+      aria-label="Venue video"
       class="btn"
     >
-      <i class="bi bi-play-circle"></i> {t("common.video")}
+      <i class="bi bi-play-circle"></i>
+      {t("common.video")}
     </button>
-    <a target="_blank" href={floorPlans}>
-      <i class="bi bi-map"></i> {t("common.floor-plans")}
+    <a target="_blank" href={floorPlans} aria-label="Venue floor plans">
+      <i class="bi bi-map"></i>
+      {t("common.floor-plans")}
     </a>
   </div>
 
-  <!-- Bootstrap modal for show the embedded youtube video -->
+  <!-- Bootstrap modal to show the embedded youtube video -->
   <div
     class="modal fade"
     id={`videoModal__${id}`}
@@ -70,13 +84,7 @@ const { id, name, mainImage, floorPlans, description, video, gallery } =
     <div class="modal-dialog modal-dialog-centered modal-lg">
       <div class="modal-content">
         <div class="modal-body">
-          <iframe
-            width="100%"
-            height="500"
-            src={video}
-            title="YouTube video player"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen></iframe>
+          <YouTube id={video} class="youtube-video" />
         </div>
       </div>
     </div>
@@ -90,7 +98,8 @@ const { id, name, mainImage, floorPlans, description, video, gallery } =
         <a
           id={`lightbox_${id}_${i}`}
           class="d-none"
-          href={g}
+          // @ts-ignore
+          href={g.src}
           data-lightbox={id}
         >
           {t("common.image")} #{i + 1} {g}
@@ -191,6 +200,13 @@ const { id, name, mainImage, floorPlans, description, video, gallery } =
         }
       }
     }
+  }
+
+  .youtube-video {
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
   }
 </style>
 

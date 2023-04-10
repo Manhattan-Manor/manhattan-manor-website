@@ -12,6 +12,7 @@ import zolaIcon from "../assets/images/social/zola.png";
 import linkedinIcon from "../assets/images/social/linkedin.webp";
 import { localizePath } from "astro-i18next";
 import { t } from "i18next";
+import { Image } from "@astrojs/image/components";
 
 const currentYear = new Date().getFullYear();
 const nextYear = currentYear + 1;
@@ -49,14 +50,33 @@ const nextYear = currentYear + 1;
         ><br />
         <a href="tel:646-627-4329" class="text-dark"> 646-627-4329</a>
 
-        <img src={logo} alt="Manhattan Manor Logo" class="logo" />
+        <Image
+          src={logo}
+          alt="Manhattan Manor Logo"
+          class="logo"
+          width={80}
+          height={126}
+          format="webp"
+        />
 
         <div class="mt-4">
           <a href="#">
-            <img src={usaFlag} alt="English" />
+            <Image
+              src={usaFlag}
+              alt="English"
+              width={28}
+              height={15}
+              format="webp"
+            />
           </a>
           <a href="#">
-            <img src={spaFlag} alt="Spanish" />
+            <Image
+              src={spaFlag}
+              alt="Spanish"
+              width={28}
+              height={15}
+              format="webp"
+            />
           </a>
         </div>
 
@@ -64,10 +84,13 @@ const nextYear = currentYear + 1;
           <a href="https://rosieogradys.com/" rel="noopener noreferrer">
             {t("footer.visit-our-sister-restaurant")}
 
-            <img
+            <Image
               src={rosieLogo}
               alt="Rosie O'Grady's"
               class="d-block mt-3 mx-auto"
+              width={150}
+              height={150}
+              format="webp"
             />
           </a>
         </div>
@@ -92,7 +115,9 @@ const nextYear = currentYear + 1;
         <a href={mmSpecs}>SKYLIGHT ROOM - {(t("specs") || "").toUpperCase()}</a>
       </div>
       <div class="col-12 col-md-4">
-        <a href={localizePath("/terms")}>{t("terms-of-use")} - {t("privacy-policy")}</a>
+        <a href={localizePath("/terms")}
+          >{t("terms-of-use")} - {t("privacy-policy")}</a
+        >
       </div>
       <div class="col-12 col-md-4">
         <a href={mmSpecs}>MANHATTAN CLUB - {(t("specs") || "").toUpperCase()}</a
@@ -110,13 +135,31 @@ const nextYear = currentYear + 1;
       </div>
       <div class="col-12 mt-4 social-icons">
         <a href="https://www.facebook.com/manhattanmanor" target="_blank">
-          <img src={facebookIcon} alt="Facebook" />
+          <Image
+            src={facebookIcon}
+            alt="Facebook"
+            width={40}
+            height={40}
+            format="webp"
+          />
         </a>
         <a href="https://www.instagram.com/manhattanmanor/" target="_blank">
-          <img src={instagramIcon} alt="Instagram" />
+          <Image
+            src={instagramIcon}
+            alt="Instagram"
+            width={40}
+            height={40}
+            format="webp"
+          />
         </a>
         <a href="https://www.youtube.com/@manhattanmanor" target="_blank">
-          <img src={youtubeIcon} alt="Youtube" />
+          <Image
+            src={youtubeIcon}
+            alt="Youtube"
+            width={40}
+            height={40}
+            format="webp"
+          />
         </a>
       </div>
       <div class="col-12 mt-3 social-icons">
@@ -124,19 +167,37 @@ const nextYear = currentYear + 1;
           href="https://www.zola.com/wedding-vendors/wedding-venues/manhattan-manor?utm_source=vendor&utm_medium=various&utm_content=badge"
           target="_blank"
         >
-          <img src={zolaIcon} alt="Zola" />
+          <Image
+            src={zolaIcon}
+            alt="Zola"
+            width={40}
+            height={40}
+            format="webp"
+          />
         </a>
         <a
           href="https://www.theknot.com/marketplace/manhattan-club-nyc-new-york-ny-2012844"
           target="_blank"
         >
-          <img src={theknotIcon} alt="TheKnot" />
+          <Image
+            src={theknotIcon}
+            alt="TheKnot"
+            width={40}
+            height={40}
+            format="webp"
+          />
         </a>
         <a
           href="https://www.linkedin.com/company/manhattan-manor-nyc/"
           target="_blank"
         >
-          <img src={linkedinIcon} alt="LinkedIn" />
+          <Image
+            src={linkedinIcon}
+            alt="LinkedIn"
+            width={40}
+            height={40}
+            format="webp"
+          />
         </a>
       </div>
       <div class="col-12 text-center mt-4">

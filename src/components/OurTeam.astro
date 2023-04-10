@@ -28,7 +28,16 @@ const team = [
 ---
 
 <section class="container mt-5" id="team-section">
-  <h2 class="text-center fw-bold mb-4">{t("our-team")}</h2>
+  <h2 class="text-center fw-bold mb-4" data-aos="fade-up">{t("our-team")}</h2>
 
-  {team.map((item) => <TeamItem {...item} />)}
+  {
+    team.map((item, index) => {
+      const animationDelay = index * 100;
+      return (
+        <div data-aos="fade-up" data-aos-delay={animationDelay}>
+          <TeamItem {...item} />
+        </div>
+      );
+    })
+  }
 </section>

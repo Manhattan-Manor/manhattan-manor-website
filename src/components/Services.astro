@@ -79,15 +79,24 @@ const services = [
 ---
 
 <section class="container-fluid mt-5" id="services-section">
-  <h2 data-aos="fade-up" class="text-center fw-bold mb-4">{t("our-services")}</h2>
+  <h2 data-aos="fade-up" class="text-center fw-bold mb-4">
+    {t("our-services")}
+  </h2>
 
   <div class="row">
     {
-      services.map((service) => (
-        <div class="col-6 col-sm-4 col-lg-3 mb-3">
-          <Service {...service} />
-        </div>
-      ))
+      services.map((service, index) => {
+        const animationDelay = index * 100;
+        return (
+          <div
+            class="col-6 col-sm-4 col-lg-3 mb-3"
+            data-aos="fade-up"
+            data-aos-delay={animationDelay}
+          >
+            <Service {...service} />
+          </div>
+        );
+      })
     }
   </div>
 </section>
