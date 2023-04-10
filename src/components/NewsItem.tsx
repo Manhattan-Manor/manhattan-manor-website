@@ -1,12 +1,19 @@
-import React, { FC } from "react";
+import React, { FC, useEffect, useState } from "react";
 import Item from "../classes/NewsItem";
 import "../assets/styles/NewsItem.scss";
+import Image from "../classes/Image";
+import { useTranslation } from "react-i18next";
 
 interface INewsItemProps {
   item: Item;
 }
 
 const NewsItem: FC<INewsItemProps> = ({ item }) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [imagePath, setImagePath] = useState("");
+
+  const { t } = useTranslation("translation");
+
   const modalRef = React.useRef<HTMLDivElement>(null);
   const dateString = new Date(item.date).toLocaleString("en-US", {
     month: "short",
@@ -23,8 +30,29 @@ const NewsItem: FC<INewsItemProps> = ({ item }) => {
       // @ts-ignore
       const modalInstance = new bootstrap.Modal(modal);
       modalInstance.show();
+      setIsOpen(true);
+
+      modal.addEventListener("hidden.bs.modal", () => {
+        setIsOpen(false);
+      });
     }
   };
+
+  useEffect(() => {
+    const getImage = async () => {
+      const image = new Image(item.image);
+      const imagePath = await image.createObjectURL({
+        height: 200,
+        mime: "webp",
+        resizeMode: "fitToWidth",
+        quality: 80,
+      });
+      setImagePath(imagePath);
+    };
+    if (isOpen) {
+      getImage();
+    }
+  }, [isOpen]);
 
   return (
     <>
@@ -56,22 +84,24 @@ const NewsItem: FC<INewsItemProps> = ({ item }) => {
               <p>{item.summary}</p>
 
               <hr />
-              <img
-                className="mx-auto d-block"
-                src={item.image}
-                width="150"
-                alt={item.title}
-              />
+              {imagePath && (
+                <img
+                  className="mx-auto d-block"
+                  src={imagePath}
+                  height={200}
+                  alt={item.title}
+                />
+              )}
               <p
                 className="mt-3"
-                dangerouslySetInnerHTML={{ __html: item.html }}
+                dangerouslySetInnerHTML={{ __html: item.body }}
               ></p>
               <a
                 href={item.articleLink}
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Read full article
+                {t("common.read-full-article")}
               </a>
             </div>
             <div className="modal-footer">
@@ -80,7 +110,7 @@ const NewsItem: FC<INewsItemProps> = ({ item }) => {
                 className="btn btn-secondary"
                 data-bs-dismiss="modal"
               >
-                Close
+                {t("common.close")}
               </button>
             </div>
           </div>

@@ -1,10 +1,13 @@
+import Image from "./Image";
+import i18next from "i18next";
+
 class NewsItem {
   title: string;
   summary: string;
   date: Date;
-  image: string;
+  image: Image;
   articleLink: string;
-  html: string;
+  body: string;
 
   constructor(item?: NewsItem) {
     if (item) {
@@ -13,16 +16,34 @@ class NewsItem {
       this.date = item.date;
       this.image = item.image;
       this.articleLink = item.articleLink;
-      this.html = item.html;
+      this.body = item.body;
     } else {
       this.title = "";
       this.summary = "";
       this.date = new Date();
-      this.image = "";
+      this.image = new Image();
       this.articleLink = "";
-      this.html = "";
+      this.body = "";
     }
   }
+
+  public static getAll = async (): Promise<NewsItem[]> => {
+    const locale = i18next.language;
+    const response = await fetch(
+      import.meta.env.PUBLIC_CMS_API_ROUTE +
+        "/content/items/news?locale=" +
+        locale,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          "api-key": import.meta.env.PUBLIC_CMS_API_KEY,
+        },
+      }
+    );
+    const data = await response.json();
+    return data.map((item: NewsItem) => new NewsItem(item));
+  };
 }
 
 export default NewsItem;
