@@ -1,6 +1,8 @@
 ---
 import { Picture } from "@astrojs/image/components";
 import { t } from "i18next";
+// @ts-ignore
+import { YouTube } from '@astro-community/astro-embed-youtube';
 
 interface Props {
   id: number;
@@ -82,13 +84,7 @@ const { id, name, mainImage, floorPlans, description, video, gallery } =
     <div class="modal-dialog modal-dialog-centered modal-lg">
       <div class="modal-content">
         <div class="modal-body">
-          <iframe
-            width="100%"
-            height="500"
-            src={video}
-            title="YouTube video player"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen></iframe>
+          <YouTube id={video} class="youtube-video" />
         </div>
       </div>
     </div>
@@ -204,6 +200,13 @@ const { id, name, mainImage, floorPlans, description, video, gallery } =
         }
       }
     }
+  }
+
+  .youtube-video {
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
   }
 </style>
 
