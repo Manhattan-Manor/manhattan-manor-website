@@ -1,0 +1,15 @@
+.testimonial {
+  color: white;
+  font-size: 14px;
+
+  span {
+    color: #a0a0a0;
+    font-style: italic;
+    display: block;
+
+    &:first-child {
+      font-weight: bold;
+      margin-top: 1rem;
+    }
+  }
+}
