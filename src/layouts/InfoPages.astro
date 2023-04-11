@@ -2,6 +2,8 @@
 import Footer from "../components/Footer.astro";
 import favicon from "../assets/images/favicon.png";
 import logo from "../assets/images/logo.webp";
+import { Image } from "@astrojs/image/components";
+import { LanguageSelector } from "astro-i18next/components";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "../assets/styles/_global.scss";
 import "../assets/styles/_colors.scss";
@@ -37,19 +39,33 @@ const { frontmatter } = Astro.props;
       .logo {
         width: 30px;
       }
+
+      .language-selector {
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        color: white;
+        font-size: 14px;
+        display: flex;
+        align-items: center;
+        text-transform: uppercase;
+      }
     </style>
   </head>
   <body>
     <nav class="navbar fixed-top" data-bs-theme="dark">
       <div class="container d-flex align-items-center">
         <a class="navbar-brand" href="/">
-          <img
+          <Image
             src={logo}
             alt="Logo"
             class="d-inline-block align-text-top logo"
+            width={30}
+            height={45}
+            format="webp"
           />
         </a>
-        <a href="#">ESPAÑOL</a>
+        <LanguageSelector class="language-selector" title="Language Selector" />
       </div>
     </nav>
     <div class="container content">
