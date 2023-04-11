@@ -1,6 +1,8 @@
 ---
 import Checkbox from "./Checkbox.astro";
-import { t } from "i18next";
+import i18next, { t } from "i18next";
+
+const recaptchaSiteKey = import.meta.env.PUBLIC_G_RECAPTCHA_SITE_KEY;
 ---
 
 <button
@@ -23,7 +25,7 @@ import { t } from "i18next";
 >
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
-      <form>
+      <form id="event-form">
         <div class="modal-header">
           <h1 class="modal-title fs-5">{t("contact-us.form.title")}</h1>
           <button
@@ -35,27 +37,29 @@ import { t } from "i18next";
         <div class="modal-body">
           <div class="row">
             <div class="col-12 col-sm-6 mb-3">
-              <label for="first-name" class="form-label"
+              <label for="firstname" class="form-label"
                 >{t("contact-us.form.first-name")}</label
               >
               <input
                 type="text"
                 class="form-control"
-                name="first-name"
+                name="firstname"
                 placeholder={t("contact-us.form.first-name")}
                 data-bs-theme="light"
+                required
               />
             </div>
             <div class="col-12 col-sm-6 mb-3">
-              <label for="last-name" class="form-label"
+              <label for="lastname" class="form-label"
                 >{t("contact-us.form.last-name")}</label
               >
               <input
                 type="text"
                 class="form-control"
-                name="last-name"
+                name="lastname"
                 placeholder={t("contact-us.form.last-name")}
                 data-bs-theme="light"
+                required
               />
             </div>
             <div class="col-12 col-sm-6 mb-3">
@@ -68,6 +72,7 @@ import { t } from "i18next";
                 name="email"
                 placeholder={t("contact-us.form.email")}
                 data-bs-theme="light"
+                required
               />
             </div>
             <div class="col-12 col-sm-6 mb-3">
@@ -80,29 +85,33 @@ import { t } from "i18next";
                 name="phone"
                 placeholder={t("contact-us.form.phone")}
                 data-bs-theme="light"
+                required
               />
             </div>
             <div class="col-12 col-sm-6 mb-3">
-              <label for="date" class="form-label"
+              <label for="eventdate" class="form-label"
                 >{t("contact-us.form.date-of-event")}</label
               >
               <input
                 type="date"
                 class="form-control"
-                name="date"
+                name="eventdate"
                 placeholder={t("contact-us.form.date-of-event")}
                 data-bs-theme="light"
+                required
               />
             </div>
             <div class="col-12 col-sm-6 mb-3">
-              <label for="date" class="form-label"
+              <label for="eventtime" class="form-label"
                 >{t("contact-us.form.time-of-event")}</label
               >
               <input
                 type="time"
                 class="form-control"
+                name="eventtime"
                 data-bs-theme="light"
                 placeholder={t("contact-us.form.time-of-event")}
+                required
               />
             </div>
             <div class="col-12">
@@ -115,36 +124,48 @@ import { t } from "i18next";
                 name="company"
                 placeholder={t("contact-us.form.company")}
                 data-bs-theme="light"
+                required
               />
-              <label for="guests-number" class="form-label"
+              <label for="guests" class="form-label"
                 >{t("contact-us.form.number-of-guests")}</label
               >
               <input
                 type="number"
                 class="form-control mb-3"
-                name="guests-number"
+                name="guests"
                 placeholder={t("contact-us.form.number-of-guests")}
                 data-bs-theme="light"
+                required
               />
-              <label for="event-type" class="form-label">{t("contact-us.form.event-type")}</label>
+              <label for="eventtype" class="form-label"
+                >{t("contact-us.form.event-type")}</label
+              >
               <input
                 type="text"
                 class="form-control mb-3"
-                name="event-type"
+                name="eventtype"
                 placeholder={t("contact-us.form.event-type")}
                 data-bs-theme="light"
+                required
               />
-              <label for="details" class="form-label">{t("contact-us.form.details")}</label>
+              <label for="notes" class="form-label"
+                >{t("contact-us.form.details")}</label
+              >
               <textarea
                 class="form-control mb-3"
-                name="details"
+                name="notes"
                 rows="3"
                 placeholder={t("contact-us.form.details.placeholder")}
+                required
                 data-bs-theme="light"></textarea>
               <Checkbox
                 label={t("contact-us.form.newsletter") || ""}
-                name="newsletter"
+                name="subscribe"
               />
+              <input type="hidden" value={i18next.language} name="language" />
+            </div>
+            <div class="col-12">
+              <div class="g-recaptcha" data-sitekey={recaptchaSiteKey}></div>
             </div>
           </div>
         </div>
@@ -154,7 +175,9 @@ import { t } from "i18next";
             class="btn btn-secondary"
             data-bs-dismiss="modal">{t("common.close")}</button
           >
-          <button type="button" class="btn btn-primary">{t("common.submit")}</button>
+          <button id="event-form-button" type="submit" class="btn btn-primary"
+            >{t("common.submit")}</button
+          >
         </div>
       </form>
     </div>
@@ -178,4 +201,90 @@ import { t } from "i18next";
     border-radius: 0;
     box-shadow: 0 0 0 0;
   }
+
+  .g-recaptcha {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+  }
 </style>
+
+<script>
+  import Swal from "sweetalert2";
+  import { t } from "i18next";
+
+  const form = document.getElementById("event-form") as HTMLFormElement;
+  const button = document.getElementById(
+    "event-form-button"
+  ) as HTMLButtonElement;
+  console.log(form);
+
+  if (form) {
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      button.disabled = true;
+
+      // @ts-ignore
+      const recaptchaResponse = grecaptcha.getResponse(1);
+      if (!recaptchaResponse) {
+        return Swal.fire(
+          t("contact-us.form.no-recaptcha-message") || "",
+          "",
+          "error"
+        );
+      }
+
+      const formData = new FormData(form);
+      const data = Object.fromEntries(formData.entries());
+
+      fetch(
+        "https://cms.manhattanmanor.com/forms/src/sendReservationRequest.php",
+        {
+          method: "POST",
+          body: JSON.stringify({ ...data, g_captcha: recaptchaResponse }),
+        }
+      )
+        .then((res) => res.json())
+        .then((res) => {
+          if (!res.error) {
+            Swal.fire({
+              title: t("common.success") || "Success!",
+              text:
+                t("contact-us.form.success-message") ||
+                "Your message has been sent. We will get back to you shortly. Thank you!",
+              confirmButtonText: t("common.ok") || "OK",
+              confirmButtonColor: "#d9b812",
+            });
+            form.reset();
+            // @ts-ignore
+            grecaptcha.reset();
+            button.disabled = false;
+          } else {
+            Swal.fire({
+              title: t("common.error") || "Error!",
+              text:
+                t("contact-us.form.error-message") ||
+                "Something went wrong. Please try again later.",
+              icon: "error",
+              confirmButtonText: t("common.ok") || "OK",
+              confirmButtonColor: "#d9b812",
+            });
+            button.disabled = false;
+          }
+        })
+        .catch((err) => {
+          console.error(err);
+          Swal.fire({
+            title: t("common.error") || "Error!",
+            text:
+              t("contact-us.form.error-message") ||
+              "Something went wrong. Please try again later.",
+            icon: "error",
+            confirmButtonText: t("common.ok") || "OK",
+            confirmButtonColor: "#d9b812",
+          });
+          button.disabled = false;
+        });
+    });
+  }
+</script>

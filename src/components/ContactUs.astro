@@ -1,7 +1,9 @@
 ---
 import Checkbox from "./Checkbox.astro";
 import EventForm from "./EventForm.astro";
-import { t } from "i18next";
+import i18next, { t } from "i18next";
+
+const recaptchaSiteKey = import.meta.env.PUBLIC_G_RECAPTCHA_SITE_KEY;
 ---
 
 <section class="mt-4 p-4" id="contact-us-section">
@@ -9,12 +11,13 @@ import { t } from "i18next";
     <h2 class="text-center">{t("contact-us")}</h2>
 
     <div class="mb-3">
-      <form class="mt-3">
+      <form class="mt-3" id="contact-us-form">
         <input
           type="text"
           name="name"
           class="form-control mx-auto"
           placeholder={t("contact-us.form.name")}
+          required
         />
         <!-- Add email, phone, a checkbox with "Request a live interaction" label, a checkbox with "Subscribe me to your newsletter" label -->
         <input
@@ -22,29 +25,37 @@ import { t } from "i18next";
           name="email"
           class="form-control mx-auto"
           placeholder={t("contact-us.form.email")}
+          required
         />
         <input
           type="tel"
           name="phone"
           class="form-control mx-auto"
           placeholder={t("contact-us.form.phone")}
+          required
         />
+        <input type="hidden" name="language" value={i18next.language} />
         <div class="checkbox">
           <Checkbox
-            name="live-interaction"
+            name="livechat"
             label={t("common.live-interaction") || ""}
             id="live-interaction"
           />
         </div>
         <div class="checkbox">
           <Checkbox
-            name="newsletter"
+            name="subscribe"
             label={t("contact-us.form.newsletter") || ""}
             id="newsletter"
           />
         </div>
 
-        <button class="d-block btn btn-primary w-100 mx-auto">{t("common.submit")}</button>
+        <div class="g-recaptcha" data-sitekey={recaptchaSiteKey}></div>
+
+        <button
+          class="d-block btn btn-primary w-100 mx-auto"
+          id="contact-us-btn">{t("common.submit")}</button
+        >
       </form>
       <EventForm />
     </div>
@@ -84,4 +95,85 @@ import { t } from "i18next";
       text-transform: uppercase;
     }
   }
+
+  .g-recaptcha {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
+  }
 </style>
+
+<script>
+  import Swal from "sweetalert2";
+  import { t } from "i18next";
+
+  const form = document.getElementById("contact-us-form") as HTMLFormElement;
+  if (form) {
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const button = document.getElementById(
+        "contact-us-btn"
+      ) as HTMLButtonElement;
+      button.disabled = true;
+
+      // @ts-ignore
+      const recaptchaResponse = grecaptcha.getResponse(0);
+      if (!recaptchaResponse) {
+        return Swal.fire(
+          t("contact-us.form.no-recaptcha-message") || "",
+          "",
+          "error"
+        );
+      }
+
+      const formData = new FormData(form);
+      const data = Object.fromEntries(formData.entries());
+
+      fetch("https://cms.manhattanmanor.com/forms/src/sendContactForm.php", {
+        method: "POST",
+        body: JSON.stringify({ ...data, g_captcha: recaptchaResponse }),
+      })
+        .then((res) => res.json())
+        .then((res) => {
+          if (!res.error) {
+            Swal.fire({
+              title: t("common.success") || "Success!",
+              text:
+                t("contact-us.form.success-message") ||
+                "Your message has been sent. We will get back to you shortly. Thank you!",
+              confirmButtonText: t("common.ok") || "OK",
+              confirmButtonColor: "#d9b812",
+            });
+            form.reset();
+            // @ts-ignore
+            grecaptcha.reset();
+            button.disabled = false;
+          } else {
+            Swal.fire({
+              title: t("common.error") || "Error!",
+              text:
+                t("contact-us.form.error-message") ||
+                "Something went wrong. Please try again later.",
+              icon: "error",
+              confirmButtonText: t("common.ok") || "OK",
+              confirmButtonColor: "#d9b812",
+            });
+            button.disabled = false;
+          }
+        })
+        .catch((err) => {
+          console.error(err);
+          Swal.fire({
+            title: t("common.error") || "Error!",
+            text:
+              t("contact-us.form.error-message") ||
+              "Something went wrong. Please try again later.",
+            icon: "error",
+            confirmButtonText: t("common.ok") || "OK",
+            confirmButtonColor: "#d9b812",
+          });
+          button.disabled = false;
+        });
+    });
+  }
+</script>
