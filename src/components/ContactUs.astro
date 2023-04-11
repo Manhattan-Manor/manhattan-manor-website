@@ -40,6 +40,7 @@ const recaptchaSiteKey = import.meta.env.PUBLIC_G_RECAPTCHA_SITE_KEY;
             name="livechat"
             label={t("common.live-interaction") || ""}
             id="live-interaction"
+            ariaLabel={t("common.live-interaction") || "Request a live chat"}
           />
         </div>
         <div class="checkbox">
@@ -47,6 +48,8 @@ const recaptchaSiteKey = import.meta.env.PUBLIC_G_RECAPTCHA_SITE_KEY;
             name="subscribe"
             label={t("contact-us.form.newsletter") || ""}
             id="newsletter"
+            ariaLabel={t("contact-us.form.newsletter") ||
+              "Subscribe to our newsletter"}
           />
         </div>
 

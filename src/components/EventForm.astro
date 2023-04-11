@@ -161,6 +161,8 @@ const recaptchaSiteKey = import.meta.env.PUBLIC_G_RECAPTCHA_SITE_KEY;
               <Checkbox
                 label={t("contact-us.form.newsletter") || ""}
                 name="subscribe"
+                ariaLabel={t("contact-us.form.newsletter") ||
+                  "Subscribe to our newsletter"}
               />
               <input type="hidden" value={i18next.language} name="language" />
             </div>

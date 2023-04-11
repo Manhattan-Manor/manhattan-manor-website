@@ -4,9 +4,10 @@ interface Props {
   label?: string;
   id?: string;
   required?: boolean;
+  ariaLabel?: string;
 }
 
-const { name, label, id, required = false } = Astro.props;
+const { name, label, id, required = false, ariaLabel } = Astro.props;
 ---
 
 <div class="form-check">
@@ -16,6 +17,7 @@ const { name, label, id, required = false } = Astro.props;
     name={name}
     id={id}
     required={required}
+    aria-label={ariaLabel}
   />
   {
     label && (
