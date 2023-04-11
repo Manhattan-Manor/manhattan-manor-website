@@ -12,14 +12,21 @@ import { Image } from "@astrojs/image/components";
   </video>
 </div>
 <div class="banner-info">
-  <Image src={logo} alt="Manhattan Manor Logo" width={114} height={180} format="webp" loading="eager" />
+  <Image
+    src={logo}
+    alt="Manhattan Manor Logo"
+    width={114}
+    height={180}
+    format="webp"
+    loading="eager"
+  />
   <h4>{t("common.slogan")}</h4>
-  <div class="bounce">
+  <a href="#who-we-are-section" class="bounce">
     <i class="bi bi-chevron-down"></i>
-  </div>
+  </a>
 </div>
 
-<style>
+<style lang="scss">
   .video-background {
     position: relative;
     width: 100%;
@@ -51,10 +58,16 @@ import { Image } from "@astrojs/image/components";
   }
 
   .bounce {
+    display: block;
+    color: white;
     font-size: 2rem;
     margin-top: 20px;
     animation: bounce 1.5s infinite;
     cursor: pointer;
+
+    &:hover {
+      color: #f5f5f5;
+    }
   }
 
   @keyframes bounce {
