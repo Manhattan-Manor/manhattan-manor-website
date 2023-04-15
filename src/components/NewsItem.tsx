@@ -4,6 +4,7 @@ import { format } from "date-fns";
 import "../assets/styles/NewsItem.scss";
 import Image from "../classes/Image";
 import { useTranslation } from "react-i18next";
+import { Modal } from "bootstrap";
 
 interface INewsItemProps {
   item: Item;
@@ -22,8 +23,7 @@ const NewsItem: FC<INewsItemProps> = ({ item }) => {
     const modal = modalRef.current;
     if (modal) {
       document.body.appendChild(modal);
-      // @ts-ignore
-      const modalInstance = new bootstrap.Modal(modal);
+      const modalInstance = new Modal(modal);
       modalInstance.show();
       setIsOpen(true);
 

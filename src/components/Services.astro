@@ -78,7 +78,7 @@ const services = [
 ];
 ---
 
-<section class="container-fluid mt-5" id="services-section">
+<section class="container-fluid" id="services-section">
   <h2 data-aos="fade-up" class="text-center fw-bold mb-4">
     {t("our-services")}
   </h2>
@@ -89,7 +89,7 @@ const services = [
         const animationDelay = index * 100;
         return (
           <div
-            class="col-12 col-sm-6 col-lg-3 mb-3"
+            class="col-12 col-sm-6 col-lg-3 mb-3 px-2"
             data-aos="fade-up"
             data-aos-delay={animationDelay}
           >
@@ -100,3 +100,9 @@ const services = [
     }
   </div>
 </section>
+
+<style>
+  .container-fluid {
+    padding: 0 30px !important;
+  }
+</style>

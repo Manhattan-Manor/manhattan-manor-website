@@ -39,6 +39,7 @@
   },
   "devDependencies": {
     "@types/aos": "^3.0.4",
+    "@types/bootstrap": "^5.2.6",
     "sass": "^1.58.3"
   }
 }

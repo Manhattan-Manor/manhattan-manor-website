@@ -5,29 +5,24 @@ import { t } from "i18next";
 import { Image } from "@astrojs/image/components";
 ---
 
-<navbar-component
-  data-nye={t("common.nye")}
-  data-spanish={t("common.spanish")}
-  data-nye-abv={t("common.nye.abbreviated")}
-  data-spanish-abv={t("common.spanish.abbreviated")}
->
-  <nav class="navbar">
-    <div class="container">
-      <div class="logo-div">
-        <button class="sound-btn" id="sound-btn" aria-label="Sound">
-          <i class="bi bi-volume-up-fill"></i>
-          <span>{t("common.sound")}</span>
-        </button>
-        <a class="navbar-brand" href="#">
-          <Image
-            src={logo}
-            alt="Manhattan Manor Logo"
-            format="webp"
-            width={30}
-            height={48}
-          />
-        </a>
-      </div>
+<nav class="navbar" id="navbar">
+  <div class="container">
+    <div class="logo-div">
+      <button class="sound-btn" id="sound-btn" aria-label="Sound">
+        <i class="bi bi-volume-up-fill"></i>
+        <span>{t("common.sound")}</span>
+      </button>
+      <a class="navbar-brand" href="#">
+        <Image
+          src={logo}
+          alt="Manhattan Manor Logo"
+          format="webp"
+          width={30}
+          height={48}
+        />
+      </a>
+    </div>
+    <div style="display: inherit;">
       <ul class="menu">
         <li>
           <a href="#contact-us-section">{t("common.live")}</a>
@@ -45,31 +40,39 @@ import { Image } from "@astrojs/image/components";
             title="Language Selector"
           />
         </li>
-        <li>
-          <button class="drawer-toggler" id="sidenav-open-btn" aria-label="Open side menu">
-            <i class="bi bi-list"></i>
-          </button>
-        </li>
       </ul>
+      <div class="sidenav">
+        <button
+          class="sidenav__button btn text-light fs-3"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#sidenav"
+          aria-label="Open side menu"
+          aria-expanded="false"
+          aria-controls="sidenav"
+        >
+          <i class="bi bi-list"></i>
+        </button>
+        <div class="sidenav__content collapse" id="sidenav">
+          <div class="container">
+            <a href="#balldrop-section">{t("common.nye")}</a>
+            <a href="#who-we-are-section">{t("who-we-are")}</a>
+            <a href="#venues-section">{t("venues")}</a>
+            <a href="#services-section">{t("our-services")}</a>
+            <a href="#team-section">{t("our-team")}</a>
+            <a href="#news-section">{t("common.news")}</a>
+            <a href="#upcoming-events-section">{t("upcoming-events")}</a>
+            <a href="#instagram-section">Instagram</a>
+            <a href="#gallery-section">{t("gallery")}</a>
+            <a href="#testimonials-section">{t("testimonials")}</a>
+            <a href="#find-us-section">{t("find-us")}</a>
+            <a href="#clients-section">{t("clients")}</a>
+            <a href="#vendors-section">{t("vendors")}</a>
+          </div>
+        </div>
+      </div>
     </div>
-  </nav>
-</navbar-component>
-
-<nav id="sidenav" class="sidenav">
-  <button class="closebtn btn" id="sidenav-close-btn" aria-label="Close">&times;</button>
-  <a href="#balldrop-section">{t("common.nye")}</a>
-  <a href="#who-we-are-section">{t("who-we-are")}</a>
-  <a href="#venues-section">{t("venues")}</a>
-  <a href="#services-section">{t("our-services")}</a>
-  <a href="#team-section">{t("our-team")}</a>
-  <a href="#news-section">{t("common.news")}</a>
-  <a href="#upcoming-events-section">{t("upcoming-events")}</a>
-  <a href="#instagram-section">Instagram</a>
-  <a href="#gallery-section">{t("gallery")}</a>
-  <a href="#testimonials-section">{t("testimonials")}</a>
-  <a href="#find-us-section">{t("find-us")}</a>
-  <a href="#clients-section">{t("clients")}</a>
-  <a href="#vendors-section">{t("vendors")}</a>
+  </div>
 </nav>
 
 <style lang="scss">
@@ -149,6 +152,8 @@ import { Image } from "@astrojs/image/components";
 
     .navbar-brand {
       margin-left: 20px;
+      transition: 0.5s ease-in-out;
+      opacity: 0;
     }
 
     .container {
@@ -156,43 +161,7 @@ import { Image } from "@astrojs/image/components";
     }
   }
 
-  .sidenav {
-    height: 100%;
-    width: 0;
-    position: fixed;
-    z-index: 20;
-    top: 0;
-    right: 0;
-    background-color: #111;
-    overflow-x: hidden;
-    transition: 0.5s;
-    padding-top: 60px;
-
-    a {
-      padding: 8px 8px 8px 32px;
-      text-decoration: none;
-      font-size: 25px;
-      color: #818181;
-      display: block;
-      transition: 0.3s;
-      text-align: center;
-
-      &:hover {
-        color: #f1f1f1;
-      }
-    }
-
-    .closebtn {
-      position: absolute;
-      top: 0;
-      right: 25px;
-      font-size: 36px;
-      margin-left: 50px;
-    }
-  }
-
   .language-selector {
-    // Style this <select> element to look like a button
     background: transparent;
     border: none;
     cursor: pointer;
@@ -202,128 +171,117 @@ import { Image } from "@astrojs/image/components";
     align-items: center;
     text-transform: uppercase;
   }
-</style>
 
-<script>
-  class Navbar extends HTMLElement {
-    constructor() {
-      super();
+  .sidenav {
+    overflow: hidden;
 
-      // Get localized text
-      const nye = this.dataset.nye;
-      const spanish = this.dataset.spanish;
-      const nyeAbv = this.dataset.nyeAbv;
-      const spanishAbv = this.dataset.spanishAbv;
+    &__content {
+      position: absolute;
+      background: rgba(0, 0, 0, 0.5);
+      width: 100%;
+      left: 0;
+      z-index: 10;
+      margin-top: 9px;
 
-      const navbar = document.querySelector(".navbar") as HTMLElement;
-      // Hide navbar on scroll down
-      let prevScrollpos = window.pageYOffset;
-      window.onscroll = function () {
-        let currentScrollPos = window.pageYOffset;
-        if (prevScrollpos > currentScrollPos) {
-          navbar.style.top = "0";
-        } else {
-          navbar.style.top = "-100px";
+      a {
+        display: block;
+        padding: 10px 20px;
+        color: white;
+        text-decoration: none;
+        font-size: 1rem;
+        text-align: right;
+
+        &:hover {
+          color: $primary;
+          transition-duration: 0.5s;
         }
-        prevScrollpos = currentScrollPos;
 
-        // If we are at the top of the page, set the navbar to be transparent
-        if (window.pageYOffset === 0) {
-          navbar.style.backgroundColor = "transparent";
-        } else {
-          navbar.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
+        &.active {
+          color: $primary;
+          border-bottom: 1px solid $primary;
         }
-      };
-
-      // Check window width on load and detect if we are on mobile, also check on resize
-      const isMobile = () => window.innerWidth <= 760;
-      const adaptWords = (spaLink: HTMLElement, nyeLink: HTMLElement) => {
-        if (isMobile()) {
-          // If we are on mobile, change ESPAÑOL to SPA and NEW YEAR'S EVE to NYE
-          if (spaLink) spaLink.innerHTML = spanishAbv || "SPA";
-          if (nyeLink) nyeLink.innerHTML = nyeAbv || "NYE";
-        } else {
-          // If we are on desktop, change SPA to ESPAÑOL and NYE to NEW YEAR'S EVE
-          if (spaLink) spaLink.innerHTML = spanish || "ESPAÑOL";
-          if (nyeLink) nyeLink.innerHTML = nye || "NEW YEAR'S EVE";
-        }
-      };
-
-      const spaLink = document.querySelector("#spa-link") as HTMLElement;
-      const nyeLink = document.querySelector("#nye-link") as HTMLElement;
-      adaptWords(spaLink, nyeLink);
-
-      window.addEventListener("resize", () => {
-        adaptWords(spaLink, nyeLink);
-      });
-
-      // Open and close the sidenav
-      const openNav = () => {
-        const sidenv = document.getElementById("sidenav") as HTMLElement;
-        if (sidenv) sidenv.style.width = "100%";
-      };
-
-      const closeNav = () => {
-        const sidenv = document.getElementById("sidenav") as HTMLElement;
-        if (sidenv) sidenv.style.width = "0";
-      };
-
-      const sidenavOpenButton = document.getElementById(
-        "sidenav-open-btn"
-      ) as HTMLElement;
-      if (sidenavOpenButton) {
-        sidenavOpenButton.addEventListener("click", openNav);
-      }
-
-      const sidenavCloseButton = document.getElementById(
-        "sidenav-close-btn"
-      ) as HTMLElement;
-      if (sidenavCloseButton) {
-        sidenavCloseButton.addEventListener("click", closeNav);
-      }
-
-      // If navbar is open and user press esc, close the navbar
-      document.addEventListener("keydown", (e) => {
-        if (e.key === "Escape") {
-          closeNav();
-        }
-      });
-
-      // Close navbar when user selects a link
-      const navLinks = document.querySelectorAll("#sidenav a");
-      navLinks.forEach((link) => {
-        link.addEventListener("click", closeNav);
-      });
-
-      // Sound button
-      const video = document.getElementById(
-        "background-video"
-      ) as HTMLVideoElement;
-      const soundButton = document.getElementById(
-        "sound-btn"
-      ) as HTMLButtonElement;
-
-      if (video && soundButton) {
-        soundButton.addEventListener("click", () => {
-          if (video.muted) {
-            video.muted = false;
-            soundButton.innerHTML = `<i class="bi bi-volume-up-fill"></i><span> MUTE</span>`;
-            // Add margin to the icon
-            const icon = soundButton.querySelector("i");
-            if (icon) icon.style.marginRight = "5px";
-            // Set volume to 0.5
-            video.volume = 0.5;
-          } else {
-            video.muted = true;
-            soundButton.innerHTML = `<i class="bi bi-volume-up-fill"></i><span> SOUND</span>`;
-            // Add margin to the icon
-            const icon = soundButton.querySelector("i");
-            if (icon) icon.style.marginRight = "5px";
-          }
-        });
       }
     }
   }
+</style>
 
-  customElements.define("navbar-component", Navbar);
+<script>
+  import { t } from "i18next";
+
+  const navbar = document.querySelector(".navbar") as HTMLElement;
+  window.onscroll = function () {
+    // If we are after the balldrop section, set the navbar to be black and the navbar-brand visible
+    const navbarBrand = navbar.querySelector(".navbar-brand") as HTMLElement;
+    if (window.pageYOffset > 200) {
+      navbar.style.backgroundColor = "black";
+      navbar.style.color = "white";
+      navbar.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
+      navbar.style.transition = "background-color 0.5s";
+      navbarBrand!.style.opacity = "1";
+    } else {
+      navbar.style.color = "black";
+      navbar.style.backgroundColor = "transparent";
+      navbarBrand!.style.opacity = "0";
+    }
+  };
+
+  // Check window width on load and detect if we are on mobile, also check on resize
+  const isMobile = () => window.innerWidth <= 760;
+  const adaptWords = (spaLink: HTMLElement, nyeLink: HTMLElement) => {
+    if (isMobile()) {
+      // If we are on mobile, change ESPAÑOL to SPA and NEW YEAR'S EVE to NYE
+      if (spaLink) spaLink.innerHTML = t("common.spanish.abbreviated") || "SPA";
+      if (nyeLink) nyeLink.innerHTML = t("common.nye.abbreviated") || "NYE";
+    } else {
+      // If we are on desktop, change SPA to ESPAÑOL and NYE to NEW YEAR'S EVE
+      if (spaLink) spaLink.innerHTML = t("common.spanish") || "ESPAÑOL";
+      if (nyeLink) nyeLink.innerHTML = t("common.nye") || "NEW YEAR'S EVE";
+    }
+  };
+
+  const spaLink = document.querySelector("#spa-link") as HTMLElement;
+  const nyeLink = document.querySelector("#nye-link") as HTMLElement;
+  adaptWords(spaLink, nyeLink);
+
+  window.addEventListener("resize", () => {
+    adaptWords(spaLink, nyeLink);
+  });
+
+  // Sound button
+  const video = document.getElementById("background-video") as HTMLVideoElement;
+  const soundButton = document.getElementById("sound-btn") as HTMLButtonElement;
+
+  if (video && soundButton) {
+    soundButton.addEventListener("click", () => {
+      if (video.muted) {
+        video.muted = false;
+        soundButton.innerHTML = `<i class="bi bi-volume-up-fill"></i><span> MUTE</span>`;
+        // Add margin to the icon
+        const icon = soundButton.querySelector("i");
+        if (icon) icon.style.marginRight = "5px";
+        // Set volume to 0.5
+        video.volume = 0.5;
+      } else {
+        video.muted = true;
+        soundButton.innerHTML = `<i class="bi bi-volume-up-fill"></i><span> SOUND</span>`;
+        // Add margin to the icon
+        const icon = soundButton.querySelector("i");
+        if (icon) icon.style.marginRight = "5px";
+      }
+    });
+  }
+
+  // Show sidenav
+  // const sidenav = document.querySelector(".sidenav") as HTMLElement;
+  // const sidenavContent = document.querySelector(
+  //   ".sidenav__content"
+  // ) as HTMLElement;
+  // if (sidenav && sidenavContent)
+  //   sidenav.addEventListener("click", () => {
+  //     if (sidenavContent.style.display === "block") {
+  //       sidenavContent.style.display = "none";
+  //     } else {
+  //       sidenavContent.style.display = "block";
+  //     }
+  //   });
 </script>

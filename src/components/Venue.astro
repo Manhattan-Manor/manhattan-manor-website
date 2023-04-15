@@ -7,7 +7,7 @@ import { YouTube } from '@astro-community/astro-embed-youtube';
 interface Props {
   id: number;
   name: string;
-  mainImage: string;
+  mainImage: ImageMetadata;
   floorPlans: string;
   description: string;
   video: string;
@@ -29,7 +29,7 @@ const { id, name, mainImage, floorPlans, description, video, gallery } =
       alt={name}
       sizes="(max-width: 768px) 360px, 540px"
       widths={[360, 540]}
-      aspectRatio="16:12"
+      aspectRatio="16:11"
       format="webp"
     />
     <div>

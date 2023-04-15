@@ -2,10 +2,9 @@
 import { Image } from "@astrojs/image/components";
 import instagramIcon from "../assets/images/social/instagram.png";
 import { Trans } from "astro-i18next/components";
-const basePath = import.meta.env.BASE_PATH;
 ---
 
-<section class="container mt-4" id="instagram-section">
+<section class="container" id="instagram-section">
   <div class="mt-3" data-aos="fade-up">
     <Image
       src={instagramIcon}
@@ -32,18 +31,19 @@ const basePath = import.meta.env.BASE_PATH;
 
 <script is:inline src="/client-libraries/instafeed.min.js"></script>
 <script>
-  // Detect when this section is visible
-  
-
-
   // @ts-ignore
   const userFeed = new Instafeed({
     get: "user",
     target: "instafeed-container",
     resolution: "thumbnail",
     accessToken: import.meta.env.PUBLIC_INSTAGRAM_ACCESS_TOKEN,
-    template: `<div data-aos="fade-up" class="col-12 col-md-6 col-lg-4"><a href="{{link}}" target="_blank" id="{{id}}"><img class="p-2 img-fluid img-instafeed-entry" src="{{image}}" alt="Instagram post" title="{{caption}}" /></a></div>`,
-    limit: 9,
+    template: `
+      <div data-aos="fade-up" class="col-12 col-md-6 col-lg-4 col-xl-3">
+        <a class="d-flex justify-content-center" href="{{link}}" target="_blank" id="{{id}}">
+          <img class="p-2 img-fluid img-instafeed-entry" src="{{image}}" alt="Instagram post" title="{{caption}}" />
+        </a>
+      </div>`,
+    limit: 12,
   });
   userFeed.run();
 </script>

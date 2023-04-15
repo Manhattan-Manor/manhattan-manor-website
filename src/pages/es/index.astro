@@ -10,17 +10,17 @@ import Layout from "../../layouts/Layout.astro";
 import Footer from "../../components/Footer.astro";
 import Gallery from "../../components/Gallery.astro";
 import FindUs from "../../components/FindUs.astro";
-import Clients from "../../components/Clients.astro";
-import PreferredVendors from "../../components/PreferredVendors.astro";
-import MediaPartners from "../../components/MediaPartners.astro";
-import InTheNews from "../../components/InTheNews.astro";
 import BallDrop from "../../components/BallDrop.astro";
 import Countdown from "../../components/Countdown.astro";
 import NewYearsEve from "../../components/NewYearsEve.astro";
-import Testimonials from "../../components/Testimonials";
 import News from "../../components/News";
 import ContactUs from "../../components/ContactUs.astro";
 import InstagramFeed from "../../components/InstagramFeed.astro";
+import Testimonials from "../../components/Testimonials";
+import Clients from "../../components/Clients";
+import PreferredVendors from "../../components/PreferredVendors";
+import MediaPartners from "../../components/MediaPartners";
+import InTheNews from "../../components/InTheNews";
 
 changeLanguage("es");
 ---
@@ -31,16 +31,16 @@ changeLanguage("es");
   <Venues />
   <Services />
   <OurTeam />
-  <News client:visible />
+  <News client:only="react" />
   <UpcomingEvents />
   <InstagramFeed />
   <Gallery />
   <Testimonials client:visible />
   <FindUs />
-  <Clients />
-  <PreferredVendors />
-  <MediaPartners />
-  <InTheNews />
+  <Clients client:idle />
+  <PreferredVendors client:idle />
+  <MediaPartners client:idle />
+  <InTheNews client:idle />
   <BallDrop />
   <Countdown />
   <NewYearsEve />

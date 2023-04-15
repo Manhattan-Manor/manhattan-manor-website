@@ -25,7 +25,7 @@ const Testimonials: FC = () => {
   }, []);
 
   return (
-    <section className="container mt-4" id="testimonials-section">
+    <section className="container" id="testimonials-section">
       <h2 className="text-center mb-3">
         {t("testimonials")}
       </h2>

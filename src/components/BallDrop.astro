@@ -1,12 +1,12 @@
 ---
 import { t } from "i18next";
 // @ts-ignore
-import { YouTube } from '@astro-community/astro-embed-youtube';
+import { YouTube } from "@astro-community/astro-embed-youtube";
 
 const nextYear = new Date().getFullYear() + 1;
 ---
 
-<section class="container text-center mt-5" id="balldrop-section">
+<section class="container text-center" id="balldrop-section">
   <div data-aos="fade-up">
     <h2>
       {t("common.nye.party")}<br />
@@ -26,7 +26,7 @@ const nextYear = new Date().getFullYear() + 1;
     </p>
   </div>
 
-  <h3>{t("ball-drop.video.title")}</h3>
+  <h3 class="mt-5">{t("ball-drop.video.title")}</h3>
   <YouTube id="bfGkzDZWt-c" class="youtube-video" />
 
   <p class="mt-3 caption">{t("ball-drop.video.caption")}</p>
@@ -34,8 +34,10 @@ const nextYear = new Date().getFullYear() + 1;
 
 <style>
   .youtube-video {
-    max-width: 100%;
+    max-width: 1110px;
     max-height: 100%;
+    display: block;
+    margin: 0 auto;
   }
 
   .caption {

@@ -43,7 +43,7 @@ const News: FC = () => {
   }, []);
 
   return (
-    <section className="container mt-4" id="news-section">
+    <section className="container" id="news-section">
       <h2 className="text-center">{t("common.news")}</h2>
 
       {isLoading && <p>{t("common.loading")}</p>}
