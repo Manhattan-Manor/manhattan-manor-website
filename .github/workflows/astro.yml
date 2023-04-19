@@ -42,11 +42,11 @@ jobs:
           CMS_API_ROUTE: ${{ secrets.CMS_API_ROUTE }}
           CMS_IMAGES_ROUTE: ${{ secrets.CMS_IMAGES_ROUTE }}
           G_RECAPTCHA_SITE_KEY: ${{ secrets.G_RECAPTCHA_SITE_KEY }}
-        run: echo "PUBLIC_INSTAGRAM_ACCESS_TOKEN=\"$INSTAGRAM_ACCESS_TOKEN\"\r
-          \"PUBLIC_CMS_API_KEY=\"$CMS_API_KEY\"\r
-          \"PUBLIC_CMS_API_ROUTE=\"$CMS_API_ROUTE\"\r
-          \"PUBLIC_CMS_IMAGES_ROUTE=\"$CMS_IMAGES_ROUTE\"\r
-          \"PUBLIC_G_RECAPTCHA_SITE_KEY=\"$G_RECAPTCHA_SITE_KEY\"\r"
+        run: echo -e "PUBLIC_INSTAGRAM_ACCESS_TOKEN=\"$INSTAGRAM_ACCESS_TOKEN\"\r
+          PUBLIC_CMS_API_KEY=\"$CMS_API_KEY\"\r
+          PUBLIC_CMS_API_ROUTE=\"$CMS_API_ROUTE\"\r
+          PUBLIC_CMS_IMAGES_ROUTE=\"$CMS_IMAGES_ROUTE\"\r
+          PUBLIC_G_RECAPTCHA_SITE_KEY=\"$G_RECAPTCHA_SITE_KEY\"\r"
   build:
     name: Build
     needs: create-env
