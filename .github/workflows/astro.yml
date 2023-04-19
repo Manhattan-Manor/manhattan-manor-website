@@ -85,6 +85,12 @@ jobs:
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
         working-directory: ${{ env.BUILD_PATH }}
       - name: Build with Astro
+        env:
+            PUBLIC_INSTAGRAM_ACCESS_TOKEN: ${{ secrets.INSTAGRAM_ACCESS_TOKEN }}
+            PUBLIC_CMS_API_KEY: ${{ secrets.CMS_API_KEY }}
+            PUBLIC_CMS_API_ROUTE: ${{ secrets.CMS_API_ROUTE }}
+            PUBLIC_CMS_IMAGES_ROUTE: ${{ secrets.CMS_IMAGES_ROUTE }}
+            PUBLIC_G_RECAPTCHA_SITE_KEY: ${{ secrets.G_RECAPTCHA_SITE_KEY }}
         run: |
           ${{ steps.detect-package-manager.outputs.runner }} astro build \
             --site "${{ steps.pages.outputs.origin }}" \
