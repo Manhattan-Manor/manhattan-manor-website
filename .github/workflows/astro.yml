@@ -31,7 +31,6 @@ env:
 jobs:
   build:
     name: Build
-    needs: create-env
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
