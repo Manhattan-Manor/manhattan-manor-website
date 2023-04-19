@@ -47,6 +47,7 @@ jobs:
           PUBLIC_CMS_API_ROUTE=\"$CMS_API_ROUTE\"\n
           PUBLIC_CMS_IMAGES_ROUTE=\"$CMS_IMAGES_ROUTE\"\n
           PUBLIC_G_RECAPTCHA_SITE_KEY=\"$G_RECAPTCHA_SITE_KEY\"\n"
+        working-directory: ${{ env.BUILD_PATH }}
   build:
     name: Build
     needs: create-env
