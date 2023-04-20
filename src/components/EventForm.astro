@@ -105,14 +105,17 @@ const recaptchaSiteKey = import.meta.env.PUBLIC_G_RECAPTCHA_SITE_KEY;
               <label for="eventtime" class="form-label"
                 >{t("contact-us.form.time-of-event")}</label
               >
-              <input
-                type="time"
-                class="form-control"
-                name="eventtime"
-                data-bs-theme="light"
-                placeholder={t("contact-us.form.time-of-event")}
-                required
-              />
+              <div class="timepicker-ui">
+                <input
+                  type="text"
+                  class="form-control"
+                  name="eventtime"
+                  data-bs-theme="light"
+                  placeholder={t("contact-us.form.time-of-event")}
+                  value="12:00 PM"
+                  required
+                />
+              </div>
             </div>
             <div class="col-12">
               <label for="company" class="form-label"
@@ -214,6 +217,20 @@ const recaptchaSiteKey = import.meta.env.PUBLIC_G_RECAPTCHA_SITE_KEY;
 <script>
   import Swal from "sweetalert2";
   import { t } from "i18next";
+  import { TimepickerUI } from "timepicker-ui";
+
+  // Initialize timepicker
+  const DOMElement = document.querySelector(".timepicker-ui") as HTMLElement;
+  const options = {
+    cancelLabel: t("common.cancel") || "Cancel",
+    okLabel: t("common.ok") || "OK",
+    timeLabel: t("common.select-time") || "Select time",
+    mobileTimeLabel: t("common.enter-time") || "Enter time",
+  };
+  if (DOMElement) {
+    const newTimepicker = new TimepickerUI(DOMElement, options);
+    newTimepicker.create();
+  }
 
   const form = document.getElementById("event-form") as HTMLFormElement;
   const button = document.getElementById(

@@ -36,7 +36,8 @@
     "react-dom": "^18.2.0",
     "react-i18next": "^12.2.0",
     "sharp": "^0.31.3",
-    "sweetalert2": "^11.7.3"
+    "sweetalert2": "^11.7.3",
+    "timepicker-ui": "^2.6.1"
   },
   "devDependencies": {
     "@types/aos": "^3.0.4",

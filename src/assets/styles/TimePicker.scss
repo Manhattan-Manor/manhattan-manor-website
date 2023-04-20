@@ -1,0 +1,22 @@
+@import "colors";
+
+.timepicker-ui-minutes.active,
+.timepicker-ui-hour.active,
+.timepicker-ui-minutes:hover,
+.timepicker-ui-hour:hover,
+.timepicker-ui-type-mode.active,
+.timepicker-ui-type-mode:hover {
+  color: $primary;
+  background-color: $primary_t4;
+}
+
+.timepicker-ui-dot,
+.timepicker-ui-clock-hand,
+.timepicker-ui-circle-hand {
+  background-color: $primary;
+}
+
+.timepicker-ui-cancel-btn,
+.timepicker-ui-ok-btn {
+  color: $primary;
+}
