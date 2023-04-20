@@ -6,17 +6,17 @@
 .timepicker-ui-hour:hover,
 .timepicker-ui-type-mode.active,
 .timepicker-ui-type-mode:hover {
-  color: $primary;
-  background-color: $primary_t4;
+  color: $primary !important;
+  background-color: $primary_t4 !important;
 }
 
 .timepicker-ui-dot,
 .timepicker-ui-clock-hand,
 .timepicker-ui-circle-hand {
-  background-color: $primary;
+  background-color: $primary !important;
 }
 
 .timepicker-ui-cancel-btn,
 .timepicker-ui-ok-btn {
-  color: $primary;
+  color: $primary !important;
 }
