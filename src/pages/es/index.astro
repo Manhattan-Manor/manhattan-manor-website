@@ -21,6 +21,7 @@ import Clients from "../../components/Clients";
 import PreferredVendors from "../../components/PreferredVendors";
 import MediaPartners from "../../components/MediaPartners";
 import InTheNews from "../../components/InTheNews";
+import PartnersHighlights from "../../components/PartnersHighlights.astro";
 
 changeLanguage("es");
 ---
@@ -33,6 +34,7 @@ changeLanguage("es");
   <OurTeam />
   <News client:only="react" />
   <UpcomingEvents />
+  <PartnersHighlights />
   <InstagramFeed />
   <Gallery />
   <Testimonials client:visible />
