@@ -1,0 +1,48 @@
+---
+import "../../assets/styles/Popup.scss";
+---
+
+<div
+  class="modal fade popup"
+  id="closingNoticeModal"
+  tabindex="-1"
+  aria-label="Closing Notice"
+  aria-hidden="true"
+  data-bs-theme="dark"
+>
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content rounded-0">
+      <div class="modal-body">
+        <h2 class="text-center">Closing Notice</h2>
+        <p>
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Obcaecati
+          officiis sint minus numquam. Ducimus facilis similique animi, totam
+          praesentium eaque tempora, accusantium odio maiores officia impedit
+          soluta necessitatibus voluptatibus eum, dignissimos expedita? Odit cum
+          perferendis, eius repellat reiciendis delectus maxime nobis? Placeat
+          nostrum maxime nihil, soluta impedit adipisci consequuntur atque.
+        </p>
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // @ts-ignore
+  import bootstrap from "bootstrap/dist/js/bootstrap.bundle.min.js";
+
+  const modalElement = document.getElementById("closingNoticeModal");
+  const modalDelay = 3000;
+
+  if (modalElement) {
+    setTimeout(() => {
+      const modal = new bootstrap.Modal(modalElement, {
+        keyboard: false,
+      });
+      modal.show();
+    }, modalDelay);
+  }
+</script>

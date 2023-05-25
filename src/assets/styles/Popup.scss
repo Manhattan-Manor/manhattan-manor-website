@@ -1,0 +1,15 @@
+@import "colors";
+
+.popup {
+  .modal-dialog {
+    .modal-content .modal-body {
+      background-color: black;
+      border: 2px solid $primary;
+      text-align: center;
+    }
+
+    p {
+      color: white;
+    }
+  }
+}
