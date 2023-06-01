@@ -1,5 +1,7 @@
 ---
+import { Trans } from "astro-i18next/components";
 import "../../assets/styles/Popup.scss";
+import { t } from "i18next";
 ---
 
 <div
@@ -13,22 +15,56 @@ import "../../assets/styles/Popup.scss";
   <div class="modal-dialog modal-lg modal-dialog-centered">
     <div class="modal-content rounded-0">
       <div class="modal-body">
-        <h2 class="text-center">Closing Notice</h2>
+        <h2 class="text-center">{t("common.announcement")}</h2>
         <p>
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Obcaecati
-          officiis sint minus numquam. Ducimus facilis similique animi, totam
-          praesentium eaque tempora, accusantium odio maiores officia impedit
-          soluta necessitatibus voluptatibus eum, dignissimos expedita? Odit cum
-          perferendis, eius repellat reiciendis delectus maxime nobis? Placeat
-          nostrum maxime nihil, soluta impedit adipisci consequuntur atque.
+          <Trans i18nKey="closing-notice.1">
+            It is with a mixture of emotions that we announce the closure of our
+            cherished location on the corner of 52nd Street and 7th Avenue after
+            more than 40 wonderful years. <span
+              >Our final day of operation at this venue will be Saturday, July
+              1, 2023.</span
+            >
+          </Trans>
+          <br /><br />
+          <Trans i18nKey="closing-notice.2">
+            We want to express our deepest gratitude to all who have supported
+            Manhattan Manor and our sister restaurant, Rosie O'Grady's
+            Steakhouse, throughout our time here and would so enjoy seeing you
+            for <span>one last pint at Rosie's Bar</span>, a delightful meal in
+            the main dining room, or a late-night drink in our Broadway Pub
+            before we bid farewell to this location.
+          </Trans>
+          <br /><br />
+          <Trans i18nKey="closing-notice.3">
+            Amidst the bittersweet goodbye, we want to convey our <span
+              >unwavering commitment to relocating our restaurant and event
+              space to a nearby location in the upcoming months.</span
+            > Rest assured, our new venue will capture the essence and spirit that
+            you have come to love at Rosie O'Grady's Steakhouse and Manhattan Manor.
+          </Trans>
+        </p>
+        <p class="text-center">
+          {t("common.inquiries")}: <a href="tel:212-489-9595">212-489-9595</a>
         </p>
         <button type="button" class="btn btn-primary" data-bs-dismiss="modal">
-          Close
+          {t("common.ok")}
         </button>
       </div>
     </div>
   </div>
 </div>
+
+<style lang="scss">
+  @import "../../assets/styles/_colors.scss";
+
+  span {
+    color: $primary;
+  }
+
+  a {
+    text-decoration: underline;
+  }
+</style>
 
 <script>
   // @ts-ignore
