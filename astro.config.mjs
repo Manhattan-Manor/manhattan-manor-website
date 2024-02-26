@@ -2,7 +2,6 @@ import { defineConfig } from "astro/config";
 import astroI18next from "astro-i18next";
 import react from "@astrojs/react";
 import image from "@astrojs/image";
-import critters from "astro-critters";
 
 import partytown from "@astrojs/partytown";
 
@@ -14,7 +13,6 @@ export default defineConfig({
     image({
       serviceEntryPoint: "@astrojs/image/sharp",
     }),
-    critters(),
     partytown({
       config: {
         forward: ["dataLayer.push"],
