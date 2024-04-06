@@ -28,17 +28,21 @@ const nextYear = currentYear + 1;
         </a>
       </div>
       <div class="col-12 col-md-4">
-        <a href="tel:212-489-9595" class="social-link">
-          <i class="bi bi-phone"></i>
-          <span> 212-489-9595</span>
-        </a>
-      </div>
-      <div class="col-12 col-md-4">
         <a href="#find-us-section" class="social-link">
           <i class="bi bi-pin-map-fill"></i>
           <span>
+            Manhattan Manor at Rosie O'Grady's <br />
             148 W 51st Street, New York, NY 10019<br />between 6th & 7th ave</span
           >
+        </a>
+      </div>
+      <div class="col-12 col-md-4">
+        <a href="tel:2125822975" class="social-link">
+          <i class="bi bi-phone"></i>
+          <span>212 582 2975</span>
+        </a>
+        <a href="tel:2124899595" class="social-link">
+          <span>212 489 9595</span>
         </a>
       </div>
       <div class="col-12 mt-4 text-center">
@@ -82,7 +86,11 @@ const nextYear = currentYear + 1;
         </div>
 
         <div class="mt-4">
-          <a href="https://rosieogradys.com/" rel="noopener noreferrer" target="_blank">
+          <a
+            href="https://rosieogradys.com/"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
             {t("footer.visit-our-sister-restaurant")}
 
             <Image
@@ -111,16 +119,9 @@ const nextYear = currentYear + 1;
       </div>
     </div>
     <div class="row mt-4">
-      <div class="col-12 col-md-4">
-        <a href={mmSpecs}>SKYLIGHT ROOM - {(t("specs") || "").toUpperCase()}</a>
-      </div>
-      <div class="col-12 col-md-4">
+      <div class="col-12">
         <a href={localizePath("/terms")}
           >{t("terms-of-use")} - {t("privacy-policy")}</a
-        >
-      </div>
-      <div class="col-12 col-md-4">
-        <a href={mmSpecs}>MANHATTAN CLUB - {(t("specs") || "").toUpperCase()}</a
         >
       </div>
 
