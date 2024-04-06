@@ -56,7 +56,8 @@ const { id, name, mainImage, floorPlans, description, video, gallery } =
       {t("common.gallery")}
     </button>
     <!-- Open the bootstrap video modal -->
-    <button
+    <a href="/tour"><i class="bi bi-play-circle"></i>{t("common.video")}</a>
+    <!-- <button
       type="button"
       data-bs-toggle="modal"
       data-bs-target={`#videoModal__${id}`}
@@ -65,7 +66,7 @@ const { id, name, mainImage, floorPlans, description, video, gallery } =
     >
       <i class="bi bi-play-circle"></i>
       {t("common.video")}
-    </button>
+    </button> -->
     {
       floorPlans && (
         <a target="_blank" href={floorPlans} aria-label="Venue floor plans">
