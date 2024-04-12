@@ -47,6 +47,25 @@ class NewsItem {
     const data = await response.json();
     return data.map((item: NewsItem) => new NewsItem(item));
   };
+
+  public static getAllSpanish = async (): Promise<NewsItem[]> => {
+    const response = await fetch(
+      import.meta.env.PUBLIC_CMS_API_ROUTE +
+        "/content/items/spanishNews?" +
+        new URLSearchParams({
+          sort: JSON.stringify({ date: -1 }),
+        }),
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          "api-key": import.meta.env.PUBLIC_CMS_API_KEY,
+        },
+      }
+    );
+    const data = await response.json();
+    return data.map((item: NewsItem) => new NewsItem(item));
+  };
 }
 
 export default NewsItem;
