@@ -4,7 +4,7 @@ import i18next from "i18next";
 class NewsItem {
   title: string;
   summary: string;
-  date: Date;
+  date: string;
   image: Image;
   articleLink: string;
   body: string;
@@ -20,7 +20,7 @@ class NewsItem {
     } else {
       this.title = "";
       this.summary = "";
-      this.date = new Date();
+      this.date = "";
       this.image = new Image();
       this.articleLink = "";
       this.body = "";

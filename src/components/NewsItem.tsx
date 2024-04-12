@@ -5,7 +5,7 @@ import "../assets/styles/NewsItem.scss";
 import Image from "../classes/Image";
 import { useTranslation } from "react-i18next";
 import { Modal } from "bootstrap";
-import { htmlDecode } from "../utils/functions";
+import { htmlDecode, parseDate } from "../utils/functions";
 
 interface INewsItemProps {
   item: Item;
@@ -18,7 +18,7 @@ const NewsItem: FC<INewsItemProps> = ({ item }) => {
   const { t } = useTranslation("translation");
 
   const modalRef = React.useRef<HTMLDivElement>(null);
-  const dateString = format(new Date(item.date), "MMM dd, hh:mm a");
+  const dateString = parseDate(item.date);
 
   const openModal = () => {
     const modal = modalRef.current;
