@@ -5,6 +5,7 @@ import "../assets/styles/NewsItem.scss";
 import Image from "../classes/Image";
 import { useTranslation } from "react-i18next";
 import { Modal } from "bootstrap";
+import { htmlDecode } from "../utils/functions";
 
 interface INewsItemProps {
   item: Item;
@@ -87,10 +88,10 @@ const NewsItem: FC<INewsItemProps> = ({ item }) => {
                   alt={item.title}
                 />
               )}
-              <p
+              <div
                 className="mt-3"
-                dangerouslySetInnerHTML={{ __html: item.body }}
-              ></p>
+                dangerouslySetInnerHTML={{ __html: htmlDecode(item.body) }}
+              ></div>
               <a
                 href={item.articleLink}
                 target="_blank"

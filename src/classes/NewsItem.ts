@@ -31,8 +31,11 @@ class NewsItem {
     const locale = i18next.language;
     const response = await fetch(
       import.meta.env.PUBLIC_CMS_API_ROUTE +
-        "/content/items/news?locale=" +
-        locale,
+        "/content/items/news?" +
+        new URLSearchParams({
+          locale,
+          sort: JSON.stringify({ date: -1 }),
+        }),
       {
         method: "GET",
         headers: {
