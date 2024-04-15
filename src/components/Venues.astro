@@ -1,28 +1,33 @@
 ---
-import skylightMain from "../assets/images/venues/skylight/main.jpg";
-import manhattanClubMain from "../assets/images/venues/manhattan-club/main.jpg";
+import manhattanManorMain from "../assets/images/venues/manhattan-manor/main.jpg";
+import broadwayRoomMain from "../assets/images/venues/broadway-room/main.jpg";
 import taftBarMain from "../assets/images/venues/taft-bar/main.jpg";
 import privateDiningRoomMain from "../assets/images/venues/private-dining-room/main.jpg";
-import skylightFloorplans from "../assets/documents/floorplan-skylight.pdf";
-import manhattanClubFloorplans from "../assets/documents/floorplan-manhattan-club.pdf";
+
 import Venue from "./Venue.astro";
 import { t } from "i18next";
 
-const skylightGallery = (
-  await Astro.glob("../assets/images/venues/skylight/*.jpg")
+const manhattanManorGallery = (
+  await Astro.glob("../assets/images/venues/manhattan-manor/*.jpg")
 ).map((image) => image.default);
-const manhattanClubGallery = (
-  await Astro.glob("../assets/images/venues/manhattan-club/*.jpg")
+const broadwayRoomGallery = (
+  await Astro.glob("../assets/images/venues/broadway-room/*.jpg")
+).map((image) => image.default);
+const taftBarGallery = (
+  await Astro.glob("../assets/images/venues/taft-bar/*.jpg")
+).map((image) => image.default);
+const privateDiningRoomGallery = (
+  await Astro.glob("../assets/images/venues/private-dining-room/*.jpg")
 ).map((image) => image.default);
 
 const venues = [
   {
     id: 1,
     name: "Manhattan Manor",
-    mainImage: skylightMain,
+    mainImage: manhattanManorMain,
     // floorPlans: skylightFloorplans,
     video: "https://www.youtube.com/embed/zVe3RrmbNjw",
-    gallery: skylightGallery,
+    gallery: manhattanManorGallery,
     description: `
     <h4>${t("venues.size")}</h4>
     <ul>
@@ -41,9 +46,9 @@ const venues = [
   {
     id: 2,
     name: "Broadway Room",
-    mainImage: manhattanClubMain,
+    mainImage: broadwayRoomMain,
     video: "https://www.youtube.com/embed/zVe3RrmbNjw",
-    gallery: manhattanClubGallery,
+    gallery: broadwayRoomGallery,
     description: `
     <h4>${t("venues.size")}</h4>
     <ul>
@@ -64,7 +69,7 @@ const venues = [
     name: "Taft Bar",
     mainImage: taftBarMain,
     video: "https://www.youtube.com/embed/zVe3RrmbNjw",
-    gallery: manhattanClubGallery,
+    gallery: taftBarGallery,
     description: `
     <h4>${t("venues.size")}</h4>
     <ul>
@@ -81,7 +86,7 @@ const venues = [
     name: "Private Dining Room",
     mainImage: privateDiningRoomMain,
     video: "https://www.youtube.com/embed/zVe3RrmbNjw",
-    gallery: manhattanClubGallery,
+    gallery: privateDiningRoomGallery,
     description: `
     <h4>${t("venues.size")}</h4>
     <ul>
