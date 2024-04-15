@@ -117,7 +117,7 @@
   "venues.capacity": "Capacidad",
   "venues.classroom-conference": "Conferencia en Aula",
   "venues.cocktail-reception": "Recepción de Cóctel",
-  "venues.description": "Cuatro espacios únicos que son fáciles, versátiles y se prestan a todo tipo de eventos. Ya sea que esté organizando una conferencia de todo el día, una elegante boda, una sesión de fotos o una celebración familiar especial, Manhattan Manor es el lugar ideal.",
+  "venues.description": "Cuatro espacios singulares, versátiles y que se prestan a todo tipo de eventos. Ya sea que esté organizando una conferencia de todo el día, una cena de negocios, un evento de networking o una celebración familiar especial, Manhattan Manor es el lugar ideal.",
   "venues.seated-dinner": "Cena Sentada",
   "venues.seated-dinner-dance-floor": "Cena Sentada con Pista de Baile",
   "venues.square-feet": "Pies Cuadrados",
@@ -126,8 +126,9 @@
   "venues.venue-size": "Tamaño del Lugar",
   "venues.print-directions": "Imprimir mapa para llegar al lugar",
   "who-we-are": "Quiénes Somos",
-  "who-we-are.description": "Manhattan Manor alberga cuatro lugares únicos para eventos en una ubicación privilegiada en el centro de Manhattan: el nuevo Rosie O'Grady's Bar y Restaurante en la calle 51 entre la 6ta y 7ma. A pasos del Hub de Broadway, el Rockefeller Center y Central Park. Nuestro equipo brinda servicios íntimos llave en mano para eventos corporativos, sociales y sin fines de lucro. Un espacio independiente y dedicado a eventos especiales durante 20 años dentro de uno de los restaurantes más nuevos, modernos y divinos de Nueva York: rosieogradys.com",
+  "who-we-are.description": "Manhattan Manor alberga cuatro lugares únicos para eventos en una ubicación privilegiada en el centro de Manhattan, a pasos del Broadway's Hub, el Rockefeller Center y Central Park. Dentro del recién remodelado bar y restaurante Rosie O'Grady's en la calle 51 entre las avenidas 6 y 7, ofrecemos una variedad para que usted elija. Nuestro equipo brinda servicios íntimos llave en mano para eventos corporativos, sociales y sin fines de lucro. <br/><br/>Un espacio independiente y dedicado a eventos especiales durante 20 años dentro de uno de los restaurantes más nuevos, modernos y divinos de Nueva York: rosieogradys.com.",
   "partners-highlights": "Socios Destacados",
   "partners-highlights.subtitle": "World Bride y Manhattan Manor",
-  "common.buy": "Comprar"
+  "common.buy": "Comprar",
+  "feet": "Pies"
 }
