@@ -13,16 +13,14 @@ import { Image } from "@astrojs/image/components";
         <span>{t("common.sound")}</span>
       </button>
       <a class="navbar-brand" href="#">
-        <Image
-          src={logo}
-          alt="Manhattan Manor Logo"
-          width={30}
-          height={48}
-        />
+        <Image src={logo} alt="Manhattan Manor Logo" width={30} height={48} />
       </a>
     </div>
     <div style="display: inherit;">
       <ul class="menu">
+        <li>
+          <a href="https://nye.manhattanmanor.com/">New Year's Eve Party</a>
+        </li>
         <li>
           <LanguageSelector
             class="language-selector"
@@ -86,10 +84,6 @@ import { Image } from "@astrojs/image/components";
         text-transform: uppercase;
         margin-left: 20px;
         font-size: 14px;
-
-        &:first-child a {
-          color: red;
-        }
 
         &:nth-child(3) a {
           color: white;
