@@ -1,62 +1,101 @@
 ---
-import skylightMain from "../assets/images/venues/skylight/main.webp";
-import manhattanClubMain from "../assets/images/venues/manhattan-club/main.webp";
-import skylightFloorplans from "../assets/documents/floorplan-skylight.pdf";
-import manhattanClubFloorplans from "../assets/documents/floorplan-manhattan-club.pdf";
+import manhattanManorMain from "../assets/images/venues/manhattan-manor/main.jpg";
+import broadwayRoomMain from "../assets/images/venues/broadway-room/main.jpg";
+import taftBarMain from "../assets/images/venues/taft-bar/main.jpg";
+import privateDiningRoomMain from "../assets/images/venues/private-dining-room/main.jpg";
+
 import Venue from "./Venue.astro";
 import { t } from "i18next";
 
-const skylightGallery = (
-  await Astro.glob("../assets/images/venues/skylight/*.jpg")
+const manhattanManorGallery = (
+  await Astro.glob("../assets/images/venues/manhattan-manor/*.jpg")
 ).map((image) => image.default);
-const manhattanClubGallery = (
-  await Astro.glob("../assets/images/venues/manhattan-club/*.jpg")
+const broadwayRoomGallery = (
+  await Astro.glob("../assets/images/venues/broadway-room/*.jpg")
+).map((image) => image.default);
+const taftBarGallery = (
+  await Astro.glob("../assets/images/venues/taft-bar/*.jpg")
+).map((image) => image.default);
+const privateDiningRoomGallery = (
+  await Astro.glob("../assets/images/venues/private-dining-room/*.jpg")
 ).map((image) => image.default);
 
 const venues = [
   {
     id: 1,
-    name: "Skylight Room",
-    mainImage: skylightMain,
-    floorPlans: skylightFloorplans,
+    name: "Manhattan Manor",
+    mainImage: manhattanManorMain,
+    // floorPlans: skylightFloorplans,
     video: "https://www.youtube.com/embed/zVe3RrmbNjw",
-    gallery: skylightGallery,
+    gallery: manhattanManorGallery,
     description: `
     <h4>${t("venues.size")}</h4>
     <ul>
-      <li>3,408 ${t("venues.square-feet")}</li>
+      <li>2,520 ${t("venues.square-feet")} - 70 x 36 ${t("feet")}</li>
     </ul>
     <h4>${t("venues.capacity")}</h4>
     <ul>
-      <li>275 ${t("venues.cocktail-reception")}</li>
-      <li>275 ${t("venues.seated-dinner")}</li>
-      <li>250 ${t("venues.seated-dinner-dance-floor")}</li>
-      <li>125 ${t("venues.classroom-conference")}</li>
-      <li>225 ${t("venues.theatre-seating")}</li>
-      <li>120 ${t("venues.u-shape-conference")}</li>
+      <li>150 Cocktail</li>
+      <li>130 Seated</li>
+      <li>110 Buffet</li>
+      <li>160 Theater</li>
+      <li>120 Theater with refreshments</li>
     </ul>
     `,
   },
   {
     id: 2,
-    name: "Manhattan Club",
-    mainImage: manhattanClubMain,
-    floorPlans: manhattanClubFloorplans,
+    name: "Broadway Room",
+    mainImage: broadwayRoomMain,
     video: "https://www.youtube.com/embed/zVe3RrmbNjw",
-    gallery: manhattanClubGallery,
+    gallery: broadwayRoomGallery,
     description: `
     <h4>${t("venues.size")}</h4>
     <ul>
-      <li>3,520 ${t("venues.square-feet")}</li>
+      <li>960 ${t("venues.square-feet")} - 24 x 40 ${t("feet")}</li>
     </ul>
     <h4>${t("venues.capacity")}</h4>
     <ul>
-      <li>280 ${t("venues.cocktail-reception")}</li>
-      <li>250 ${t("venues.seated-dinner")}</li>
-      <li>200 ${t("venues.seated-dinner-dance-floor")}</li>
-      <li>100 ${t("venues.classroom-conference")}</li>
-      <li>200 ${t("venues.theatre-seating")}</li>
-      <li>120 ${t("venues.u-shape-conference")}</li>
+      <li>100 Cocktail</li>
+      <li>80 Seated</li>
+      <li>70 Buffet</li>
+      <li>100 Theater</li>
+      <li>100 Theater with refreshments</li>
+    </ul>
+    `,
+  },
+  {
+    id: 3,
+    name: "Taft Bar",
+    mainImage: taftBarMain,
+    video: "https://www.youtube.com/embed/zVe3RrmbNjw",
+    gallery: taftBarGallery,
+    description: `
+    <h4>${t("venues.size")}</h4>
+    <ul>
+      <li>480 ${t("venues.square-feet")} - 24 x 20 ${t("feet")}</li>
+    </ul>
+    <h4>${t("venues.capacity")}</h4>
+    <ul>
+      <li>40 Cocktail</li>
+    </ul>
+    `,
+  },
+  {
+    id: 4,
+    name: "Private Dining Room",
+    mainImage: privateDiningRoomMain,
+    video: "https://www.youtube.com/embed/zVe3RrmbNjw",
+    gallery: privateDiningRoomGallery,
+    description: `
+    <h4>${t("venues.size")}</h4>
+    <ul>
+      <li>288 ${t("venues.square-feet")} - 24 x 12 ${t("feet")}</li>
+    </ul>
+    <h4>${t("venues.capacity")}</h4>
+    <ul>
+      <li>24 Long table</li>
+      <li>45 Individual tables</li>
     </ul>
     `,
   },
@@ -72,7 +111,7 @@ const venues = [
   <div class="row venues">
     {
       venues.map((venue) => (
-        <div class="col-12 col-md-6 d-flex justify-content-center">
+        <div class="col-12 col-md-6 d-flex justify-content-center mb-md-5">
           <Venue {...venue} />
         </div>
       ))

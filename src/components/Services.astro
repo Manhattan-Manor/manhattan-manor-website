@@ -1,15 +1,11 @@
 ---
-import CorporateImg from "../assets/images/services/ev-corporate.webp";
-import WeddingImg from "../assets/images/services/ev-wedding.webp";
+import CorporateImg from "../assets/images/services/ev-corporate.jpeg";
+import SocialOccasionsImg from "../assets/images/services/ev-social-occasions.jpeg";
 import ProductLaunchesImg from "../assets/images/services/ev-product.webp";
 import NotForProfitImg from "../assets/images/services/ev-nonprofit.webp";
-import FashionImg from "../assets/images/services/ev-fashion.webp";
+import NetworkingImg from "../assets/images/services/ev-networking.jpeg";
+import MeetingAndConferenceImg from "../assets/images/services/meetings_conferences.jpeg";
 import MitzvahsImg from "../assets/images/services/ev-mitzvah.webp";
-import MeetingAndConferenceImg from "../assets/images/services/meetings_conferences.webp";
-import FilmAndPhotoImg from "../assets/images/services/filming_photo.webp";
-import BroadcastImg from "../assets/images/services/ev-broadcast.webp";
-import SpecialProductionsImg from "../assets/images/services/ev-production.webp";
-import GalasFundraisingsImg from "../assets/images/services/galas_fundraisers.webp";
 import Sweet16sImg from "../assets/images/services/sweet_16s.webp";
 import Service from "./Service.astro";
 import { t } from "i18next";
@@ -21,9 +17,9 @@ const services = [
     image: CorporateImg,
   },
   {
-    title: t("our-services.wedding"),
-    description: t("our-services.wedding.description"),
-    image: WeddingImg,
+    title: t("our-services.social-occasions"),
+    description: t("our-services.social-occasions.description"),
+    image: SocialOccasionsImg,
   },
   {
     title: t("our-services.product-launches"),
@@ -36,14 +32,9 @@ const services = [
     image: NotForProfitImg,
   },
   {
-    title: t("our-services.fashion"),
-    description: t("our-services.fashion.description"),
-    image: FashionImg,
-  },
-  {
-    title: t("our-services.mitzvah"),
-    description: t("our-services.mitzvah.description"),
-    image: MitzvahsImg,
+    title: "Networking",
+    description: t("our-services.networking.description"),
+    image: NetworkingImg,
   },
   {
     title: t("our-services.meetings-conferences"),
@@ -51,24 +42,9 @@ const services = [
     image: MeetingAndConferenceImg,
   },
   {
-    title: t("our-services.film-and-photo"),
-    description: t("our-services.film-and-photo.description"),
-    image: FilmAndPhotoImg,
-  },
-  {
-    title: t("our-services.broadcast"),
-    description: t("our-services.broadcast.description"),
-    image: BroadcastImg,
-  },
-  {
-    title: t("our-services.special-productions"),
-    description: t("our-services.special-productions.description"),
-    image: SpecialProductionsImg,
-  },
-  {
-    title: t("our-services.galas-and-fundraisings"),
-    description: t("our-services.galas-and-fundraisings.description"),
-    image: GalasFundraisingsImg,
+    title: t("our-services.mitzvah"),
+    description: t("our-services.mitzvah.description"),
+    image: MitzvahsImg,
   },
   {
     title: t("our-services.sweet-16s"),

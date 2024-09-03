@@ -2,13 +2,13 @@
 import { Picture } from "@astrojs/image/components";
 import { t } from "i18next";
 // @ts-ignore
-import { YouTube } from '@astro-community/astro-embed-youtube';
+import { YouTube } from "@astro-community/astro-embed-youtube";
 
 interface Props {
   id: number;
   name: string;
   mainImage: ImageMetadata;
-  floorPlans: string;
+  floorPlans?: string;
   description: string;
   video: string;
   gallery: string[];
@@ -19,7 +19,7 @@ const { id, name, mainImage, floorPlans, description, video, gallery } =
 // Name without spaces, accents, etc.
 ---
 
-<div class="venue mt-3 mt-md-0">
+<div class="venue mt-3">
   <div
     id={`imgElement__${id}`}
     class="venue__picture animate__animated animate__faster"
@@ -56,20 +56,15 @@ const { id, name, mainImage, floorPlans, description, video, gallery } =
       {t("common.gallery")}
     </button>
     <!-- Open the bootstrap video modal -->
-    <button
-      type="button"
-      data-bs-toggle="modal"
-      data-bs-target={`#videoModal__${id}`}
-      aria-label="Venue video"
-      class="btn"
-    >
-      <i class="bi bi-play-circle"></i>
-      {t("common.video")}
-    </button>
-    <a target="_blank" href={floorPlans} aria-label="Venue floor plans">
-      <i class="bi bi-map"></i>
-      {t("common.floor-plans")}
-    </a>
+    <a href="/tour"><i class="bi bi-play-circle"></i>{t("common.live")}</a>
+    {
+      floorPlans && (
+        <a target="_blank" href={floorPlans} aria-label="Venue floor plans">
+          <i class="bi bi-map" />
+          {t("common.floor-plans")}
+        </a>
+      )
+    }
   </div>
 
   <!-- Bootstrap modal to show the embedded youtube video -->
@@ -98,7 +93,7 @@ const { id, name, mainImage, floorPlans, description, video, gallery } =
         <a
           id={`lightbox_${id}_${i}`}
           class="d-none"
-          // @ts-ignore
+          @ts-ignore
           href={g.src}
           data-lightbox={id}
         >

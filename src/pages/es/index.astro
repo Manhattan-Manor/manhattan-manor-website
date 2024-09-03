@@ -13,7 +13,7 @@ import FindUs from "../../components/FindUs.astro";
 import BallDrop from "../../components/BallDrop.astro";
 import Countdown from "../../components/Countdown.astro";
 import NewYearsEve from "../../components/NewYearsEve.astro";
-import News from "../../components/News";
+import SpanishNews from "../../components/SpanishNews";
 import ContactUs from "../../components/ContactUs.astro";
 import InstagramFeed from "../../components/InstagramFeed.astro";
 import Testimonials from "../../components/Testimonials";
@@ -33,9 +33,8 @@ changeLanguage("es");
   <Venues />
   <Services />
   <OurTeam />
-  <News client:only="react" />
+  <SpanishNews client:only="react" />
   <UpcomingEvents />
-  <PartnersHighlights />
   <InstagramFeed />
   <Gallery />
   <Testimonials client:visible />

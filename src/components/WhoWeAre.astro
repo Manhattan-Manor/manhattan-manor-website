@@ -1,6 +1,6 @@
 ---
 import { Image } from "@astrojs/image/components";
-import outsidePicture from "../assets/images/mm-outside.webp";
+import outsidePicture from "../assets/images/main-bar-small.jpg";
 import { t } from "i18next";
 ---
 
@@ -17,9 +17,7 @@ import { t } from "i18next";
     </div>
     <div class="col-12 col-md-6 text">
       <h2>{t("who-we-are")}</h2>
-      <p>
-        {t("who-we-are.description")}
-      </p>
+      <p set:html={t("who-we-are.description")} />
     </div>
   </div>
 </section>
