@@ -44,7 +44,7 @@ const News: FC = () => {
 
   return (
     <section className="container" id="news-section">
-      <h2 className="text-center">{t("common.news")}</h2>
+      <h1 className="text-center">{t("common.news")}</h1>
 
       {isLoading && <p>{t("common.loading")}</p>}
       <Splide aria-label="News Carousel" options={carouselOptions}>
