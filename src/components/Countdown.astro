@@ -36,6 +36,15 @@ const nextDecember31DateFormattedCapitalized =
     </div>
   </section>
 </countdown-component>
+<p class="text-center mt-3">
+  <a
+    href="https://www.timessquarenyc.org/times-square-new-years-eve/new-years-eve-parties"
+    target="_blank"
+    rel="noopener noreferrer"
+    style="color: #b5156a;"
+    >Our event is listed on the Times Square Alliance Official site</a
+  >
+</p>
 
 <!-- Global styles because when the server is loading classes doesn't already exists -->
 <style is:global>
@@ -141,7 +150,8 @@ const nextDecember31DateFormattedCapitalized =
         // If the count down is finished, write some text
         if (distance < 0) {
           clearInterval(x);
-          if (countdownElement) countdownElement.innerHTML = happyNewYearString || "";
+          if (countdownElement)
+            countdownElement.innerHTML = happyNewYearString || "";
         }
       }, 1000);
     }
