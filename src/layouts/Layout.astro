@@ -4,7 +4,6 @@ import favicon from "../assets/images/favicon.png?url";
 import i18next from "i18next";
 import { HeadHrefLangs } from "astro-i18next/components";
 import logo from "../assets/images/logo.svg?url";
-import { SEO } from "astro-seo";
 import "../assets/styles/_global.scss";
 import "../assets/styles/_colors.scss";
 import "aos/dist/aos.css";
@@ -14,6 +13,7 @@ import "animate.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import GoogleAnalytics from "../components/GoogleAnalytics.astro";
 import Accessibe from "../components/Accessibe.astro";
+import SEO from "../components/SEO.astro";
 ---
 
 <!DOCTYPE html>
@@ -24,34 +24,8 @@ import Accessibe from "../components/Accessibe.astro";
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- Cache Policy -->
     <meta http-equiv="Cache-Control" content="max-age=604800" />
-    <SEO
-      title="Manhattan Manor"
-      description="New York's premiere event space in Midtown & Times Square."
-      openGraph={{
-        basic: {
-          title:
-            "Manhattan Manor - New York's premiere event space in Midtown & Times Square.",
-          type: "website",
-          image: logo,
-        },
-      }}
-      extend={{
-        // extending the default link tags
-        link: [{ rel: "icon", href: "/favicon.png" }],
-        // extending the default meta tags
-        meta: [
-          {
-            name: "twitter:image",
-            content: logo,
-          },
-          { name: "twitter:title", content: "Manhattan Manor" },
-          {
-            name: "twitter:description",
-            content: "New York's Most Central Venue",
-          },
-        ],
-      }}
-    />
+    <title>Manhattan Manor - Premier Event Venue at Times Square in New York City</title>
+    <SEO />
     <HeadHrefLangs />
     <link
       rel="preload"

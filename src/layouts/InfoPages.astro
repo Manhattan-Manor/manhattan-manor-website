@@ -9,6 +9,7 @@ import "../assets/styles/_global.scss";
 import "../assets/styles/_colors.scss";
 import i18next from "i18next";
 import { localizePath } from "astro-i18next";
+import SEO from "../components/SEO.astro";
 
 interface Props {
   title: string;
@@ -31,6 +32,7 @@ const { title } = Astro.props;
     />
     <link rel="shortcut icon" href={favicon} type="image/x-icon" />
     <title>Manhattan Manor - {title}</title>
+    <SEO />
     <style>
       .content {
         min-height: 100vh;
