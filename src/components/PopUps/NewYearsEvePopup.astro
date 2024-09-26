@@ -1,0 +1,48 @@
+---
+import "../../assets/styles/Popup.scss";
+import NyeImg from "../../assets/images/anniversary-popup.png";
+---
+
+<div
+  class="modal fade"
+  id="closingNoticeModal"
+  tabindex="-1"
+  aria-label="Closing Notice"
+  aria-hidden="true"
+  data-bs-theme="dark"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content text-center shadow-lg">
+      <button
+        type="button"
+        class="btn-close position-absolute end-0 top-0 m-3"
+        data-bs-dismiss="modal"
+        aria-label="Close"></button>
+      <a href="https://nye.manhattanmanor.com">
+        <img
+          src={NyeImg.src}
+          data-mdb-img={NyeImg.src}
+          alt="Coupon popup"
+          class="w-100"
+        />
+      </a>
+    </div>
+  </div>
+</div>
+
+<script>
+  // @ts-ignore
+  import bootstrap from "bootstrap/dist/js/bootstrap.bundle.min.js";
+
+  const modalElement = document.getElementById("closingNoticeModal");
+  const modalDelay = 2000;
+
+  if (modalElement) {
+    const modal = new bootstrap.Modal(modalElement, {
+      keyboard: false,
+    });
+    setTimeout(() => {
+      modal.show();
+    }, modalDelay);
+  }
+</script>

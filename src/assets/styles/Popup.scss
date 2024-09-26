@@ -1,15 +1,72 @@
 @import "colors";
 
-.popup {
-  .modal-dialog {
-    .modal-content .modal-body {
-      background-color: black;
-      border: 2px solid $primary;
-      text-align: center;
-    }
-
-    p {
-      color: white;
-    }
-  }
+.modal {
+  background-color: rgba(0, 0, 0, 0.5);
 }
+
+.popup .modal-content {
+  background: rgba(0, 0, 0, 0.88);
+  border-radius: 10px;
+  border: none;
+  padding: 2rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.popup h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: $primary;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+.popup p {
+  font-size: 1.25rem;
+  color: white;
+  max-width: 400px;
+  line-height: 1.6;
+}
+
+.popup .input-group {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.popup .input-group input {
+  padding: 0.75rem;
+  border-radius: 50px;
+  border: 1px solid #ddd;
+  outline: none;
+  box-shadow: 0 0 5px rgba(255, 255, 255, 0.1);
+}
+
+.popup .input-group input:focus {
+  border-color: $primary;
+  box-shadow: 0 0 10px rgba($primary, 0.6);
+}
+
+.popup .btn-primary {
+  background-color: $primary;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+.popup .btn-primary:hover {
+  background-color: lighten($primary, 10%);
+}
+
+.popup small {
+  color: #ccc;
+  margin-top: 1rem;
+  font-size: 0.875rem;
+}
+
+.popup .modal-dialog {
+  max-width: 600px;
+}
+
