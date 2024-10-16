@@ -1,0 +1,37 @@
+@import "colors";
+// src/components/LoginForm.scss
+.login-form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; // Para centrar verticalmente
+    background-color: #f8f9fa; // Color de fondo suave
+
+    .card {
+        width: 100%;
+        max-width: 400px; // Ancho máximo para el formulario
+        border-radius: 1rem; // Bordes redondeados
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); // Sombra para el efecto de profundidad
+    }
+
+    h2 {
+        color: $primary; // Color primario definido en SCSS
+    }
+
+    .alert {
+        margin-bottom: 1rem; // Espacio entre alertas y formulario
+    }
+
+    .btn-primary {
+        background-color: $primary; // Color primario definido en SCSS
+        border: none; // Sin borde
+
+        &:hover {
+            background-color: darken($primary, 10%); // Efecto al pasar el mouse
+        }
+    }
+
+    .link-primary {
+        font-weight: bold; // Hacer el enlace más visible
+    }
+}
