@@ -1,62 +1,3 @@
-interface Transaction {
-  id: number;
-  transactionId: string;
-  totalAmount: string;
-  confirm: number;
-  transactionDate: string;
-  allergiesSpecialRequirements: string;
-  customerName: string;
-  email: string;
-  phone: string;
-  city: string;
-  state: string;
-  zipCode: string;
-  countryName: string;
-  couponCode: string | null;
-  eventName: string;
-  ticketsPurchased: string;
-}
-
-const transactions: Transaction[] = [
-  {
-    id: 9,
-    transactionId:
-      "pi_3Q5bWHRxPYeKZIKc0tZdJyFb_secret_6Yhjo81osZL4Ieaw1ZfmbtYdM",
-    totalAmount: "424.71",
-    confirm: 1,
-    transactionDate: "2024-10-03 00:59:47",
-    allergiesSpecialRequirements: "",
-    customerName: "dfhfgh fghfghf dfghdf",
-    email: "williams.0199gd@gmail.com",
-    phone: "32476829",
-    city: "bhv",
-    state: "gcvnc",
-    zipCode: "vj",
-    countryName: "CENTRAL AFRICAN REPUBLIC",
-    couponCode: null,
-    eventName: "End of Year",
-    ticketsPurchased: "1",
-  },
-  {
-    id: 8,
-    transactionId:
-      "pi_3Q5ao9RxPYeKZIKc1tTarRjl_secret_Eo1L56kLJPDONUMWXcsteMsZu",
-    totalAmount: "424.71",
-    confirm: 1,
-    transactionDate: "2024-10-03 00:14:10",
-    allergiesSpecialRequirements: "",
-    customerName: "Williams García Domínguez",
-    email: "williams.0199gd@gmail.com",
-    phone: "8234962379",
-    city: "naranja",
-    state: "mango",
-    zipCode: "29803",
-    countryName: "KOREA, DEMOCRATIC PEOPLE'S REPUBLIC OF",
-    couponCode: null,
-    eventName: "End of Year",
-    ticketsPurchased: "1",
-  },
-];
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Collapse from "@mui/material/Collapse";
@@ -69,83 +10,108 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Typography from "@mui/material/Typography";
 import Paper from "@mui/material/Paper";
-// import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-// import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import { Chip, TablePagination } from "@mui/material";
+import { blue, grey, red, yellow } from "@mui/material/colors";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import ExpandLessIcon from "@mui/icons-material/ExpandLess";
+import { Transaction } from "../classes/Transaction";
+import { useEffect } from "react";
 
 const Row: React.FC<{ row: Transaction }> = ({ row }) => {
   const [open, setOpen] = React.useState(false);
 
   return (
     <React.Fragment>
-      <TableRow sx={{ "& > *": { borderBottom: "unset" } }}>
+      <TableRow
+        sx={{
+          "&:hover": { backgroundColor: grey[100] },
+          transition: "background-color 0.3s ease",
+        }}
+      >
         <TableCell>
           <IconButton
             aria-label="expand row"
             size="small"
             onClick={() => setOpen(!open)}
           >
-            {open ? "Hidden" : "Show"}
+            {open ? <ExpandLessIcon /> : <ExpandMoreIcon />}
           </IconButton>
         </TableCell>
-        <TableCell component="th" scope="row">
-          {" "}
+        <TableCell component="th" scope="row" sx={{ fontWeight: "bold" }}>
           {row.transactionId}
         </TableCell>
-        <TableCell align="right">{row.customerName}</TableCell>
+        <TableCell>{row.customerName}</TableCell>
         <TableCell align="right">{row.email}</TableCell>
         <TableCell align="right">{row.phone}</TableCell>
         <TableCell align="right">{row.transactionDate}</TableCell>
-        <TableCell align="right">{row.confirm}</TableCell>
-        <TableCell align="right">{row.countryName}</TableCell>
-        <TableCell align="right">{row.state}</TableCell>
-        <TableCell align="right">{row.city}</TableCell>
+        <TableCell align="right">
+          <Chip
+            label={row.confirm ? "Confirmed" : "Pending"}
+            sx={{
+              backgroundColor: row.confirm ? "#d9b812" : red[500],
+              color: "#fff",
+              fontWeight: "bold",
+            }}
+          />
+        </TableCell>
         <TableCell align="right">{row.zipCode}</TableCell>
         <TableCell align="right">{row.ticketsPurchased}</TableCell>
-        <TableCell align="right">{row.totalAmount}</TableCell>
-        <TableCell align="right">{row.allergiesSpecialRequirements}</TableCell>
-        <TableCell align="right">{row.couponCode}</TableCell>
+        <TableCell align="right" sx={{ color: blue[700], fontWeight: "bold" }}>
+          ${row.totalAmount}
+        </TableCell>
       </TableRow>
       <TableRow>
-        <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
+        <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={12}>
           <Collapse in={open} timeout="auto" unmountOnExit>
             <Box sx={{ margin: 1 }}>
               <Typography variant="h6" gutterBottom component="div">
-                History
+                Transaction Details
               </Typography>
-              <Table size="small" aria-label="purchases">
+              <Typography variant="body1">
+                <strong>Allergies/Special Requirements:</strong>{" "}
+                {row.allergiesSpecialRequirements || "None"}
+              </Typography>
+              <Typography variant="body1">
+                <strong>Country:</strong> {row.countryName}
+              </Typography>
+              <Typography variant="body1">
+                <strong>State:</strong> {row.state}
+              </Typography>
+              <Typography variant="body1">
+                <strong>City:</strong> {row.city}
+              </Typography>
+              <Typography variant="body1">
+                <strong>Tickets Purchased:</strong> {row.ticketsPurchased}
+              </Typography>
+
+              <Typography
+                variant="h6"
+                gutterBottom
+                component="div"
+                sx={{ marginTop: 2 }}
+              >
+                Ticket Details
+              </Typography>
+              <Table size="small" aria-label="tickets">
                 <TableHead>
                   <TableRow>
-                    <TableCell>Order number</TableCell>
-                    <TableCell>Customer</TableCell>
-                    <TableCell align="right">Email</TableCell>
-                    <TableCell align="right">Phone</TableCell>
-                    <TableCell align="right">Date</TableCell>
-                    <TableCell align="right">Confirmed</TableCell>
-                    <TableCell align="right">Country</TableCell>
-                    <TableCell align="right">State</TableCell>
-                    <TableCell align="right">City</TableCell>
-                    <TableCell align="right">Zip code</TableCell>
-                    <TableCell align="right">Tickets purchased</TableCell>
-                    <TableCell align="right">Total amount</TableCell>
-                    <TableCell align="right">
-                      Allergies special requirements
-                    </TableCell>
-                    <TableCell align="right">Coupon code</TableCell>
+                    <TableCell>Name</TableCell>
+                    <TableCell>Email</TableCell>
+                    <TableCell align="right">Age</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {/* {row.history.map((historyRow) => (
-                    <TableRow key={historyRow.date}>
-                      <TableCell component="th" scope="row">
-                        {historyRow.date}
-                      </TableCell>
-                      <TableCell>{historyRow.customerId}</TableCell>
-                      <TableCell align="right">{historyRow.amount}</TableCell>
-                      <TableCell align="right">
-                        {Math.round(historyRow.amount * row.price * 100) / 100}
-                      </TableCell>
+                  {row.tickets?.map((ticket) => (
+                    <TableRow key={ticket.ticketPurchasedId}>
+                      <TableCell>{ticket.name}</TableCell>
+                      <TableCell>{ticket.email}</TableCell>
+                      <TableCell align="right">{ticket.age}</TableCell>
                     </TableRow>
-                  ))} */}
+                  )) || (
+                    <TableRow>
+                      <TableCell colSpan={3}>No tickets available</TableCell>
+                    </TableRow>
+                  )}
                 </TableBody>
               </Table>
             </Box>
@@ -156,39 +122,103 @@ const Row: React.FC<{ row: Transaction }> = ({ row }) => {
   );
 };
 
-const TransactionPanel = () => {
-  return (
-    <Paper sx={{ width: '100%' }}>
-    <TableContainer sx={{ maxHeight: 440 }}>
-      <Table stickyHeader aria-label="sticky table">
-        <TableHead>
-          <TableRow>
-            <TableCell/>
-            <TableCell>Order number</TableCell>
-            <TableCell>Customer</TableCell>
-            <TableCell align="right">Email</TableCell>
-            <TableCell align="right">Phone</TableCell>
-            <TableCell align="right">Date</TableCell>
-            <TableCell align="right">Confirmed</TableCell>
-            <TableCell align="right">Country</TableCell>
-            <TableCell align="right">State</TableCell>
-            <TableCell align="right">City</TableCell>
-            <TableCell align="right">Zip code</TableCell>
-            <TableCell align="right">Tickets purchased</TableCell>
-            <TableCell align="right">Total amount</TableCell>
-            <TableCell align="right">Allergies special requirements</TableCell>
-            <TableCell align="right">Coupon code</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {transactions.map((row) => (
-            <Row key={`${row.id}`} row={row} />
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
-    </Paper>
-  );
-};
+export default function CollapsibleTable() {
+  const [page, setPage] = React.useState(0);
+  const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  const [transactions, setTransactions] = React.useState<Transaction[]>([]);
 
-export default TransactionPanel;
+  const handleChangePage = (event: unknown, newPage: number) => {
+    setPage(newPage);
+  };
+
+  const handleChangeRowsPerPage = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setRowsPerPage(+event.target.value);
+    setPage(0);
+  };
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    // if (!token) {
+    //   window.location.assign("/login");
+    //   return;
+    // }
+    const fetchAll = async () => {
+      try {
+        setTransactions(await Transaction.getAll());
+      } catch (error) {
+        if (error instanceof Error) {
+          alert(error.message);
+        } else {
+          alert("An error occurred while loading data");
+        }
+      }
+    };
+
+    fetchAll();
+  }, []);
+
+  if (!localStorage.getItem("token")) {
+    return <></>;
+  } else {
+    return (
+      <Paper sx={{ width: "100%", padding: 2 }}>
+        <Typography variant="h2" color="#d9b812">
+          Transactions
+        </Typography>
+        <TableContainer component={Paper}>
+          <Table aria-label="collapsible table">
+            <TableHead sx={{ backgroundColor: grey[200] }}>
+              <TableRow>
+                <TableCell />
+                <TableCell sx={{ fontWeight: "bold" }}>
+                  Transaction ID
+                </TableCell>
+                <TableCell sx={{ fontWeight: "bold" }}>Customer</TableCell>
+                <TableCell sx={{ fontWeight: "bold" }} align="right">
+                  Email
+                </TableCell>
+                <TableCell sx={{ fontWeight: "bold" }} align="right">
+                  Phone
+                </TableCell>
+                <TableCell sx={{ fontWeight: "bold" }} align="right">
+                  Date
+                </TableCell>
+                <TableCell sx={{ fontWeight: "bold" }} align="right">
+                  Confirmed
+                </TableCell>
+                
+                <TableCell sx={{ fontWeight: "bold" }} align="right">
+                  Zip Code
+                </TableCell>
+                <TableCell sx={{ fontWeight: "bold" }} align="right">
+                  Tickets Purchased
+                </TableCell>
+                <TableCell sx={{ fontWeight: "bold" }} align="right">
+                  Total Amount
+                </TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {transactions
+                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                .map((row) => (
+                  <Row key={row.id} row={row} />
+                ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+        <TablePagination
+          rowsPerPageOptions={[10, 25, 50]}
+          component="div"
+          count={transactions.length}
+          rowsPerPage={rowsPerPage}
+          page={page}
+          onPageChange={handleChangePage}
+          onRowsPerPageChange={handleChangeRowsPerPage}
+        />
+      </Paper>
+    );
+  }
+}

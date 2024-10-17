@@ -11,7 +11,7 @@ export class User {
 
   async login() {
 
-    const hashedPassword = CryptoJS.SHA256(this.password).toString();
+    const hashedPassword = CryptoJS.MD5(this.password).toString();
     
       
       this.password =  hashedPassword;

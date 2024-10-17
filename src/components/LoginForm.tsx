@@ -22,7 +22,8 @@ const LoginForm: React.FC = () => {
         setSuccessMessage('');
         try {
             await new User(formData as User).login();
-            setSuccessMessage('Inicio de sesión exitoso.'); 
+            setSuccessMessage('Login succefully.'); 
+            window.location.assign('/AdminPanel');
         } catch (error) {
             setErrorMessage('Error: ' + (error as Error).message);
         }
