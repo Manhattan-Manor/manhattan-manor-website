@@ -1,0 +1,35 @@
+.table {
+    table-layout: fixed;
+  
+    .tableHead{
+      user-select: none;
+    }
+    .tableCell {
+      border: 1px solid black !important;
+      padding: 10px 0;
+      &.resizable{
+        position: relative;
+      }
+      &.emptyCell{
+        width: "auto"
+      }
+    }
+   
+    .resizeLine{
+      position: absolute; 
+      height: 100%;
+      width: 4px;
+      top: 0;
+      right: -2px;
+      cursor: col-resize;
+      &:hover{
+        background-color: #0AA1DD;
+      }
+      &:active {
+        background-color: #0AA1DD;
+  
+      }
+    }
+    
+  }
+  
