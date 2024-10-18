@@ -10,7 +10,7 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Typography from "@mui/material/Typography";
 import Paper from "@mui/material/Paper";
-import { Chip, TablePagination } from "@mui/material";
+import { Chip, CircularProgress, Grid2, TablePagination } from "@mui/material";
 import { blue, grey, red, yellow } from "@mui/material/colors";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
@@ -63,24 +63,37 @@ const Row: React.FC<{ row: Transaction }> = ({ row }) => {
       <TableRow>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={12}>
           <Collapse in={open} timeout="auto" unmountOnExit>
-            <Box sx={{ margin: 1 }}>
-              <Typography variant="h6" gutterBottom component="div">
+            <Box
+              sx={{
+                margin: 1,
+                padding: 2,
+                borderRadius: 2,
+                boxShadow: "0 2px 8px rgba(0, 0, 0, 0.1)",
+                backgroundColor: grey[50],
+              }}
+            >
+              <Typography
+                variant="h6"
+                gutterBottom
+                component="div"
+                sx={{ color: "#d9b812" }}
+              >
                 Transaction Details
               </Typography>
-              <Typography variant="body1">
+              <Typography variant="body1" sx={{ color: grey[800] }}>
                 <strong>Allergies/Special Requirements:</strong>{" "}
                 {row.allergiesSpecialRequirements || "None"}
               </Typography>
-              <Typography variant="body1">
+              <Typography variant="body1" sx={{ color: grey[800] }}>
                 <strong>Country:</strong> {row.countryName}
               </Typography>
-              <Typography variant="body1">
+              <Typography variant="body1" sx={{ color: grey[800] }}>
                 <strong>State:</strong> {row.state}
               </Typography>
-              <Typography variant="body1">
+              <Typography variant="body1" sx={{ color: grey[800] }}>
                 <strong>City:</strong> {row.city}
               </Typography>
-              <Typography variant="body1">
+              <Typography variant="body1" sx={{ color: grey[800] }}>
                 <strong>Tickets Purchased:</strong> {row.ticketsPurchased}
               </Typography>
 
@@ -88,32 +101,34 @@ const Row: React.FC<{ row: Transaction }> = ({ row }) => {
                 variant="h6"
                 gutterBottom
                 component="div"
-                sx={{ marginTop: 2 }}
+                sx={{ marginTop: 2, color: "#d9b812" }}
               >
                 Ticket Details
               </Typography>
-              <Table size="small" aria-label="tickets">
-                <TableHead>
-                  <TableRow>
-                    <TableCell>Name</TableCell>
-                    <TableCell>Email</TableCell>
-                    <TableCell align="right">Age</TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {row.tickets?.map((ticket) => (
-                    <TableRow key={ticket.ticketPurchasedId}>
-                      <TableCell>{ticket.name}</TableCell>
-                      <TableCell>{ticket.email}</TableCell>
-                      <TableCell align="right">{ticket.age}</TableCell>
-                    </TableRow>
-                  )) || (
+              <Grid2 container>
+                <Table size="small" aria-label="tickets">
+                  <TableHead sx={{ backgroundColor: grey[200] }}>
                     <TableRow>
-                      <TableCell colSpan={3}>No tickets available</TableCell>
+                      <TableCell>Name</TableCell>
+                      <TableCell>Email</TableCell>
+                      <TableCell align="right">Age</TableCell>
                     </TableRow>
-                  )}
-                </TableBody>
-              </Table>
+                  </TableHead>
+                  <TableBody>
+                    {row.tickets?.map((ticket) => (
+                      <TableRow key={ticket.ticketPurchasedId}>
+                        <TableCell>{ticket.name}</TableCell>
+                        <TableCell>{ticket.email}</TableCell>
+                        <TableCell align="right">{ticket.age}</TableCell>
+                      </TableRow>
+                    )) || (
+                      <TableRow>
+                        <TableCell colSpan={3}>No tickets available</TableCell>
+                      </TableRow>
+                    )}
+                  </TableBody>
+                </Table>
+              </Grid2>
             </Box>
           </Collapse>
         </TableCell>
@@ -126,6 +141,7 @@ export default function CollapsibleTable() {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const [transactions, setTransactions] = React.useState<Transaction[]>([]);
+  const [loading, setLoading] = React.useState(false);
 
   const handleChangePage = (event: unknown, newPage: number) => {
     setPage(newPage);
@@ -140,12 +156,9 @@ export default function CollapsibleTable() {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-    // if (!token) {
-    //   window.location.assign("/login");
-    //   return;
-    // }
     const fetchAll = async () => {
       try {
+        setLoading(true);
         setTransactions(await Transaction.getAll());
       } catch (error) {
         if (error instanceof Error) {
@@ -153,6 +166,8 @@ export default function CollapsibleTable() {
         } else {
           alert("An error occurred while loading data");
         }
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -164,51 +179,113 @@ export default function CollapsibleTable() {
   } else {
     return (
       <Paper sx={{ width: "100%", padding: 2 }}>
-        <Typography variant="h2" color="#d9b812">
+        <Typography
+          variant="h2"
+          color="#d9b812"
+          sx={{ fontFamily: "'Poppins', sans-serif" }}
+        >
           Transactions
         </Typography>
-        <TableContainer component={Paper}>
-          <Table aria-label="collapsible table">
-            <TableHead sx={{ backgroundColor: grey[200] }}>
-              <TableRow>
-                <TableCell />
-                <TableCell sx={{ fontWeight: "bold" }}>
-                  Transaction ID
-                </TableCell>
-                <TableCell sx={{ fontWeight: "bold" }}>Customer</TableCell>
-                <TableCell sx={{ fontWeight: "bold" }} align="right">
-                  Email
-                </TableCell>
-                <TableCell sx={{ fontWeight: "bold" }} align="right">
-                  Phone
-                </TableCell>
-                <TableCell sx={{ fontWeight: "bold" }} align="right">
-                  Date
-                </TableCell>
-                <TableCell sx={{ fontWeight: "bold" }} align="right">
-                  Confirmed
-                </TableCell>
-                
-                <TableCell sx={{ fontWeight: "bold" }} align="right">
-                  Zip Code
-                </TableCell>
-                <TableCell sx={{ fontWeight: "bold" }} align="right">
-                  Tickets Purchased
-                </TableCell>
-                <TableCell sx={{ fontWeight: "bold" }} align="right">
-                  Total Amount
-                </TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {transactions
-                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                .map((row) => (
-                  <Row key={row.id} row={row} />
-                ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
+        {loading ? (
+          <CircularProgress sx={{ color: "#d9b812" }} />
+        ) : (
+          <TableContainer component={Paper}>
+            <Table aria-label="collapsible table">
+              <TableHead sx={{ backgroundColor: grey[200] }}>
+                <TableRow>
+                  <TableCell />
+                  <TableCell
+                    sx={{
+                      fontFamily: "'Poppins', sans-serif",
+                      fontWeight: "bold",
+                    }}
+                  >
+                    Transaction ID
+                  </TableCell>
+                  <TableCell
+                    sx={{
+                      fontFamily: "'Poppins', sans-serif",
+                      fontWeight: "bold",
+                    }}
+                  >
+                    Customer
+                  </TableCell>
+                  <TableCell
+                    sx={{
+                      fontFamily: "'Poppins', sans-serif",
+                      fontWeight: "bold",
+                    }}
+                    align="right"
+                  >
+                    Email
+                  </TableCell>
+                  <TableCell
+                    sx={{
+                      fontFamily: "'Poppins', sans-serif",
+                      fontWeight: "bold",
+                    }}
+                    align="right"
+                  >
+                    Phone
+                  </TableCell>
+                  <TableCell
+                    sx={{
+                      fontFamily: "'Poppins', sans-serif",
+                      fontWeight: "bold",
+                    }}
+                    align="right"
+                  >
+                    Date
+                  </TableCell>
+                  <TableCell
+                    sx={{
+                      fontFamily: "'Poppins', sans-serif",
+                      fontWeight: "bold",
+                    }}
+                    align="right"
+                  >
+                    Confirmed
+                  </TableCell>
+
+                  <TableCell
+                    sx={{
+                      fontFamily: "'Poppins', sans-serif",
+                      fontWeight: "bold",
+                    }}
+                    align="right"
+                  >
+                    Zip Code
+                  </TableCell>
+                  <TableCell
+                    sx={{
+                      fontFamily: "'Poppins', sans-serif",
+                      fontWeight: "bold",
+                    }}
+                    align="right"
+                  >
+                    Tickets Purchased
+                  </TableCell>
+                  <TableCell
+                    sx={{
+                      fontFamily: "'Poppins', sans-serif",
+                      fontWeight: "bold",
+                    }}
+                    align="right"
+                  >
+                    Total Amount
+                  </TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {transactions
+                  .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                  .map((row) => (
+                    <Row key={row.id} row={row} />
+                  ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+        )}
         <TablePagination
           rowsPerPageOptions={[10, 25, 50]}
           component="div"
