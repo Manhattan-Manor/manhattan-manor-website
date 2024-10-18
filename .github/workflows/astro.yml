@@ -71,6 +71,7 @@ jobs:
             PUBLIC_CMS_API_ROUTE: ${{ secrets.CMS_API_ROUTE }}
             PUBLIC_CMS_IMAGES_ROUTE: ${{ secrets.CMS_IMAGES_ROUTE }}
             PUBLIC_G_RECAPTCHA_SITE_KEY: ${{ secrets.G_RECAPTCHA_SITE_KEY }}
+            PUBLIC_TICKETS_API: https://api.manhattanmanor.com/
         run: |
           ${{ steps.detect-package-manager.outputs.runner }} astro build \
             --site "${{ steps.pages.outputs.origin }}" \
