@@ -14,10 +14,10 @@ import { Chip, CircularProgress, Grid2, TablePagination } from "@mui/material";
 import { blue, grey, red, yellow } from "@mui/material/colors";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
-import { Transaction } from "../classes/Transaction";
+import { TicketTransaction } from "../../classes/TicketTransaction";
 import { useEffect } from "react";
 
-const Row: React.FC<{ row: Transaction }> = ({ row }) => {
+const Row: React.FC<{ row: TicketTransaction }> = ({ row }) => {
   const [open, setOpen] = React.useState(false);
 
   return (
@@ -37,26 +37,124 @@ const Row: React.FC<{ row: Transaction }> = ({ row }) => {
             {open ? <ExpandLessIcon /> : <ExpandMoreIcon />}
           </IconButton>
         </TableCell>
-        <TableCell component="th" scope="row" sx={{ fontWeight: "bold" }}>
+        <TableCell
+          component="th"
+          scope="row"
+          sx={{
+            fontFamily: "'Poppins', sans-serif",
+            fontWeight: 400,
+            color: grey[600],
+            letterSpacing: "0.5px",
+            lineHeight: "1.5",
+          }}
+        >
           {row.transactionId}
         </TableCell>
-        <TableCell>{row.customerName}</TableCell>
-        <TableCell align="right">{row.email}</TableCell>
-        <TableCell align="right">{row.phone}</TableCell>
-        <TableCell align="right">{row.transactionDate}</TableCell>
-        <TableCell align="right">
+        <TableCell
+          component="th"
+          scope="row"
+          sx={{
+            fontFamily: "'Poppins', sans-serif",
+            fontWeight: 400,
+            color: grey[600],
+            letterSpacing: "0.5px",
+            lineHeight: "1.5",
+          }}
+        >
+          {row.customerName}
+        </TableCell>
+        <TableCell
+          align="right"
+          component="th"
+          scope="row"
+          sx={{
+            fontFamily: "'Poppins', sans-serif",
+            fontWeight: 400,
+            color: grey[600],
+            letterSpacing: "0.5px",
+            lineHeight: "1.5",
+          }}
+        >
+          {row.email}
+        </TableCell>
+        <TableCell
+          align="right"
+          component="th"
+          scope="row"
+          sx={{
+            fontFamily: "'Poppins', sans-serif",
+            fontWeight: 400,
+            color: grey[600],
+            letterSpacing: "0.5px",
+            lineHeight: "1.5",
+          }}
+        >
+          {row.phone}
+        </TableCell>
+        <TableCell
+          align="right"
+          component="th"
+          scope="row"
+          sx={{
+            fontFamily: "'Poppins', sans-serif",
+            fontWeight: 400,
+            color: grey[600],
+            letterSpacing: "0.5px",
+            lineHeight: "1.5",
+          }}
+        >
+          {row.transactionDate}
+        </TableCell>
+        <TableCell
+          align="right"
+          component="th"
+          scope="row"
+          sx={{ fontFamily: "'Poppins', sans-serif" }}
+        >
           <Chip
             label={row.confirm ? "Confirmed" : "Pending"}
             sx={{
-              backgroundColor: row.confirm ? "#d9b812" : red[500],
+              backgroundColor: row.confirm ? "#ffcc00" : red[500],
               color: "#fff",
               fontWeight: "bold",
             }}
           />
         </TableCell>
-        <TableCell align="right">{row.zipCode}</TableCell>
-        <TableCell align="right">{row.ticketsPurchased}</TableCell>
-        <TableCell align="right" sx={{ color: blue[700], fontWeight: "bold" }}>
+        <TableCell
+          align="right"
+          component="th"
+          scope="row"
+          sx={{
+            fontFamily: "'Poppins', sans-serif",
+            fontWeight: 400,
+            color: grey[600],
+            letterSpacing: "0.5px",
+            lineHeight: "1.5",
+          }}
+        >
+          {row.zipCode}
+        </TableCell>
+        <TableCell
+          align="right"
+          component="th"
+          scope="row"
+          sx={{
+            fontFamily: "'Poppins', sans-serif",
+            fontWeight: 400,
+            color: grey[600],
+            letterSpacing: "0.5px",
+            lineHeight: "1.5",
+          }}
+        >
+          {row.ticketsPurchased}
+        </TableCell>
+        <TableCell
+          align="right"
+          sx={{
+            color: blue[700],
+            fontWeight: "500",
+          }}
+        >
           ${row.totalAmount}
         </TableCell>
       </TableRow>
@@ -76,7 +174,7 @@ const Row: React.FC<{ row: Transaction }> = ({ row }) => {
                 variant="h6"
                 gutterBottom
                 component="div"
-                sx={{ color: "#d9b812" }}
+                sx={{ color: "#ffcc00" }}
               >
                 Transaction Details
               </Typography>
@@ -101,33 +199,55 @@ const Row: React.FC<{ row: Transaction }> = ({ row }) => {
                 variant="h6"
                 gutterBottom
                 component="div"
-                sx={{ marginTop: 2, color: "#d9b812" }}
+                sx={{ marginTop: 2, color: "#ffcc00" }}
               >
                 Ticket Details
               </Typography>
-              <Grid2 container>
-                <Table size="small" aria-label="tickets">
-                  <TableHead sx={{ backgroundColor: grey[200] }}>
-                    <TableRow>
-                      <TableCell>Name</TableCell>
-                      <TableCell>Email</TableCell>
-                      <TableCell align="right">Age</TableCell>
-                    </TableRow>
-                  </TableHead>
-                  <TableBody>
-                    {row.tickets?.map((ticket) => (
-                      <TableRow key={ticket.ticketPurchasedId}>
-                        <TableCell>{ticket.name}</TableCell>
-                        <TableCell>{ticket.email}</TableCell>
-                        <TableCell align="right">{ticket.age}</TableCell>
+
+              {/* Use Grid2 for centering and limiting width */}
+              <Grid2 container justifyContent="center">
+                <TableContainer component={Paper} sx={{ boxShadow: "none" }}>
+                  <Table size="small" aria-label="tickets">
+                    <TableHead>
+                      <TableRow sx={{ backgroundColor: grey[200] }}>
+                        <TableCell sx={{ fontWeight: 600 }}>Name</TableCell>
+                        <TableCell sx={{ fontWeight: 600 }}>Email</TableCell>
+                        <TableCell sx={{ fontWeight: 600 }} align="right">
+                          Age
+                        </TableCell>
                       </TableRow>
-                    )) || (
-                      <TableRow>
-                        <TableCell colSpan={3}>No tickets available</TableCell>
-                      </TableRow>
-                    )}
-                  </TableBody>
-                </Table>
+                    </TableHead>
+                    <TableBody>
+                      {row.tickets?.map((ticket:any) => (
+                        <TableRow
+                          key={ticket.ticketPurchasedId}
+                          sx={{
+                            "&:hover": {
+                              backgroundColor: grey[100],
+                            },
+                            transition: "background-color 0.3s ease",
+                          }}
+                        >
+                          <TableCell sx={{ padding: "8px" }}>
+                            {ticket.name}
+                          </TableCell>
+                          <TableCell sx={{ padding: "8px" }}>
+                            {ticket.email}
+                          </TableCell>
+                          <TableCell sx={{ padding: "8px" }} align="right">
+                            {ticket.age}
+                          </TableCell>
+                        </TableRow>
+                      )) || (
+                        <TableRow>
+                          <TableCell colSpan={3}>
+                            No tickets available
+                          </TableCell>
+                        </TableRow>
+                      )}
+                    </TableBody>
+                  </Table>
+                </TableContainer>
               </Grid2>
             </Box>
           </Collapse>
@@ -137,10 +257,10 @@ const Row: React.FC<{ row: Transaction }> = ({ row }) => {
   );
 };
 
-export default function CollapsibleTable() {
+const TicketsTransactionGrid = () => {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
-  const [transactions, setTransactions] = React.useState<Transaction[]>([]);
+  const [transactions, setTransactions] = React.useState<TicketTransaction[]>([]);
   const [loading, setLoading] = React.useState(false);
 
   const handleChangePage = (event: unknown, newPage: number) => {
@@ -159,7 +279,7 @@ export default function CollapsibleTable() {
     const fetchAll = async () => {
       try {
         setLoading(true);
-        setTransactions(await Transaction.getAll());
+        setTransactions(await TicketTransaction.getAll());
       } catch (error) {
         if (error instanceof Error) {
           alert(error.message);
@@ -178,16 +298,16 @@ export default function CollapsibleTable() {
     return <></>;
   } else {
     return (
-      <Paper sx={{ width: "100%", padding: 2 }}>
+      <Paper sx={{ width: "100%" }}>
         <Typography
           variant="h2"
-          color="#d9b812"
+          color="#ffcc00"
           sx={{ fontFamily: "'Poppins', sans-serif" }}
         >
-          Transactions
+          Tickets Transactions
         </Typography>
         {loading ? (
-          <CircularProgress sx={{ color: "#d9b812" }} />
+          <CircularProgress sx={{ color: "#ffcc00" }} />
         ) : (
           <TableContainer component={Paper}>
             <Table aria-label="collapsible table">
@@ -298,4 +418,6 @@ export default function CollapsibleTable() {
       </Paper>
     );
   }
-}
+};
+
+export default TicketsTransactionGrid;

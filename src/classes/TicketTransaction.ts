@@ -1,4 +1,4 @@
-export class Transaction {
+export class TicketTransaction {
   id: number;
   transactionId: string;
   totalAmount: string;
@@ -17,7 +17,7 @@ export class Transaction {
   ticketsPurchased: string;
   tickets?: Ticket[];
 
-  constructor(transaction: Transaction) {
+  constructor(transaction: TicketTransaction) {
     this.id = transaction.id;
     this.transactionId = transaction.transactionId;
     this.totalAmount = transaction.totalAmount;
@@ -40,7 +40,7 @@ export class Transaction {
 
   public static getAll = async ()=> {
       const response = await fetch(
-        import.meta.env.PUBLIC_TICKETS_API + "transaction_panel.php",
+        import.meta.env.PUBLIC_TICKETS_API + "ticketTransactionPanel.php",
         {
           method: "GET",
           body: JSON.stringify(this),
@@ -59,7 +59,7 @@ export class Transaction {
         const errorData = await response.json();
         throw new Error(errorData.error || "An error occurred while loading data");
       } else {
-        const data: Transaction[] = await response.json();
+        const data: TicketTransaction[] = await response.json();
 
         return data;
       }
