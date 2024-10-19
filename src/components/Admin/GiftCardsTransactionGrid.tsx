@@ -10,7 +10,13 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Typography from "@mui/material/Typography";
 import Paper from "@mui/material/Paper";
-import { Alert, Chip, CircularProgress, Grid2, TablePagination } from "@mui/material";
+import {
+  Alert,
+  Chip,
+  CircularProgress,
+  Grid2,
+  TablePagination,
+} from "@mui/material";
 import { blue, grey, red, yellow } from "@mui/material/colors";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
@@ -48,7 +54,7 @@ const Row: React.FC<{ row: GiftCardTransaction }> = ({ row }) => {
             lineHeight: "1.5",
           }}
         >
-          {row.code}
+          {row.id.toString().padStart(6, "0")}
         </TableCell>
         <TableCell
           component="th"
@@ -98,7 +104,9 @@ const Row: React.FC<{ row: GiftCardTransaction }> = ({ row }) => {
           sx={{ fontFamily: "'Poppins', sans-serif" }}
         >
           <Chip
-            label={row.redeemed ? "Redeemed" : "Pending"}
+            label={
+              row.redeemed ? "Paid (Form filled)" : "Paid (Form not filled)"
+            }
             sx={{
               backgroundColor: row.redeemed ? "#ffcc00" : red[500],
               color: "#fff",
@@ -142,10 +150,12 @@ const Row: React.FC<{ row: GiftCardTransaction }> = ({ row }) => {
                 backgroundColor: grey[50],
               }}
             >
-              {
-                !row.redeemed && 
-                <Alert severity="warning">The information is empty because the gift card has not been redeemed.</Alert>
-              }
+              {!row.redeemed && (
+                <Alert severity="warning">
+                  The information is empty because the gift card has not been
+                  redeemed.
+                </Alert>
+              )}
               <Typography
                 variant="h6"
                 gutterBottom
@@ -268,7 +278,7 @@ const GiftCardsTransactionGrid = () => {
                       fontWeight: "bold",
                     }}
                   >
-                    Gift card code
+                    ID
                   </TableCell>
                   <TableCell
                     sx={{
@@ -303,7 +313,7 @@ const GiftCardsTransactionGrid = () => {
                     }}
                     align="right"
                   >
-                    Redeemed
+                    Status
                   </TableCell>
                   <TableCell
                     sx={{
@@ -312,7 +322,7 @@ const GiftCardsTransactionGrid = () => {
                     }}
                     align="right"
                   >
-                    Redeemed date
+                    Form fill date
                   </TableCell>
                   <TableCell
                     sx={{

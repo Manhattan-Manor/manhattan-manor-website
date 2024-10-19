@@ -48,7 +48,7 @@ const Row: React.FC<{ row: TicketTransaction }> = ({ row }) => {
             lineHeight: "1.5",
           }}
         >
-          {row.transactionId}
+          {row.id.toString().padStart(6, "0")}
         </TableCell>
         <TableCell
           component="th"
@@ -112,7 +112,7 @@ const Row: React.FC<{ row: TicketTransaction }> = ({ row }) => {
           sx={{ fontFamily: "'Poppins', sans-serif" }}
         >
           <Chip
-            label={row.confirm ? "Confirmed" : "Pending"}
+            label={row.confirm ? "Paid" : "Pending"}
             sx={{
               backgroundColor: row.confirm ? "#ffcc00" : red[500],
               color: "#fff",
@@ -218,7 +218,7 @@ const Row: React.FC<{ row: TicketTransaction }> = ({ row }) => {
                       </TableRow>
                     </TableHead>
                     <TableBody>
-                      {row.tickets?.map((ticket:any) => (
+                      {row.tickets?.map((ticket: any) => (
                         <TableRow
                           key={ticket.ticketPurchasedId}
                           sx={{
@@ -260,7 +260,9 @@ const Row: React.FC<{ row: TicketTransaction }> = ({ row }) => {
 const TicketsTransactionGrid = () => {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
-  const [transactions, setTransactions] = React.useState<TicketTransaction[]>([]);
+  const [transactions, setTransactions] = React.useState<TicketTransaction[]>(
+    []
+  );
   const [loading, setLoading] = React.useState(false);
 
   const handleChangePage = (event: unknown, newPage: number) => {
@@ -320,7 +322,7 @@ const TicketsTransactionGrid = () => {
                       fontWeight: "bold",
                     }}
                   >
-                    Transaction ID
+                    ID
                   </TableCell>
                   <TableCell
                     sx={{
@@ -364,7 +366,7 @@ const TicketsTransactionGrid = () => {
                     }}
                     align="right"
                   >
-                    Confirmed
+                    Status
                   </TableCell>
 
                   <TableCell
