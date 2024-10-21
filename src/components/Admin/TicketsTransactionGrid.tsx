@@ -10,15 +10,48 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Typography from "@mui/material/Typography";
 import Paper from "@mui/material/Paper";
-import { Chip, CircularProgress, Grid2, TablePagination } from "@mui/material";
+import { Chip, CircularProgress, Grid2, InputAdornment, TablePagination, TextField } from "@mui/material";
 import { blue, grey, red, yellow } from "@mui/material/colors";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
+import PictureAsPdfIcon from "@mui/icons-material/PictureAsPdf";
+import SearchIcon from "@mui/icons-material/Search";
 import { TicketTransaction } from "../../classes/TicketTransaction";
 import { useEffect } from "react";
 
+
+const filterTransactions = (
+  transactions: TicketTransaction[],
+  searchText: string
+): TicketTransaction[] => {
+  if (!searchText) {
+    return transactions;
+  }
+
+  const lowerSearchText = searchText.toLowerCase();
+
+  return transactions.filter((transaction) => {
+    const values = Object.values(transaction);
+
+    return values.some((value) => {
+      if (typeof value === "string") {
+        return value.toLowerCase().includes(lowerSearchText);
+      }
+      return false;
+    });
+  });
+};
+
 const Row: React.FC<{ row: TicketTransaction }> = ({ row }) => {
   const [open, setOpen] = React.useState(false);
+
+  const handlePdfClick = (row: TicketTransaction) => {
+    window.open(
+      import.meta.env.PUBLIC_TICKETS_API +
+        "transaction.php?transactionId=" +
+        row.transactionId
+    );
+  };
 
   return (
     <React.Fragment>
@@ -157,6 +190,16 @@ const Row: React.FC<{ row: TicketTransaction }> = ({ row }) => {
         >
           ${row.totalAmount}
         </TableCell>
+        <TableCell>
+          <IconButton
+            aria-label="download pdf"
+            size="small"
+            onClick={() => handlePdfClick(row)}
+            title="Download pdf"
+          >
+            <PictureAsPdfIcon sx={{ color: red[600] }} />
+          </IconButton>
+        </TableCell>
       </TableRow>
       <TableRow>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={12}>
@@ -264,9 +307,14 @@ const TicketsTransactionGrid = () => {
     []
   );
   const [loading, setLoading] = React.useState(false);
+  const [searchText, setSearchText] = React.useState("");
 
   const handleChangePage = (event: unknown, newPage: number) => {
     setPage(newPage);
+  };
+
+  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchText(event.target.value);
   };
 
   const handleChangeRowsPerPage = (
@@ -275,6 +323,8 @@ const TicketsTransactionGrid = () => {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
+
+  const filteredTransactions = filterTransactions(transactions, searchText);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -312,6 +362,44 @@ const TicketsTransactionGrid = () => {
           <CircularProgress sx={{ color: "#ffcc00" }} />
         ) : (
           <TableContainer component={Paper}>
+            <TextField
+              label="Search"
+              variant="outlined"
+              fullWidth
+              value={searchText}
+              onChange={handleSearchChange}
+              placeholder="Search..."
+              sx={{
+                marginBottom: 2,
+                marginTop: 3,
+                backgroundColor: "white",
+                boxShadow:
+                  "0 4px 6px 0 rgba(0, 0, 0, 0.1), 0 6px 10px 0 rgba(0, 0, 0, 0.1)",
+                borderRadius: "8px",
+                "& .MuiOutlinedInput-root": {
+                  "& fieldset": {
+                    borderColor: "transparent",
+                  },
+                  "&:hover fieldset": {
+                    borderColor: "transparent",
+                  },
+                  "&.Mui-focused fieldset": {
+                    borderColor: "transparent",
+                  },
+                },
+                "& .MuiInputBase-input::placeholder": {
+                  color: "gray",
+                },
+              }}
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <SearchIcon />
+                  </InputAdornment>
+                ),
+              }}
+            />
+
             <Table aria-label="collapsible table">
               <TableHead sx={{ backgroundColor: grey[200] }}>
                 <TableRow>
@@ -396,10 +484,11 @@ const TicketsTransactionGrid = () => {
                   >
                     Total Amount
                   </TableCell>
+                  <TableCell />
                 </TableRow>
               </TableHead>
               <TableBody>
-                {transactions
+                {filteredTransactions
                   .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                   .map((row) => (
                     <Row key={row.id} row={row} />
@@ -411,7 +500,7 @@ const TicketsTransactionGrid = () => {
         <TablePagination
           rowsPerPageOptions={[10, 25, 50]}
           component="div"
-          count={transactions.length}
+          count={filteredTransactions.length}
           rowsPerPage={rowsPerPage}
           page={page}
           onPageChange={handleChangePage}
