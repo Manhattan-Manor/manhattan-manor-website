@@ -66,7 +66,39 @@ export class GiftCardTransaction {
 
       return data;
     }
-  };
+  }
+
+  public static downloadXLSX = async () => {
+    const response = await fetch(
+      import.meta.env.PUBLIC_TICKETS_API + "downloadGiftcardsXlsx.php",
+      {
+        method: "GET",
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      }
+    );
+
+    if (!response.ok) {
+      if (response.status == 401) {
+        window.location.assign("/login");
+      }
+
+      const errorData = await response.json();
+      throw new Error(errorData.error || "Error downloading the file");
+    } else {
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.style.display = "none";
+      a.href = url;
+      a.download = "Gift cards transaction.xlsx";
+      document.body.appendChild(a);
+      a.click();
+      window.URL.revokeObjectURL(url);
+    }
+  }
+
 }
 
 export interface Ticket {

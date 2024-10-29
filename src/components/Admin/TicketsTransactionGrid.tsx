@@ -10,15 +10,23 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Typography from "@mui/material/Typography";
 import Paper from "@mui/material/Paper";
-import { Chip, CircularProgress, Grid2, InputAdornment, TablePagination, TextField } from "@mui/material";
-import { blue, grey, red, yellow } from "@mui/material/colors";
+import {
+  Button,
+  Chip,
+  CircularProgress,
+  Grid2,
+  InputAdornment,
+  TablePagination,
+  TextField,
+} from "@mui/material";
+import { blue, grey, red } from "@mui/material/colors";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import PictureAsPdfIcon from "@mui/icons-material/PictureAsPdf";
+import DownloadIcon from "@mui/icons-material/Download";
 import SearchIcon from "@mui/icons-material/Search";
 import { TicketTransaction } from "../../classes/TicketTransaction";
 import { useEffect } from "react";
-
 
 const filterTransactions = (
   transactions: TicketTransaction[],
@@ -308,6 +316,7 @@ const TicketsTransactionGrid = () => {
   );
   const [loading, setLoading] = React.useState(false);
   const [searchText, setSearchText] = React.useState("");
+  const [downloading, setDownloading] = React.useState(false);
 
   const handleChangePage = (event: unknown, newPage: number) => {
     setPage(newPage);
@@ -326,8 +335,21 @@ const TicketsTransactionGrid = () => {
 
   const filteredTransactions = filterTransactions(transactions, searchText);
 
+  const handleDownloadXLSX = async () => {
+    try {
+      setDownloading(true);
+      await TicketTransaction.downloadXLSX();
+      setDownloading(false);
+    } catch (error) {
+      if (error instanceof Error) {
+        alert(error.message);
+      } else {
+        alert("Error downloading the file");
+      }
+    }
+  };
+
   useEffect(() => {
-    const token = localStorage.getItem("token");
     const fetchAll = async () => {
       try {
         setLoading(true);
@@ -351,55 +373,84 @@ const TicketsTransactionGrid = () => {
   } else {
     return (
       <Paper sx={{ width: "100%" }}>
-        <Typography
-          variant="h2"
-          color="#ffcc00"
-          sx={{ fontFamily: "'Poppins', sans-serif" }}
-        >
-          Tickets Transactions
-        </Typography>
+        <Grid2 container spacing={2}>
+          <Grid2 size={4}>
+            <Typography
+              variant="h2"
+              color="#ffcc00"
+              sx={{ fontFamily: "'Poppins', sans-serif" }}
+            >
+              Tickets Transactions
+            </Typography>
+          </Grid2>
+        </Grid2>
         {loading ? (
           <CircularProgress sx={{ color: "#ffcc00" }} />
         ) : (
           <TableContainer component={Paper}>
-            <TextField
-              label="Search"
-              variant="outlined"
-              fullWidth
-              value={searchText}
-              onChange={handleSearchChange}
-              placeholder="Search..."
-              sx={{
-                marginBottom: 2,
-                marginTop: 3,
-                backgroundColor: "white",
-                boxShadow:
-                  "0 4px 6px 0 rgba(0, 0, 0, 0.1), 0 6px 10px 0 rgba(0, 0, 0, 0.1)",
-                borderRadius: "8px",
-                "& .MuiOutlinedInput-root": {
-                  "& fieldset": {
-                    borderColor: "transparent",
-                  },
-                  "&:hover fieldset": {
-                    borderColor: "transparent",
-                  },
-                  "&.Mui-focused fieldset": {
-                    borderColor: "transparent",
-                  },
-                },
-                "& .MuiInputBase-input::placeholder": {
-                  color: "gray",
-                },
-              }}
-              InputProps={{
-                endAdornment: (
-                  <InputAdornment position="end">
-                    <SearchIcon />
-                  </InputAdornment>
-                ),
-              }}
-            />
-
+            <Grid2 container spacing={2} mt={1.5} mb={1.5} mr={1.5}>
+              <Grid2
+                container
+                size={8}
+                justifyContent="flex-end"
+                alignItems="flex-end"
+              >
+                {transactions.length && (
+                  <Button
+                    disabled={downloading}
+                    sx={{
+                      marginBottom: "5px",
+                      color: "#ffcc00",
+                      fontWeight: 550,
+                    }}
+                    variant="text"
+                    onClick={handleDownloadXLSX}
+                    startIcon={<DownloadIcon />}
+                  >
+                    {downloading ? "Downloading..." : "Download xlsx"}
+                  </Button>
+                )}
+              </Grid2>
+              <Grid2 size={4}>
+                <TextField
+                  label="Search"
+                  variant="outlined"
+                  value={searchText}
+                  onChange={handleSearchChange}
+                  placeholder="Search..."
+                  sx={{
+                    width: "100%",
+                    backgroundColor: "white",
+                    boxShadow:
+                      "0 4px 6px 0 rgba(0, 0, 0, 0.1), 0 6px 10px 0 rgba(0, 0, 0, 0.1)",
+                    borderRadius: "8px",
+                    "& .MuiOutlinedInput-root": {
+                      "& fieldset": {
+                        borderColor: "transparent",
+                      },
+                      "&:hover fieldset": {
+                        borderColor: "transparent",
+                      },
+                      "&.Mui-focused fieldset": {
+                        borderColor: "transparent",
+                      },
+                    },
+                    "& .MuiInputBase-input::placeholder": {
+                      color: "gray",
+                    },
+                  }}
+                  slotProps={{
+                    input: {
+                      endAdornment: (
+                        <InputAdornment position="end">
+                          <SearchIcon />
+                        </InputAdornment>
+                      ),
+                    },
+                  }}
+                />
+              </Grid2>
+            </Grid2>
             <Table aria-label="collapsible table">
               <TableHead sx={{ backgroundColor: grey[200] }}>
                 <TableRow>
