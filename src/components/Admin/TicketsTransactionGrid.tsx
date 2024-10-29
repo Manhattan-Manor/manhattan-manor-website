@@ -396,7 +396,7 @@ const TicketsTransactionGrid = () => {
                 justifyContent="flex-end"
                 alignItems="flex-end"
               >
-                {transactions.length <= 0 && (
+                {transactions.length > 0 && (
                   <Button
                     disabled={downloading}
                     sx={{

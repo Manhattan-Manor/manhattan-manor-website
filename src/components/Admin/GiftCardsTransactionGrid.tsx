@@ -377,7 +377,7 @@ const GiftCardsTransactionGrid = () => {
                 justifyContent="flex-end"
                 alignItems="flex-end"
               >
-                {transactions.length && (
+                {transactions.length > 0 && (
                   <Button
                     disabled={downloading}
                     sx={{
