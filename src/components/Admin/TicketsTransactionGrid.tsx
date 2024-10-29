@@ -339,13 +339,14 @@ const TicketsTransactionGrid = () => {
     try {
       setDownloading(true);
       await TicketTransaction.downloadXLSX();
-      setDownloading(false);
     } catch (error) {
       if (error instanceof Error) {
         alert(error.message);
       } else {
         alert("Error downloading the file");
       }
+    } finally {
+      setDownloading(false);
     }
   };
 
