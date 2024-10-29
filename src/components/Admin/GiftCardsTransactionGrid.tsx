@@ -381,7 +381,7 @@ const GiftCardsTransactionGrid = () => {
                     disabled={downloading}
                     sx={{
                       marginBottom: "5px",
-                      color: "#ffcc00",
+                      color: "#04bf45",
                       fontWeight: 550,
                     }}
                     variant="text"
