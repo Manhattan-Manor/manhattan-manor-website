@@ -38,33 +38,65 @@ export class TicketTransaction {
     this.tickets = transaction.tickets;
   }
 
-  public static getAll = async ()=> {
-      const response = await fetch(
-        import.meta.env.PUBLIC_TICKETS_API + "ticketTransactionPanel.php",
-        {
-          method: "GET",
-          body: JSON.stringify(this),
-          headers: {
-            "Authorization": "Bearer " + localStorage.getItem("token"),
-            "Content-Type": "application/json",
-          },
-        }
-      );
-
-      if (!response.ok) {
-        if (response.status == 401) {
-            window.location.assign("/login");
-        }
-        
-        const errorData = await response.json();
-        throw new Error(errorData.error || "An error occurred while loading data");
-      } else {
-        const data: TicketTransaction[] = await response.json();
-
-        return data;
+  public static getAll = async () => {
+    const response = await fetch(
+      import.meta.env.PUBLIC_TICKETS_API + "ticketTransactionPanel.php",
+      {
+        method: "GET",
+        body: JSON.stringify(this),
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("token"),
+          "Content-Type": "application/json",
+        },
       }
-  }
+    );
 
+    if (!response.ok) {
+      if (response.status == 401) {
+        window.location.assign("/login");
+      }
+
+      const errorData = await response.json();
+      throw new Error(
+        errorData.error || "An error occurred while loading data"
+      );
+    } else {
+      const data: TicketTransaction[] = await response.json();
+
+      return data;
+    }
+  };
+
+  public static downloadXLSX = async () => {
+    const response = await fetch(
+      import.meta.env.PUBLIC_TICKETS_API + "downloadTicketsXlsx.php",
+      {
+        method: "GET",
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      }
+    );
+
+    if (!response.ok) {
+      if (response.status == 401) {
+        window.location.assign("/login");
+      }
+
+      const errorData = await response.json();
+      throw new Error(errorData.error || "Error downloading the file");
+    } else {
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.style.display = "none";
+      a.href = url;
+      a.download = "Tickets transaction.xlsx";
+      document.body.appendChild(a);
+      a.click();
+      window.URL.revokeObjectURL(url);
+    }
+  }
 }
 
 export interface Ticket {

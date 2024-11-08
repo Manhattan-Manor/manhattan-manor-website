@@ -12,19 +12,63 @@ import Typography from "@mui/material/Typography";
 import Paper from "@mui/material/Paper";
 import {
   Alert,
+  Button,
   Chip,
   CircularProgress,
   Grid2,
+  InputAdornment,
   TablePagination,
+  TextField,
 } from "@mui/material";
 import { blue, grey, red, yellow } from "@mui/material/colors";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
+import PictureAsPdfIcon from "@mui/icons-material/PictureAsPdf";
+import DownloadIcon from "@mui/icons-material/Download";
+import SearchIcon from "@mui/icons-material/Search";
 import { GiftCardTransaction } from "../../classes/GiftCardTransaction";
 import { useEffect } from "react";
 
+const filterTransactions = (
+  transactions: GiftCardTransaction[],
+  searchText: string
+): GiftCardTransaction[] => {
+  if (!searchText) {
+    return transactions;
+  }
+
+  const lowerSearchText = searchText.toLowerCase();
+
+  return transactions.filter((transaction) => {
+    const values = Object.values(transaction);
+
+    return values.some((value) => {
+      if (typeof value === "string") {
+        return value.toLowerCase().includes(lowerSearchText);
+      }
+      return false;
+    });
+  });
+};
+
 const Row: React.FC<{ row: GiftCardTransaction }> = ({ row }) => {
   const [open, setOpen] = React.useState(false);
+
+  const handleDownloadReceiptPdf = (row: GiftCardTransaction) => {
+    window.open(
+      import.meta.env.PUBLIC_TICKETS_API +
+        "/giftcards/download-receipt.php?code=" +
+        row.code
+    );
+  };
+
+  const handleDownloadRecipientPdf = (row: GiftCardTransaction) => {
+    window.open(
+      import.meta.env.PUBLIC_TICKETS_API +
+        "/giftcards/download-letter.php?code=" +
+        row.code
+    );
+  };
 
   return (
     <React.Fragment>
@@ -137,6 +181,16 @@ const Row: React.FC<{ row: GiftCardTransaction }> = ({ row }) => {
         >
           ${row.amount}
         </TableCell>
+        <TableCell>
+          <IconButton
+            aria-label="download pdf"
+            size="small"
+            onClick={() => handleDownloadReceiptPdf(row)}
+            title="Download pdf"
+          >
+            <PictureAsPdfIcon sx={{ color: red[600] }} />
+          </IconButton>
+        </TableCell>
       </TableRow>
       <TableRow>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={12}>
@@ -156,6 +210,21 @@ const Row: React.FC<{ row: GiftCardTransaction }> = ({ row }) => {
                   redeemed.
                 </Alert>
               )}
+
+              <Typography
+                variant="h6"
+                gutterBottom
+                component="div"
+                sx={{ color: "#ffcc00" }}
+              >
+                General information
+              </Typography>
+              <Typography variant="body1" sx={{ color: grey[800] }}>
+                <strong>Gift card code:</strong> {row.code || ""}
+              </Typography>
+
+              <br />
+
               <Typography
                 variant="h6"
                 gutterBottom
@@ -194,17 +263,28 @@ const Row: React.FC<{ row: GiftCardTransaction }> = ({ row }) => {
                 Recipient information
               </Typography>
               <Typography variant="body1" sx={{ color: grey[800] }}>
-                <strong>Recipient name:</strong> {row.recipientName || ""}
+                <strong>Name:</strong> {row.recipientName || ""}
               </Typography>
               <Typography variant="body1" sx={{ color: grey[800] }}>
-                <strong>Recipient email:</strong> {row.recipientEmail}
+                <strong>Email:</strong> {row.recipientEmail}
               </Typography>
               <Typography variant="body1" sx={{ color: grey[800] }}>
-                <strong>Recipient phone:</strong> {row.recipientPhone}
+                <strong>Phone:</strong> {row.recipientPhone}
               </Typography>
               <Typography variant="body1" sx={{ color: grey[800] }}>
                 <strong>Greetings:</strong> {row.greeting}
               </Typography>
+
+              <Button
+                variant="contained"
+                sx={{ backgroundColor: "#d9b812", marginTop: "20px" }}
+                onClick={() => handleDownloadRecipientPdf(row)}
+                startIcon={<PictureAsPdfIcon />}
+                disabled={!row.redeemed}
+                title="Download gift certificate"
+              >
+                DOWNLOAD GIFT CERTIFICATE
+              </Button>
             </Box>
           </Collapse>
         </TableCell>
@@ -220,9 +300,15 @@ const GiftCardsTransactionGrid = () => {
     []
   );
   const [loading, setLoading] = React.useState(false);
+  const [searchText, setSearchText] = React.useState("");
+  const [downloading, setDownloading] = React.useState(false);
 
   const handleChangePage = (event: unknown, newPage: number) => {
     setPage(newPage);
+  };
+
+  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchText(event.target.value);
   };
 
   const handleChangeRowsPerPage = (
@@ -232,8 +318,22 @@ const GiftCardsTransactionGrid = () => {
     setPage(0);
   };
 
+  const handleDownloadXLSX = async () => {
+    try {
+      setDownloading(true);
+      await GiftCardTransaction.downloadXLSX();
+    } catch (error) {
+      if (error instanceof Error) {
+        alert(error.message);
+      } else {
+        alert("Error downloading the file");
+      }
+    } finally {
+      setDownloading(false);
+    }
+  };
+
   useEffect(() => {
-    const token = localStorage.getItem("token");
     const fetchAll = async () => {
       try {
         setLoading(true);
@@ -252,6 +352,8 @@ const GiftCardsTransactionGrid = () => {
     fetchAll();
   }, []);
 
+  const filteredTransactions = filterTransactions(transactions, searchText);
+
   if (!localStorage.getItem("token")) {
     return <></>;
   } else {
@@ -268,6 +370,70 @@ const GiftCardsTransactionGrid = () => {
           <CircularProgress sx={{ color: "#ffcc00" }} />
         ) : (
           <TableContainer component={Paper}>
+            <Grid2 container spacing={2} mt={1.5} mb={1.5} mr={1.5}>
+              <Grid2
+                container
+                size={8}
+                justifyContent="flex-end"
+                alignItems="flex-end"
+              >
+                {transactions.length > 0 && (
+                  <Button
+                    disabled={downloading}
+                    sx={{
+                      marginBottom: "5px",
+                      color: "#04bf45",
+                      fontWeight: 550,
+                    }}
+                    variant="text"
+                    onClick={handleDownloadXLSX}
+                    startIcon={<DownloadIcon />}
+                  >
+                    {downloading ? "Downloading..." : "Download xlsx"}
+                  </Button>
+                )}
+              </Grid2>
+              <Grid2 size={4}>
+                <TextField
+                  label="Search"
+                  variant="outlined"
+                  value={searchText}
+                  onChange={handleSearchChange}
+                  placeholder="Search..."
+                  sx={{
+                    width: "100%",
+                    backgroundColor: "white",
+                    boxShadow:
+                      "0 4px 6px 0 rgba(0, 0, 0, 0.1), 0 6px 10px 0 rgba(0, 0, 0, 0.1)",
+                    borderRadius: "8px",
+                    "& .MuiOutlinedInput-root": {
+                      "& fieldset": {
+                        borderColor: "transparent",
+                      },
+                      "&:hover fieldset": {
+                        borderColor: "transparent",
+                      },
+                      "&.Mui-focused fieldset": {
+                        borderColor: "transparent",
+                      },
+                    },
+                    "& .MuiInputBase-input::placeholder": {
+                      color: "gray",
+                    },
+                  }}
+                  slotProps={{
+                    input: {
+                      endAdornment: (
+                        <InputAdornment position="end">
+                          <SearchIcon />
+                        </InputAdornment>
+                      ),
+                    },
+                  }}
+                />
+              </Grid2>
+            </Grid2>
+
             <Table aria-label="collapsible table">
               <TableHead sx={{ backgroundColor: grey[200] }}>
                 <TableRow>
@@ -333,10 +499,11 @@ const GiftCardsTransactionGrid = () => {
                   >
                     Amount
                   </TableCell>
+                  <TableCell />
                 </TableRow>
               </TableHead>
               <TableBody>
-                {transactions
+                {filteredTransactions
                   .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                   .map((row) => (
                     <Row key={row.id} row={row} />
@@ -348,7 +515,7 @@ const GiftCardsTransactionGrid = () => {
         <TablePagination
           rowsPerPageOptions={[10, 25, 50]}
           component="div"
-          count={transactions.length}
+          count={filteredTransactions.length}
           rowsPerPage={rowsPerPage}
           page={page}
           onPageChange={handleChangePage}
