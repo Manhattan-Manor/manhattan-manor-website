@@ -37,7 +37,7 @@ const MediaPartners: FC = () => {
       <h2 className="text-center mb-3">{t("media-partners")}</h2>
 
       {isLoading && <div className="text-center">{t("common.loading")}</div>}
-      <div className="row">
+      <div className="row" style={{height: '150px', maxHeight: '200px'}}>
         <div className="col-12">
           <Carousel title="Media Partners Carousel" items={carouselItems} />
         </div>
