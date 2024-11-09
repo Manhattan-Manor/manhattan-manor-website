@@ -3,7 +3,6 @@ import Navbar from "../components/Navbar.astro";
 import favicon from "../assets/images/favicon.png?url";
 import i18next from "i18next";
 import { HeadHrefLangs } from "astro-i18next/components";
-import logo from "../assets/images/logo.svg?url";
 import "../assets/styles/_global.scss";
 import "../assets/styles/_colors.scss";
 import "aos/dist/aos.css";
@@ -55,6 +54,7 @@ import MetaPixel from "../components/MetaPixel.astro";
     <slot />
     <script is:inline async src="https://www.google.com/recaptcha/api.js"
     ></script>
+    <script src="bootstrap/dist/js/bootstrap.bundle.js"></script>
     <!-- <script defer src="bootstrap/dist/js/bootstrap.bundle.min.js"></script> -->
     <script>
       import AOS from "aos";

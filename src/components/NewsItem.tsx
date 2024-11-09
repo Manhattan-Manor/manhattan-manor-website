@@ -1,10 +1,10 @@
 import React, { FC, useEffect, useState } from "react";
 import Item from "../classes/NewsItem";
-import { format } from "date-fns";
 import "../assets/styles/NewsItem.scss";
 import Image from "../classes/Image";
 import { useTranslation } from "react-i18next";
-import { Modal } from "bootstrap";
+// @ts-ignore
+import { Modal } from "bootstrap/dist/js/bootstrap.bundle";
 import { htmlDecode, parseDate } from "../utils/functions";
 
 interface INewsItemProps {
