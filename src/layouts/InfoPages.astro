@@ -10,8 +10,8 @@ import "../assets/styles/_colors.scss";
 import i18next from "i18next";
 import { localizePath } from "astro-i18next";
 import SEO from "../components/SEO.astro";
-import MetaPixel from "../components/MetaPixel.astro";
-import GoogleAnalytics from "../components/GoogleAnalytics.astro";
+import TagManagerHead from "../components/TagManager/TagManagerHead.astro";
+import TagManagerBody from "../components/TagManager/TagManagerBody.astro";
 
 interface Props {
   title: string;
@@ -23,6 +23,7 @@ const { title } = Astro.props;
 <!DOCTYPE html>
 <html lang={i18next.language}>
   <head>
+    <TagManagerHead />
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -35,8 +36,6 @@ const { title } = Astro.props;
     <link rel="shortcut icon" href={favicon} type="image/x-icon" />
     <title>Manhattan Manor - {title}</title>
     <SEO />
-    <GoogleAnalytics />
-    <MetaPixel />
     <style>
       .content {
         min-height: 100vh;
@@ -65,6 +64,7 @@ const { title } = Astro.props;
     </style>
   </head>
   <body>
+    <TagManagerBody />
     <nav class="navbar fixed-top" data-bs-theme="dark">
       <div class="container d-flex align-items-center">
         <a class="navbar-brand" href={localizePath("/")}>

@@ -10,15 +10,16 @@ import "lightbox2/dist/css/lightbox.min.css";
 import "@splidejs/splide/dist/css/splide.min.css";
 import "animate.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
-import GoogleAnalytics from "../components/GoogleAnalytics.astro";
 import Accessibe from "../components/Accessibe.astro";
 import SEO from "../components/SEO.astro";
-import MetaPixel from "../components/MetaPixel.astro";
+import TagManagerHead from "../components/TagManager/TagManagerHead.astro";
+import TagManagerBody from "../components/TagManager/TagManagerBody.astro";
 ---
 
 <!DOCTYPE html>
 <html lang={i18next.language}>
   <head>
+    <TagManagerHead />
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -40,8 +41,6 @@ import MetaPixel from "../components/MetaPixel.astro";
       crossorigin="anonymous"
     />
     <link rel="shortcut icon" href={favicon} type="image/x-icon" />
-    <GoogleAnalytics />
-    <MetaPixel />
   </head>
   <body
     data-bs-spy="scroll"
@@ -50,6 +49,7 @@ import MetaPixel from "../components/MetaPixel.astro";
     class="scrollspy-example"
     tabindex="0"
   >
+  <TagManagerBody />
     <Navbar />
     <slot />
     <script is:inline async src="https://www.google.com/recaptcha/api.js"
