@@ -13,6 +13,7 @@
     "@astro-community/astro-embed-youtube": "^0.2.2",
     "@astrojs/image": "^0.16.5",
     "@astrojs/react": "^2.0.2",
+    "@astrojs/sitemap": "^3.2.1",
     "@emotion/react": "^11.13.3",
     "@emotion/styled": "^11.13.0",
     "@mui/icons-material": "^6.1.4",
