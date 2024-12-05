@@ -9,6 +9,9 @@
     "preview": "astro preview",
     "astro": "astro"
   },
+  "engines": {
+    "node": ">=20.3.0"
+  },
   "dependencies": {
     "@astro-community/astro-embed-youtube": "^0.2.2",
     "@astrojs/react": "4.0.0",
