@@ -14,6 +14,7 @@ import Accessibe from "../components/Accessibe.astro";
 import SEO from "../components/SEO.astro";
 import TagManagerHead from "../components/TagManager/TagManagerHead.astro";
 import TagManagerBody from "../components/TagManager/TagManagerBody.astro";
+import { localizePath } from "astro-i18next";
 ---
 
 <!DOCTYPE html>
@@ -42,6 +43,7 @@ import TagManagerBody from "../components/TagManager/TagManagerBody.astro";
     />
     <link rel="shortcut icon" href={favicon} type="image/x-icon" />
     <link rel="sitemap" href="/sitemap-index.xml" />
+    <link rel="canonical" href={localizePath("/")} />
   </head>
   <body
     data-bs-spy="scroll"
