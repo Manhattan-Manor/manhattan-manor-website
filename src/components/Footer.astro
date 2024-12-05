@@ -3,7 +3,6 @@ import logo from "../assets/images/logo.svg";
 import usaFlag from "../assets/images/flags/usa.png";
 import spaFlag from "../assets/images/flags/spa.png";
 import rosieLogo from "../assets/images/logo-rosie.png";
-import mmSpecs from "../assets/documents/mm-specs.pdf";
 import facebookIcon from "../assets/images/social/facebook.png";
 import instagramIcon from "../assets/images/social/instagram.png";
 import youtubeIcon from "../assets/images/social/youtube.png";
@@ -12,7 +11,7 @@ import zolaIcon from "../assets/images/social/zola.png";
 import linkedinIcon from "../assets/images/social/linkedin.webp";
 import { localizePath } from "astro-i18next";
 import { t } from "i18next";
-import { Image } from "@astrojs/image/components";
+import { Image } from 'astro:assets';
 
 const currentYear = new Date().getFullYear();
 const nextYear = currentYear + 1;

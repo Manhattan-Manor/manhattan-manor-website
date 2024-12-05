@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from "react";
+import { useEffect, useState, type FC } from "react";
 import { useTranslation } from "react-i18next";
 import Carousel from "./Carousel";
 import Client from "../classes/Client";

@@ -1,5 +1,5 @@
 ---
-import { Picture } from "@astrojs/image/components";
+import { Picture } from 'astro:assets';
 
 interface Props {
   title: string;
@@ -16,11 +16,10 @@ const { title, description, image, textStyle } = Astro.props;
   <Picture
     src={image}
     alt={title}
-    class="image"
     sizes="(max-width: 576px) 189px, (max-width: 992px) 250px, (max-width: 1920px) 450px, 600px"
     widths={[189, 250, 400, 450, 600]}
-    aspectRatio="16:12"
     quality={80}
+    style="height: 100%; width: 100%;"
     format="webp"
   />
   <h5 class="title">{title} <i class="bi bi-chevron-right"></i></h5>

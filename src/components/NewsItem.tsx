@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from "react";
+import { type FC, useEffect, useRef, useState } from "react";
 import Item from "../classes/NewsItem";
 import "../assets/styles/NewsItem.scss";
 import Image from "../classes/Image";
@@ -17,7 +17,7 @@ const NewsItem: FC<INewsItemProps> = ({ item }) => {
 
   const { t } = useTranslation("translation");
 
-  const modalRef = React.useRef<HTMLDivElement>(null);
+  const modalRef = useRef<HTMLDivElement>(null);
   const dateString = parseDate(item.date);
 
   const openModal = () => {

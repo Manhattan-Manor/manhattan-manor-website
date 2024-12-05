@@ -7,18 +7,24 @@ import privateDiningRoomMain from "../assets/images/venues/private-dining-room/m
 import Venue from "./Venue.astro";
 import { t } from "i18next";
 
-const manhattanManorGallery = (
-  await Astro.glob("../assets/images/venues/manhattan-manor/*.jpg")
-).map((image) => image.default);
-const broadwayRoomGallery = (
-  await Astro.glob("../assets/images/venues/broadway-room/*.jpg")
-).map((image) => image.default);
-const taftBarGallery = (
-  await Astro.glob("../assets/images/venues/taft-bar/*.jpg")
-).map((image) => image.default);
-const privateDiningRoomGallery = (
-  await Astro.glob("../assets/images/venues/private-dining-room/*.jpg")
-).map((image) => image.default);
+const manhattanManorGallery = Object.values(
+  import.meta.glob("../assets/images/venues/manhattan-manor/*.jpg", {
+    eager: true,
+  })
+).map((image) => (image as Record<string, any>).default);
+const broadwayRoomGallery = Object.values(
+  import.meta.glob("../assets/images/venues/broadway-room/*.jpg", {
+    eager: true,
+  })
+).map((image) => (image as Record<string, any>).default);
+const taftBarGallery = Object.values(
+  import.meta.glob("../assets/images/venues/taft-bar/*.jpg", { eager: true })
+).map((image) => (image as Record<string, any>).default);
+const privateDiningRoomGallery = Object.values(
+  import.meta.glob("../assets/images/venues/private-dining-room/*.jpg", {
+    eager: true,
+  })
+).map((image) => (image as Record<string, any>).default);
 
 const venues = [
   {

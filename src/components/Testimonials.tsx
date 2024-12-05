@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from "react";
+import { type FC, useEffect, useState } from "react";
 import Testimonial from "../classes/Testimonial";
 import { useTranslation } from "react-i18next";
 import "../assets/styles/Testimonials.scss";

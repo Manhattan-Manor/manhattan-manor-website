@@ -1,5 +1,5 @@
-import React, { FC } from "react";
-import { Options, Splide, SplideSlide } from "@splidejs/react-splide";
+import type { FC } from "react";
+import { Splide, SplideSlide } from "@splidejs/react-splide";
 import CarouselItem from "../classes/CarouselItem";
 import { AutoScroll } from "@splidejs/splide-extension-auto-scroll";
 import "../assets/styles/Carousel.scss";
@@ -9,7 +9,7 @@ interface ICarouselProps {
   title?: string;
 }
 
-const options: Options = {
+const options = {
   perPage: 6,
   gap: "1rem",
   type: "loop",

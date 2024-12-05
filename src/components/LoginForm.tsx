@@ -1,5 +1,5 @@
 // src/components/LoginForm.tsx
-import { useState, FormEvent } from 'react';
+import { useState, type FormEvent } from 'react';
 import '../assets/styles/login.scss'; // Importar el archivo SCSS para estilos
 import { User } from '../classes/User';
 
