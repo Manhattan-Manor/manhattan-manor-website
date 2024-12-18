@@ -203,6 +203,7 @@ const Row: React.FC<{ row: TicketTransaction }> = ({ row }) => {
             aria-label="download pdf"
             size="small"
             onClick={() => handlePdfClick(row)}
+            disabled={!row.confirm}
             title="Download pdf"
           >
             <PictureAsPdfIcon sx={{ color: red[600] }} />
