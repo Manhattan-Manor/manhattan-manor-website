@@ -206,7 +206,7 @@ const Row: React.FC<{ row: TicketTransaction }> = ({ row }) => {
             disabled={!row.confirm}
             title="Download pdf"
           >
-            <PictureAsPdfIcon sx={{ color: red[600] }} />
+            <PictureAsPdfIcon sx={{ color: row.confirm ? red[600] : grey[600] }} />
           </IconButton>
         </TableCell>
       </TableRow>
