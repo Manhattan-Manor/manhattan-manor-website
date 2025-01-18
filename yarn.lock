@@ -1398,7 +1398,7 @@ array-iterate@^2.0.0:
   resolved "https://registry.npmjs.org/array-iterate/-/array-iterate-2.0.1.tgz"
   integrity sha512-I1jXZMjAgCMmxT4qxXfPXa6SthSoE8h6gkSI9BGGNv8mP8G/v0blc+qFnZu6K42vTOiuME596QaLO0TP3Lk0xg==
 
-astro-i18next@1.0.0-beta.21, astro-i18next@^1.0.0-beta.19:
+astro-i18next@1.0.0-beta.21:
   version "1.0.0-beta.21"
   resolved "https://registry.npmjs.org/astro-i18next/-/astro-i18next-1.0.0-beta.21.tgz"
   integrity sha512-1YPqwexumHpK/d9afEoi52CBFTu6k4MYv/oHjsaAasZDvFClU6U5VPttC/OgZcXRYggCM6ee2LOnyHqlmXOeLA==
@@ -2697,7 +2697,7 @@ magicast@^0.3.5:
     animate.css "^4.1.1"
     aos "^2.3.4"
     astro "5.0.3"
-    astro-i18next "^1.0.0-beta.19"
+    astro-i18next "1.0.0-beta.21"
     astro-seo "^0.7.2"
     bootstrap "^5.2.3"
     bootstrap-icons "^1.10.3"
@@ -2707,7 +2707,7 @@ magicast@^0.3.5:
     jquery "^3.6.4"
     lightbox2 "^2.11.4"
     lite-youtube-embed "^0.2.0"
-    manhattan-manor-website "file:../../../Users/AxelLeon/AppData/Local/Yarn/Cache/v6/npm-manhattan-manor-website-0.0.1-132e419c-a697-451b-b1f7-7bdd52f8fda0-1733415758422/node_modules/manhattan-manor-website"
+    manhattan-manor-website "file:../../Users/willi/AppData/Local/Yarn/Cache/v6/npm-manhattan-manor-website-0.0.1-0eabb16c-2f82-4477-a423-bfcc6a08b83a-1737220636324/node_modules/manhattan-manor-website"
     react "^18.2.0"
     react-dom "^18.2.0"
     react-i18next "^12.2.0"
