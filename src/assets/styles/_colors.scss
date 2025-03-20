@@ -58,10 +58,10 @@ button.bg-primary:focus {
 }
 
 .btn-primary {
-  color: $primary_text_color_light_bright;
-  background-color: $primary_t1;
-  border-color: $primary_t1;
-  color: $primary_text_color_light_bright;
+  color: $primary_text_color_light_bright !important;
+  background-color: $primary_t1 !important;
+  border-color: $primary_t1 !important;
+  color: $primary_text_color_light_bright !important;
 }
 
 .btn {
